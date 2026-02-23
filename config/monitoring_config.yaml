@@ -1,0 +1,36 @@
+project_metadata:
+  name: "GTech_KPI_Monitor"
+  environment: "production_simulation"
+  version: "1.0.0"
+
+# Defining what we are watching
+kpis:
+  - name: "conversion_rate"
+    type: "proportion"
+    alert_thresholds:
+      critical: 0.10 # 10% relative drop
+      warning: 0.05  # 5% relative drop
+  
+  - name: "ctr"
+    type: "proportion"
+    alert_thresholds:
+      critical: 0.08
+      warning: 0.04
+
+  - name: "latency_ms"
+    type: "continuous"
+    alert_thresholds:
+      critical_p95: 500 # p95 above 500ms triggers alert
+
+# Dimensions for root-cause slicing
+segments:
+  - "device_type" # Mobile, Desktop, Tablet
+  - "region"      # NA, EMEA, APAC
+  - "browser"     # Chrome, Safari, Firefox
+
+# Reliability rules
+# In config/monitoring_config.yaml
+data_quality_checks:
+  min_daily_records: 10 # Set this slightly below your minimum 'size' above
+  max_null_percentage: 0.01 # 1%
+  freshness_threshold_hours: 24

@@ -1,0 +1,22 @@
+
+========================================
+📊 KPI MONITORING DIAGNOSTIC REPORT
+========================================
+1. DATA QUALITY HEALTH
+   - Status: ✅ PASS
+   - Health Score: 100/100
+   - Issues: None
+
+2. ANOMALY DETECTION & ROOT CAUSE
+   - Metric Flagged: conversions
+   - Detection Date: 2026-01-30
+   - Primary Offender: {
+       "segment": {
+              "device_type": "Mobile",
+              "region": "APAC",
+              "browser": "Safari"
+       },
+       "z_score": -2.11,
+       "actual_value": 103.0
+}
+========================================
