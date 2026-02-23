@@ -38,7 +38,7 @@ def main():
     # 5. Reporting
     print("📝 Step 5: Generating final report...")
     reporter = ReportGenerator()
-    reporter.generate_summary(dq_results, anomaly_summary)
+    reporter.generate_report(dq_results, anomaly_summary)
 
 if __name__ == "__main__":
     main()
