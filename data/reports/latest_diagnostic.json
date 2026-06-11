@@ -1,0 +1,162 @@
+{
+    "metadata": {
+        "report_generated_at": "2026-06-11 10:55:41",
+        "system_version": "1.0.0"
+    },
+    "run_summary": {
+        "total_observations_processed": 540,
+        "total_kpi_families_configured": 3,
+        "monitored_kpi": "conversion_rate",
+        "total_segment_combinations_evaluated": 18,
+        "rolling_baseline_window": 7,
+        "total_anomalies_detected": 51,
+        "max_abs_z_score": 9.89,
+        "diagnostic_runtime_seconds": 0.04
+    },
+    "data_quality_summary": {
+        "status": "PASS",
+        "is_healthy": true,
+        "health_score": 100,
+        "issues": [],
+        "checks": {
+            "volume": {
+                "passed": true,
+                "actual_records": 540,
+                "minimum_records": 10
+            },
+            "nulls": {
+                "passed": true,
+                "max_null_percentage": 0.0,
+                "threshold": 0.01
+            }
+        }
+    },
+    "diagnostic_details": {
+        "anomaly_detected": true,
+        "metric": "conversion_rate",
+        "date": "2026-06-08",
+        "primary_offender": {
+            "segment": {
+                "device_type": "Mobile",
+                "region": "EMEA",
+                "browser": "Safari"
+            },
+            "z_score": -9.89,
+            "actual_value": 0.0606,
+            "rolling_mean": 0.0988
+        },
+        "ranked_anomalies": [
+            {
+                "date": "2026-06-08",
+                "segment": {
+                    "device_type": "Mobile",
+                    "region": "EMEA",
+                    "browser": "Safari"
+                },
+                "z_score": -9.89,
+                "actual_value": 0.0606,
+                "rolling_mean": 0.0988
+            },
+            {
+                "date": "2026-06-01",
+                "segment": {
+                    "device_type": "Desktop",
+                    "region": "APAC",
+                    "browser": "Safari"
+                },
+                "z_score": -5.15,
+                "actual_value": 0.0859,
+                "rolling_mean": 0.1017
+            },
+            {
+                "date": "2026-05-22",
+                "segment": {
+                    "device_type": "Mobile",
+                    "region": "NA",
+                    "browser": "Safari"
+                },
+                "z_score": 4.35,
+                "actual_value": 0.1125,
+                "rolling_mean": 0.0998
+            },
+            {
+                "date": "2026-05-31",
+                "segment": {
+                    "device_type": "Mobile",
+                    "region": "APAC",
+                    "browser": "Safari"
+                },
+                "z_score": -4.3,
+                "actual_value": 0.0863,
+                "rolling_mean": 0.1022
+            },
+            {
+                "date": "2026-05-30",
+                "segment": {
+                    "device_type": "Desktop",
+                    "region": "NA",
+                    "browser": "Chrome"
+                },
+                "z_score": -4.05,
+                "actual_value": 0.0877,
+                "rolling_mean": 0.1013
+            },
+            {
+                "date": "2026-05-26",
+                "segment": {
+                    "device_type": "Desktop",
+                    "region": "EMEA",
+                    "browser": "Chrome"
+                },
+                "z_score": -4.0,
+                "actual_value": 0.0902,
+                "rolling_mean": 0.102
+            },
+            {
+                "date": "2026-06-03",
+                "segment": {
+                    "device_type": "Desktop",
+                    "region": "APAC",
+                    "browser": "Firefox"
+                },
+                "z_score": -3.88,
+                "actual_value": 0.0848,
+                "rolling_mean": 0.0987
+            },
+            {
+                "date": "2026-05-27",
+                "segment": {
+                    "device_type": "Mobile",
+                    "region": "NA",
+                    "browser": "Firefox"
+                },
+                "z_score": -3.47,
+                "actual_value": 0.0849,
+                "rolling_mean": 0.0996
+            },
+            {
+                "date": "2026-05-19",
+                "segment": {
+                    "device_type": "Mobile",
+                    "region": "APAC",
+                    "browser": "Firefox"
+                },
+                "z_score": 3.19,
+                "actual_value": 0.1094,
+                "rolling_mean": 0.1008
+            },
+            {
+                "date": "2026-06-05",
+                "segment": {
+                    "device_type": "Mobile",
+                    "region": "EMEA",
+                    "browser": "Firefox"
+                },
+                "z_score": -3.13,
+                "actual_value": 0.0862,
+                "rolling_mean": 0.1032
+            }
+        ],
+        "summary": "Anomaly detected and ranked by absolute Z-score severity."
+    }
+}

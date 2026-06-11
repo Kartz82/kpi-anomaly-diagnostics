@@ -3,6 +3,11 @@ project_metadata:
   environment: "production_simulation"
   version: "1.0.0"
 
+simulation:
+  seed: 42
+  days: 30
+  inject_glitch: true
+
 # Defining what we are watching
 kpis:
   - name: "conversion_rate"

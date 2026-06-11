@@ -1,198 +1,226 @@
-# KPI Reliability & Diagnostic Engine
+# KPI Monitoring & Diagnostic Engine
 
 ## Overview
 
-**KPI Reliability Engine** is a production-style monitoring system that automates end-to-end data reliability for business-critical metrics. It doesn't just detect anomalies—it validates data quality upfront, pinpoints the exact segment causing issues (Mobile/APAC/Safari), and generates structured root-cause summaries that Technical Advisors can action immediately.
+KPI Monitoring & Diagnostic Engine is a lightweight Python analytics workflow for validating KPI data, detecting metric anomalies, and isolating the business segment driving the issue.
 
-**The Problem Solved:** Silent data failures and "garbage in, garbage out" scenarios waste engineering hours. This engine catches issues proactively with a 100/100 data health score gate and delivers precise diagnostics like: *"Conversions dropped -2.11 Z-score, primarily driven by Mobile/APAC/Safari segment."*
+The engine runs locally from `main.py`. It simulates segmented KPI data, validates data quality, monitors the configured KPI, computes rolling Z-scores, identifies the primary offender, and exports diagnostic reports as JSON, interactive Plotly HTML, and static PNG figures.
 
-## Key Features
+The repository remains intentionally lightweight. It uses a production-style diagnostic workflow without Dash, databases, cloud services, schedulers, or alerting systems.
 
-- **Data Quality Gate:** 0-100 Health Score based on volume and null checks. Calibrated to pass at 100/100 for expected traffic patterns.
-- **Rolling Z-Score Anomaly Detection:** 7-day statistical windows flag deviations (e.g., -2.11 Z-score on Conversions).
-- **Segment-Level Root Cause:** Automatically ranks offending segments by severity (Device/Region/Browser breakdown).
-- **Structured Diagnostics:** JSON summaries with `primary_offender` and ranked segment impacts.
-- **Production-Ready Pipeline:** Single `python main.py` execution: ingest → validate → detect → diagnose → report.
-- **SQL-First Design:** BigQuery-compatible schema with example diagnostic queries.
+## Business Problem
 
-## Repository Structure
+Business dashboards often show that a KPI moved, but they do not always explain whether the data is reliable, whether the movement is statistically unusual, or which segment caused the change.
 
+The engine validates the input data before analysis, detects abnormal KPI movement against a rolling baseline, and isolates the segment combination most responsible for the incident. That workflow helps analytics teams move from metric observation to diagnostic explanation.
+
+This pattern applies to e-commerce, SaaS, product analytics, marketing analytics, fintech, marketplace operations, media platforms, and BI operations teams that need faster KPI triage.
+
+## Key Results
+
+Latest run from `data/reports/latest_diagnostic.json`:
+
+| Metric | Value |
+|---|---:|
+| Data quality score | 100/100 |
+| Data quality status | PASS |
+| Monitored KPI | conversion_rate |
+| Anomaly date | 2026-06-08 |
+| Primary offender | Mobile / EMEA / Safari |
+| Actual value | 0.0606 |
+| Rolling baseline | 0.0988 |
+| Z-score | -9.89 |
+| KPI families configured | 3 |
+| Segment combinations evaluated | 18 |
+| Observations processed | 540 |
+| Anomalies detected | 51 |
+| Rolling baseline window | 7 prior observations |
+| Diagnostic runtime | 0.04 seconds |
+
+## Example Incident
+
+The platform detected a `conversion_rate` anomaly on `2026-06-08`.
+
+```text
+Primary offender: Mobile / EMEA / Safari
+Actual value: 0.0606
+Rolling baseline: 0.0988
+Z-score: -9.89
 ```
-kpi-reliability-engine/
-├── main.py                        # End-to-end orchestrator
-├── requirements.txt
-├── .gitignore
-├── config/
-│   └── monitoring_config.yaml     # Thresholds, KPIs, segments
-├── src/
-│   └── core/
-│       ├── __init__.py
-│       ├── ingestion.py           # Load/simulate daily KPIs
-│       ├── data_quality.py        # 0-100 Health Score validator
-│       ├── anomaly_detection.py   # Rolling Z-score engine
-│       ├── root_cause.py          # Segment breakdown + ranking
-│       ├── reporting.py           # Markdown/JSON + Plotly visuals
-│       └── utils.py               # Shared helpers
-├── sql/
-│   ├── schema.sql                 # daily_kpi_metrics fact table
-│   └── example_queries.sql        # Segment diagnostics
-└── data/
-    ├── daily_kpis.csv             # Generated input data
-    └── reports/                   # Auto-generated summaries + plots
-```
+
+The workflow isolates a sharp conversion-rate drop in the `Mobile / EMEA / Safari` segment. For an analytics or product team, this points investigation toward a localized funnel, browser, release, tracking, or user-experience issue rather than a broad business-wide decline.
+
+## Dashboard Outputs
+
+Static PNG figures are generated under `reports/figures/` for GitHub rendering. Interactive Plotly HTML reports are generated under `data/reports/` for local review.
+
+### Incident Center
+
+The Incident Center consolidates deterministic KPI scenarios into one recruiter-readable diagnostic view. It shows the monitored KPI, current value, rolling baseline, Z-score, severity, primary offender, and suggested investigation path.
+
+![Incident Center](reports/figures/incident_center.png)
+
+### Incident Summary
+
+![Incident Summary](reports/figures/incident_summary.png)
+
+### Anomaly Z-Score
+
+![Anomaly Z-Score](reports/figures/anomaly_zscore.png)
+
+### Segment Root Cause
+
+![Segment Root Cause](reports/figures/segment_root_cause.png)
+
+### KPI Time Series
+
+![KPI Timeseries](reports/figures/kpi_timeseries.png)
 
 ## Architecture
 
 ```mermaid
 flowchart TD
-    A["Load Config<br/>KPIs + thresholds"] --> B["main.py starts monitoring"]
-    
-    B --> C["Ingest daily KPIs<br/>Conversions, CTR, latency"]
-    B --> D["Data Quality Gate<br/>100/100 Health Score? ✓"]
-    
-    C --> E["Raw data validated<br/>daily_kpis.csv ready"]
-    D --> E
-    
-    E --> F["Rolling Z-Score<br/>-2.11σ Conversions drop?"]
-    E --> G["Segment Breakdown<br/>Mobile/APAC/Safari worst"]
-    
-    F --> H["Root Cause Summary<br/>'Primary offender identified'"]
-    G --> H
-    
-    H --> I["JSON Report + Plotly<br/>Stakeholder ready diagnostics"]
-    H --> J["Console Summary<br/>Actionable next steps"]
-    
-    %% Professional dark palette
-    style A fill:#1e3a8a, color:#ffffff
-    style B fill:#1f2937, color:#ffffff
-    style H fill:#166534, color:#ffffff
-    style I fill:#7c2d12, color:#ffffff
-    style F fill:#4c1d95, color:#ffffff
-    style G fill:#1e40af, color:#ffffff
+    A[monitoring_config.yaml] --> B[main.py]
+
+    B --> C[DataIngestor]
+    B --> D[DataQualityValidator]
+    B --> E[AnomalyDetector]
+    B --> F[RootCauseAnalyzer]
+    B --> G[ReportGenerator]
+
+    C --> H[Simulated KPI Dataset]
+    H --> D
+    D --> I{Data Quality Pass?}
+
+    I -- No --> J[Stop Diagnostic Run]
+    I -- Yes --> E
+
+    E --> K[Rolling Z-Scores]
+    K --> F
+    F --> L[Primary Offender + Ranked Anomalies]
+
+    L --> G
+    G --> M[JSON Diagnostic]
+    G --> N[Interactive HTML Reports]
+    G --> O[Static PNG Figures]
 ```
 
-## How It Works
+## Processing Pipeline
 
-### 1. Data Quality Gate (Prevents Garbage In)
-```python
-# data_quality.py - Deductive scoring model
-health_score = 100
-if daily_records < min_daily_records: health_score -= 30  # Volume drop
-if null_rate > max_null_rate: health_score -= 40         # Data completeness
-```
-**Real calibration:** Tuned `min_daily_records` in YAML from 5000→3500 to match simulator output, achieving perfect 100/100 scores.
-
-### 2. Rolling Z-Score Anomaly Detection
-- **Window:** 7-day rolling mean/std from historical data
-- **Formula:** `z = (current - rolling_mean) / rolling_std`
-- **Real result:** Flagged `-2.11 Z-score` drop in Conversions (Mobile/APAC/Safari)
-
-### 3. Root Cause Ranking
-```python
-# root_cause.py - Structured output
-{
-  "kpi": "conversions",
-  "anomaly_direction": "drop", 
-  "z_score": -2.11,
-  "primary_offender": "Mobile/APAC/Safari",
-  "segment_impacts": [
-    {"segment": "Mobile/APAC/Safari", "z_score": -2.11, "pct_change": -9.2},
-    {"segment": "Desktop/NA/Chrome", "z_score": -0.87, "pct_change": -2.1}
-  ]
-}
+```mermaid
+flowchart LR
+    A[Load Config] --> B[Simulate 30 Days of KPI Data]
+    B --> C[Validate Data Quality]
+    C --> D[Build Prior 7-Observation Baseline]
+    D --> E[Calculate Z-Scores]
+    E --> F[Flag Segment-Level Anomalies]
+    F --> G[Rank by Absolute Z-Score]
+    G --> H[Generate JSON, HTML, and PNG Reports]
 ```
 
-### 4. Technical Challenges Solved
-- **TypeError Fix:** "Resolved `TypeError` in anomaly detection by explicitly resetting DataFrame indices and enforcing `float64` casting during rolling window aggregations."
-- **Environment Sync:** Standardized `requirements.txt` + Python 3.10 pinning for reproducible deployments.
+## Diagnostic Flow
 
-## Configuration (YAML-Driven)
+```mermaid
+flowchart TD
+    A[Segment-Level KPI Observation] --> B[Compare to Prior Rolling Mean]
+    B --> C[Compute Z-Score]
+    C --> D{Absolute Z-Score > 2.0?}
 
-```yaml
-kpis:
-  - name: conversions
-    anomaly_threshold: -2.0
-    segments: [device, region, browser]
-data_quality:
-  min_daily_records: 3500      # Calibrated to simulator
-  max_null_rate: 0.01
+    D -- No --> E[No Anomaly Flag]
+    D -- Yes --> F[Flag Anomaly]
+
+    F --> G[Rank Anomalies by Severity]
+    G --> H[Select Primary Offender]
+    H --> I[Create Incident Summary]
+    I --> J[Export Reports for Review]
 ```
 
-## SQL Schema (BigQuery-Ready)
+## Core Features
 
-**File:** `sql/schema.sql`
-```sql
-CREATE TABLE daily_kpi_metrics (
-  date DATE,
-  kpi_name STRING,
-  value FLOAT64,
-  device STRING,
-  region STRING, 
-  browser STRING
-);
-```
-
-**Diagnostic Query Example:**
-```sql
--- Top offenders by Z-score drop
-SELECT device, region, browser, AVG(value) as avg_conversions
-FROM daily_kpi_metrics 
-WHERE date >= DATE_SUB(CURRENT_DATE(), INTERVAL 7 DAY)
-GROUP BY device, region, browser
-ORDER BY avg_conversions ASC;
-```
-
-## Installation & Usage
-
-```bash
-git clone <your-repo>
-cd kpi-reliability-engine
-
-# Install dependencies
-pip install -r requirements.txt
-
-# Run full monitoring pipeline
-python main.py
-```
-
-**Expected Output:**
-```
-✅ Data Health: 100/100
-🚨 ANOMALY DETECTED: Conversions z=-2.11
-🔍 Primary Offender: Mobile/APAC/Safari (-9.2%)
-📊 Report saved: data/reports/alert_2026-02-23.json
-📈 Dashboard: data/reports/anomaly_plot.html
-```
+- The engine validates data quality with volume and null-completeness checks.
+- The platform monitors the configured KPI: `conversion_rate`.
+- The configuration includes 3 KPI families: `conversion_rate`, `ctr`, and `latency_ms`.
+- The workflow evaluates 18 segment combinations across `device_type`, `region`, and `browser`.
+- The anomaly detector compares each observation against the prior 7 observations for the same segment.
+- The diagnostic layer selects one primary offender and exports a ranked anomaly list.
+- The reporting layer exports JSON, interactive HTML, and static PNG figures.
+- The Incident Center consolidates deterministic `conversion_rate`, `ctr`, and `latency_ms` scenarios into one multi-KPI report.
+- The simulation uses a deterministic seed for reproducible portfolio outputs.
 
 ## Tech Stack
 
-- **Core:** Python 3.10, Pandas, NumPy
-- **Stats:** SciPy, statsmodels
-- **Config:** PyYAML
-- **Visualization:** Plotly, Matplotlib
-- **SQL:** Design-ready for BigQuery/Postgres
-- **DevOps:** Git, requirements.txt, type hints
+- Python
+- pandas
+- NumPy
+- PyYAML
+- Plotly
+- Kaleido
+- SQL examples
 
-## Why This Matters for Technical Support
+## Generated Outputs
 
-This project demonstrates the **Technical Advisor mindset** Google gTech values:
+Running `python main.py` generates the current diagnostic artifacts.
 
-1. **Automation:** "Develop automation tools for diagnostics and debugging" → ✅ Full pipeline
-2. **Root Cause:** "Analyze data and insights to solve issues at root cause" → ✅ Segment-level precision  
-3. **Guardrails:** "Operational improvements, account reviews" → ✅ Data quality gates
-4. **Customer Translation:** "Translate technical concepts to non-technical audiences" → ✅ Structured JSON + visuals
+JSON:
 
-## Limitations & Roadmap
+```text
+data/reports/latest_diagnostic.json
+```
 
-**Current:**
-- Single KPI focus (Conversions)
-- Rolling Z-score only (no Prophet/Isolation Forest)
-- File-based storage (no live DB)
+HTML:
 
-**Next:**
-- Multi-KPI monitoring (CTR, latency, revenue)
-- Advanced anomaly models
-- Streamlit live dashboard
-- BigQuery/Postgres integration
-- Slack alerting simulation
+```text
+data/reports/kpi_timeseries.html
+data/reports/anomaly_zscore.html
+data/reports/segment_root_cause.html
+data/reports/incident_center.html
+```
 
+PNG:
+
+```text
+reports/figures/incident_summary.png
+reports/figures/incident_center.png
+reports/figures/anomaly_zscore.png
+reports/figures/segment_root_cause.png
+reports/figures/kpi_timeseries.png
+```
+
+The repository also contains an older `data/reports/latest_diagnostic.txt` artifact. The current pipeline writes JSON, HTML, and PNG outputs.
+
+## Quickstart
+
+```bash
+python -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+python main.py
+```
+
+After the run completes, open the HTML files locally for interactive charts or view the PNG files directly in GitHub.
+
+## Project Structure
+
+```text
+.
+├── main.py
+├── config/
+│   └── monitoring_config.yaml
+├── src/
+│   └── core/
+│       ├── ingestion.py
+│       ├── data_quality.py
+│       ├── anomaly_detection.py
+│       ├── root_cause.py
+│       ├── reporting.py
+│       └── utils.py
+├── sql/
+│   ├── schema.sql
+│   └── example_queries.sql
+├── data/
+│   └── reports/
+├── reports/
+│   └── figures/
+├── requirements.txt
+└── README.md
+```

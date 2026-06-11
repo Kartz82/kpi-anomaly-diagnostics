@@ -9,8 +9,9 @@ class DataIngestor:
             self.config = yaml.safe_load(f)
         self.segments = self.config['segments']
 
-    def simulate_data(self, days: int = 30, inject_glitch: bool = False) -> pd.DataFrame:
+    def simulate_data(self, days: int = 30, inject_glitch: bool = False, seed: int | None = None) -> pd.DataFrame:
         """Generates a time-series dataset of KPIs across multiple segments."""
+        rng = np.random.default_rng(seed)
         data_list = []
         start_date = datetime.now() - timedelta(days=days)
 
@@ -26,16 +27,22 @@ class DataIngestor:
                     for browser in ['Chrome', 'Safari', 'Firefox']:
                         
                         # Standard random noise
-                        size = np.random.randint(1000, 2000)
-                        conv_rate = base_conv + np.random.normal(0, 0.005)
-                        ctr = base_ctr + np.random.normal(0, 0.004)
-                        latency = 200 + np.random.normal(0, 20)
+                        size = rng.integers(1000, 2000)
+                        conv_rate = base_conv + rng.normal(0, 0.005)
+                        ctr = base_ctr + rng.normal(0, 0.004)
+                        latency = 200 + rng.normal(0, 20)
 
-                        # 🚨 THE GLITCH: Drop Mobile conversion in EMEA by 40% on the last 3 days
+                        # Deterministic incident scenarios for the local diagnostic demo.
                         if inject_glitch and i > (days - 4):
-                            if device == 'Mobile' and region == 'EMEA':
+                            if device == 'Mobile' and region == 'EMEA' and browser == 'Safari':
                                 conv_rate *= 0.6
-                                latency += 150 # Spike latency too
+                            if device == 'Desktop' and region == 'NA' and browser == 'Chrome':
+                                ctr *= 0.55
+                            if device == 'Mobile' and region == 'APAC' and browser == 'Firefox':
+                                latency += 220
+
+                        clicks = int(size * ctr)
+                        conversions = int(size * conv_rate)
 
                         data_list.append({
                             "date": curr_date.strftime("%Y-%m-%d"),
@@ -43,8 +50,10 @@ class DataIngestor:
                             "region": region,
                             "browser": browser,
                             "impressions": size,
-                            "clicks": int(size * ctr),
-                            "conversions": int(size * conv_rate),
+                            "clicks": clicks,
+                            "conversions": conversions,
+                            "ctr": round(clicks / size, 4),
+                            "conversion_rate": round(conversions / size, 4),
                             "latency_ms": latency
                         })
 
