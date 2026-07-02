@@ -1,0 +1,14 @@
+kpi_reliability_dbt:
+  target: local
+  outputs:
+    local:
+      type: postgres
+      host: localhost
+      user: kpi_user
+      password: kpi_password
+      port: 5432
+      dbname: kpi_reliability
+      schema: dbt
+      threads: 4
+      keepalives_idle: 0
+

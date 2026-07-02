@@ -1,0 +1,136 @@
+version: 2
+
+models:
+  - name: stg_kpi_daily_metrics
+    columns:
+      - name: date
+        tests: [not_null]
+      - name: kpi_name
+        tests: [not_null]
+      - name: region
+        tests: [not_null]
+      - name: device_type
+        tests: [not_null]
+      - name: browser
+        tests: [not_null]
+      - name: channel
+        tests: [not_null]
+      - name: business_segment
+        tests: [not_null]
+      - name: kpi_value
+        tests:
+          - not_null
+    tests:
+      - unique_combination_of_columns:
+          combination_of_columns:
+            - date
+            - kpi_name
+            - region
+            - device_type
+            - browser
+            - channel
+            - business_segment
+
+  - name: stg_kpi_monitoring
+    columns:
+      - name: date
+        tests: [not_null]
+      - name: kpi_name
+        tests: [not_null]
+      - name: monitoring_status
+        tests:
+          - not_null
+          - accepted_values:
+              values: ["NORMAL", "WARNING", "CRITICAL"]
+      - name: threshold_direction
+        tests:
+          - accepted_values:
+              values: ["lower_is_bad", "higher_is_bad"]
+      - name: actual_value
+        tests: [not_null]
+    tests:
+      - unique_combination_of_columns:
+          combination_of_columns:
+            - date
+            - kpi_name
+            - region
+            - device_type
+            - browser
+            - channel
+            - business_segment
+
+  - name: stg_anomaly_results
+    columns:
+      - name: date
+        tests: [not_null]
+      - name: kpi_name
+        tests: [not_null]
+      - name: residual_severity
+        tests:
+          - accepted_values:
+              values: ["NORMAL", "WARNING", "CRITICAL"]
+      - name: zscore_severity
+        tests:
+          - accepted_values:
+              values: ["NORMAL", "WARNING", "CRITICAL"]
+      - name: combined_severity
+        tests:
+          - accepted_values:
+              values: ["NORMAL", "WARNING", "CRITICAL"]
+    tests:
+      - unique_combination_of_columns:
+          combination_of_columns:
+            - date
+            - kpi_name
+            - region
+            - device_type
+            - browser
+            - channel
+            - business_segment
+
+  - name: stg_rca_contributions
+    columns:
+      - name: analysis_date
+        tests: [not_null]
+      - name: kpi_name
+        tests: [not_null]
+      - name: detector_used
+        tests:
+          - accepted_values:
+              values: ["residual_anomaly", "zscore_anomaly", "combined_anomaly", "threshold_breached"]
+      - name: contribution_share
+        tests:
+          - not_null
+          - assert_contribution_share_bounds:
+              column_name: contribution_share
+    tests:
+      - unique_combination_of_columns:
+          combination_of_columns:
+            - analysis_date
+            - kpi_name
+            - detector_used
+            - dimension_type
+            - dimension_value
+
+  - name: stg_incident_history
+    columns:
+      - name: incident_id
+        tests: [not_null, unique]
+      - name: incident_date
+        tests: [not_null]
+      - name: kpi_name
+        tests: [not_null]
+      - name: severity
+        tests:
+          - accepted_values:
+              values: ["NORMAL", "WARNING", "CRITICAL"]
+      - name: confidence_label
+        tests:
+          - accepted_values:
+              values: ["Low", "Medium", "High"]
+      - name: confidence_score
+        tests:
+          - not_null
+          - assert_incident_confidence_bounds:
+              column_name: confidence_score
+

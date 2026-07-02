@@ -10,11 +10,16 @@ env/
 
 # Data & Sensitive Info
 data/raw/*
+!data/raw/kpi_daily_metrics.csv
 data/warehouse/*
 !data/.gitkeep
 config/*.env
 .env
 .DS_Store
+dbt/profiles.yml
+dbt/target/
+dbt/logs/
+dbt/dbt_packages/
 
 # Jupyter
 .ipynb_checkpoints/

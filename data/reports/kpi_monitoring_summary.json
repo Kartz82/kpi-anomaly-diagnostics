@@ -1,0 +1,161 @@
+{
+  "run_timestamp": "2026-07-02T20:30:00.330988+00:00",
+  "total_monitoring_rows": 121500,
+  "kpi_names": [
+    "average_order_value",
+    "click_through_rate",
+    "conversion_rate",
+    "latency_ms",
+    "revenue_per_session"
+  ],
+  "date_range": {
+    "min": "2026-02-01",
+    "max": "2026-06-30"
+  },
+  "warning_count": 2866,
+  "critical_count": 434,
+  "threshold_breach_count": 3300,
+  "threshold_breach_count_by_kpi": {
+    "average_order_value": 487,
+    "click_through_rate": 485,
+    "conversion_rate": 1394,
+    "latency_ms": 78,
+    "revenue_per_session": 856
+  },
+  "worst_kpi_variances_by_abs_percent_variance": [
+    {
+      "date": "2026-05-18",
+      "kpi_name": "latency_ms",
+      "region": "North America",
+      "device_type": "Desktop",
+      "browser": "Chrome",
+      "channel": "Paid Search",
+      "business_segment": "Enterprise",
+      "actual_value": 351.791402,
+      "expected_value": 156.739542,
+      "percent_variance": 1.244433,
+      "monitoring_status": "CRITICAL"
+    },
+    {
+      "date": "2026-05-18",
+      "kpi_name": "latency_ms",
+      "region": "North America",
+      "device_type": "Desktop",
+      "browser": "Chrome",
+      "channel": "Email",
+      "business_segment": "SMB",
+      "actual_value": 348.56544,
+      "expected_value": 155.711343,
+      "percent_variance": 1.238536,
+      "monitoring_status": "CRITICAL"
+    },
+    {
+      "date": "2026-05-18",
+      "kpi_name": "latency_ms",
+      "region": "North America",
+      "device_type": "Desktop",
+      "browser": "Chrome",
+      "channel": "Paid Search",
+      "business_segment": "Mid-Market",
+      "actual_value": 346.770432,
+      "expected_value": 158.68244,
+      "percent_variance": 1.185311,
+      "monitoring_status": "CRITICAL"
+    },
+    {
+      "date": "2026-05-19",
+      "kpi_name": "latency_ms",
+      "region": "North America",
+      "device_type": "Desktop",
+      "browser": "Chrome",
+      "channel": "Email",
+      "business_segment": "Mid-Market",
+      "actual_value": 361.887341,
+      "expected_value": 167.480898,
+      "percent_variance": 1.160768,
+      "monitoring_status": "CRITICAL"
+    },
+    {
+      "date": "2026-05-18",
+      "kpi_name": "latency_ms",
+      "region": "North America",
+      "device_type": "Desktop",
+      "browser": "Chrome",
+      "channel": "Organic",
+      "business_segment": "Mid-Market",
+      "actual_value": 339.08967,
+      "expected_value": 157.397576,
+      "percent_variance": 1.154351,
+      "monitoring_status": "CRITICAL"
+    },
+    {
+      "date": "2026-05-18",
+      "kpi_name": "latency_ms",
+      "region": "North America",
+      "device_type": "Desktop",
+      "browser": "Chrome",
+      "channel": "Email",
+      "business_segment": "Mid-Market",
+      "actual_value": 346.830166,
+      "expected_value": 160.997807,
+      "percent_variance": 1.154254,
+      "monitoring_status": "CRITICAL"
+    },
+    {
+      "date": "2026-05-19",
+      "kpi_name": "latency_ms",
+      "region": "North America",
+      "device_type": "Desktop",
+      "browser": "Chrome",
+      "channel": "Email",
+      "business_segment": "SMB",
+      "actual_value": 350.197699,
+      "expected_value": 162.582407,
+      "percent_variance": 1.15397,
+      "monitoring_status": "CRITICAL"
+    },
+    {
+      "date": "2026-05-19",
+      "kpi_name": "latency_ms",
+      "region": "North America",
+      "device_type": "Desktop",
+      "browser": "Chrome",
+      "channel": "Paid Search",
+      "business_segment": "Mid-Market",
+      "actual_value": 353.221262,
+      "expected_value": 165.324457,
+      "percent_variance": 1.136534,
+      "monitoring_status": "CRITICAL"
+    },
+    {
+      "date": "2026-05-18",
+      "kpi_name": "latency_ms",
+      "region": "North America",
+      "device_type": "Desktop",
+      "browser": "Chrome",
+      "channel": "Email",
+      "business_segment": "Enterprise",
+      "actual_value": 340.258768,
+      "expected_value": 159.318642,
+      "percent_variance": 1.135712,
+      "monitoring_status": "CRITICAL"
+    },
+    {
+      "date": "2026-05-19",
+      "kpi_name": "latency_ms",
+      "region": "North America",
+      "device_type": "Desktop",
+      "browser": "Chrome",
+      "channel": "Organic",
+      "business_segment": "Mid-Market",
+      "actual_value": 347.990559,
+      "expected_value": 163.676694,
+      "percent_variance": 1.126085,
+      "monitoring_status": "CRITICAL"
+    }
+  ],
+  "outputs": {
+    "monitoring_table": "data/processed/kpi_monitoring_table.csv",
+    "monitoring_summary": "/Users/kartz/Projects/data-reliability-kpi-monitoring/data/reports/kpi_monitoring_summary.json"
+  }
+}

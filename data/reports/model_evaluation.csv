@@ -1,0 +1,5 @@
+detector,precision,recall,f1_score,true_positives,false_positives,false_negatives,true_negatives,support,total_rows
+monitoring_threshold,0.103636,1.0,0.187809,342,2958,0,118200,342,121500
+rolling_zscore,0.103261,0.277778,0.150555,95,825,247,120333,342,121500
+ml_residual,0.377901,1.0,0.548516,342,563,0,120595,342,121500
+combined,0.201532,1.0,0.335459,342,1355,0,119803,342,121500

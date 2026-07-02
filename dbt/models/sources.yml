@@ -1,0 +1,59 @@
+version: 2
+
+sources:
+  - name: raw
+    schema: raw
+    tables:
+      - name: raw_kpi_daily_metrics
+        columns:
+          - name: date
+            tests: [not_null]
+          - name: kpi_name
+            tests:
+              - not_null
+              - accepted_values:
+                  values:
+                    - conversion_rate
+                    - click_through_rate
+                    - average_order_value
+                    - latency_ms
+                    - revenue_per_session
+      - name: raw_kpi_monitoring
+        columns:
+          - name: date
+            tests: [not_null]
+          - name: monitoring_status
+            tests:
+              - accepted_values:
+                  values: ["NORMAL", "WARNING", "CRITICAL"]
+      - name: raw_anomaly_results
+        columns:
+          - name: date
+            tests: [not_null]
+          - name: residual_severity
+            tests:
+              - accepted_values:
+                  values: ["NORMAL", "WARNING", "CRITICAL"]
+      - name: raw_rca_contributions
+        columns:
+          - name: analysis_date
+            tests: [not_null]
+          - name: kpi_name
+            tests:
+              - not_null
+              - accepted_values:
+                  values:
+                    - conversion_rate
+                    - click_through_rate
+                    - average_order_value
+                    - latency_ms
+                    - revenue_per_session
+      - name: raw_incident_history
+        columns:
+          - name: incident_id
+            tests: [not_null]
+          - name: severity
+            tests:
+              - accepted_values:
+                  values: ["NORMAL", "WARNING", "CRITICAL"]
+

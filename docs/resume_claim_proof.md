@@ -1,0 +1,9 @@
+# Resume Claim Proof
+
+| Resume Claim | Python Proof | SQL/dbt Proof | Dashboard/Report Proof | Output Evidence |
+| --- | --- | --- | --- | --- |
+| Built an automated KPI monitoring and diagnostic platform for business metrics. | `scripts/run_pipeline.py`, `src/core/kpi_monitoring.py`, `src/core/anomaly_detection.py`, `src/core/root_cause.py`, `src/core/incident_reporting.py` | `sql/diagnostic_queries.sql`, dbt mart models | Executive Overview, KPI Health, Incident Center | `data/processed/kpi_monitoring_table.csv`, `data/reports/latest_incident.json` |
+| Implemented data quality scoring, anomaly detection, and multi-dimensional RCA. | `src/core/data_quality.py`, `src/core/anomaly_detection.py`, `src/core/root_cause.py` | `sql/schema.sql`, dbt staging/intermediate models | Data Quality, Root Cause Explorer | `data/reports/data_quality_report.json`, `data/reports/root_cause_summary.json` |
+| Combined statistical and ML residual approaches to evaluate anomaly detection performance. | `src/core/anomaly_detection.py`, `src/core/model_evaluation.py` | `data/reports/model_evaluation.csv`, `data/reports/model_comparison.json` | Anomaly Timeline | `data/processed/anomaly_results.csv` |
+| Built a PostgreSQL and dbt analytics engineering layer with tested marts. | `scripts/load_postgres.py`, `scripts/verify_warehouse.py` | `sql/schema.sql`, `dbt/` project, 148 dbt tests | Warehouse proof in marts | `marts.mart_kpi_health`, `marts.mart_incident_summary` |
+| Delivered executive-ready dashboards and incident reports for operational decision-making. | `dashboards/streamlit_app.py`, `src/core/incident_reporting.py` | `sql/diagnostic_queries.sql` | Dashboard pages and incident report outputs | `data/reports/latest_incident.md`, `data/reports/latest_incident.html`, `data/reports/incident_history.csv` |

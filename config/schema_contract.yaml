@@ -1,0 +1,147 @@
+dataset:
+  name: kpi_daily_metrics
+  description: Deterministic daily KPI observations by business and technical dimensions.
+
+column_order:
+  - date
+  - kpi_name
+  - region
+  - device_type
+  - browser
+  - channel
+  - business_segment
+  - impressions
+  - clicks
+  - conversions
+  - orders
+  - revenue
+  - latency_ms
+  - kpi_value
+  - is_incident
+  - incident_id
+  - incident_type
+  - incident_description
+
+required_columns:
+  - date
+  - kpi_name
+  - region
+  - device_type
+  - browser
+  - channel
+  - business_segment
+  - impressions
+  - clicks
+  - conversions
+  - orders
+  - revenue
+  - latency_ms
+  - kpi_value
+  - is_incident
+  - incident_id
+  - incident_type
+  - incident_description
+
+data_types:
+  date: date
+  kpi_name: string
+  region: string
+  device_type: string
+  browser: string
+  channel: string
+  business_segment: string
+  impressions: integer
+  clicks: integer
+  conversions: integer
+  orders: integer
+  revenue: number
+  latency_ms: number
+  kpi_value: number
+  is_incident: boolean
+  incident_id: string
+  incident_type: string
+  incident_description: string
+
+accepted_values:
+  kpi_name:
+    - conversion_rate
+    - click_through_rate
+    - average_order_value
+    - latency_ms
+    - revenue_per_session
+  region:
+    - North America
+    - EMEA
+    - APAC
+  device_type:
+    - Desktop
+    - Mobile
+  browser:
+    - Chrome
+    - Safari
+    - Firefox
+  channel:
+    - Organic
+    - Paid Search
+    - Email
+  business_segment:
+    - SMB
+    - Mid-Market
+    - Enterprise
+  is_incident:
+    - true
+    - false
+
+non_null_required:
+  - date
+  - kpi_name
+  - region
+  - device_type
+  - browser
+  - channel
+  - business_segment
+  - impressions
+  - clicks
+  - conversions
+  - orders
+  - revenue
+  - latency_ms
+  - kpi_value
+  - is_incident
+
+duplicate_key:
+  - date
+  - kpi_name
+  - region
+  - device_type
+  - browser
+  - channel
+  - business_segment
+
+freshness:
+  max_days_since_latest_date: 14
+
+completeness:
+  minimum_date_coverage_pct: 0.98
+  expected_min_days: 120
+
+volume:
+  minimum_rows: 90000
+  minimum_rows_per_day: 750
+
+numeric_ranges:
+  impressions:
+    min: 1
+  clicks:
+    min: 0
+  conversions:
+    min: 0
+  orders:
+    min: 0
+  revenue:
+    min: 0
+  latency_ms:
+    min: 1
+    max: 1000
+  kpi_value:
+    min: 0

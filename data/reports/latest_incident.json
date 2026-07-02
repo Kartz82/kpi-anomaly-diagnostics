@@ -1,0 +1,914 @@
+{
+  "run_timestamp": "2026-07-02T20:30:02.833846+00:00",
+  "detector_used": "residual_anomaly",
+  "incidents_generated": 12,
+  "highest_severity": "CRITICAL",
+  "highest_confidence_incident": "INC-20260518-LATENCY-MS-RESIDUAL-ANOMALY",
+  "incidents": [
+    {
+      "incident_id": "INC-20260518-LATENCY-MS-RESIDUAL-ANOMALY",
+      "incident_date": "2026-05-18",
+      "kpi_affected": "latency_ms",
+      "severity": "CRITICAL",
+      "confidence_score": 0.855,
+      "confidence_label": "High",
+      "detector_used": "residual_anomaly",
+      "actual_value_summary": 343.280555,
+      "expected_value_summary": 158.907229,
+      "percent_variance_summary": 1.160715,
+      "anomaly_count": 9,
+      "suspected_dimensions": [
+        "North America + Desktop + Chrome",
+        "North America + Desktop + Chrome + Paid Search + Enterprise",
+        "North America + Desktop + Chrome + Email + SMB"
+      ],
+      "top_root_causes": [
+        {
+          "dimension_type": "region_device_browser",
+          "dimension_value": "North America + Desktop + Chrome",
+          "contribution_share": 1.0,
+          "degradation_amount": 1659.35993,
+          "severity": "CRITICAL",
+          "recommended_action": "Review latency_ms drivers for region_device_browser = North America + Desktop + Chrome; check recent releases, tracking changes, campaign mix, and operational issues."
+        },
+        {
+          "dimension_type": "full_segment",
+          "dimension_value": "North America + Desktop + Chrome + Paid Search + Enterprise",
+          "contribution_share": 0.117546,
+          "degradation_amount": 195.05186,
+          "severity": "CRITICAL",
+          "recommended_action": "Review latency_ms drivers for full_segment = North America + Desktop + Chrome + Paid Search + Enterprise; check recent releases, tracking changes, campaign mix, and operational issues."
+        },
+        {
+          "dimension_type": "full_segment",
+          "dimension_value": "North America + Desktop + Chrome + Email + SMB",
+          "contribution_share": 0.116222,
+          "degradation_amount": 192.854097,
+          "severity": "CRITICAL",
+          "recommended_action": "Review latency_ms drivers for full_segment = North America + Desktop + Chrome + Email + SMB; check recent releases, tracking changes, campaign mix, and operational issues."
+        }
+      ],
+      "recommended_actions": [
+        "Inspect regional latency, CDN routing, and browser-specific performance logs.",
+        "Check backend response times and recent deployment windows.",
+        "Compare Chrome performance against Safari and Firefox for the same region."
+      ],
+      "executive_summary": "On 2026-05-18, latency_ms showed a critical issue. The residual_anomaly detector flagged abnormal movement, and RCA identified North America + Desktop + Chrome as the dominant contributor, explaining 100.0% of excess latency. Recommended next step: Inspect regional latency, CDN routing, and browser-specific performance logs.",
+      "supporting_metrics": {
+        "max_abs_percent_variance": 1.244433,
+        "max_detector_severity": "CRITICAL",
+        "top_root_cause": "North America + Desktop + Chrome",
+        "monitoring_warning_count": 2866,
+        "monitoring_critical_count": 434
+      },
+      "data_quality_context": {
+        "status": "PASS",
+        "health_score": 100
+      },
+      "model_context": {
+        "best_detector": "ml_residual",
+        "best_detector_f1_score": 0.548516,
+        "residual_model_used": "numpy_ridge_regression_residual",
+        "method_metadata": {
+          "residual_model_used": "numpy_ridge_regression_residual",
+          "xgboost_used": false,
+          "sklearn_used": false,
+          "numpy_fallback_used": true,
+          "train_split_date": "2026-05-17",
+          "feature_policy": "Uses date, categorical dimensions, and prior moving_baseline. Excludes incident labels and current-day rolling averages.",
+          "fallback_note": "XGBoost and scikit-learn are attempted first when importable; the deterministic NumPy ridge fallback is used when local native dependencies are unavailable."
+        }
+      }
+    },
+    {
+      "incident_id": "INC-20260605-CONVERSION-RATE-RESIDUAL-ANOMALY",
+      "incident_date": "2026-06-05",
+      "kpi_affected": "conversion_rate",
+      "severity": "CRITICAL",
+      "confidence_score": 0.855,
+      "confidence_label": "High",
+      "detector_used": "residual_anomaly",
+      "actual_value_summary": 0.051283,
+      "expected_value_summary": 0.092398,
+      "percent_variance_summary": -0.44551,
+      "anomaly_count": 9,
+      "suspected_dimensions": [
+        "APAC + Mobile + Safari",
+        "APAC + Mobile + Safari + Paid Search + Enterprise",
+        "APAC + Mobile + Safari + Email + SMB"
+      ],
+      "top_root_causes": [
+        {
+          "dimension_type": "region_device_browser",
+          "dimension_value": "APAC + Mobile + Safari",
+          "contribution_share": 1.0,
+          "degradation_amount": 0.370035,
+          "severity": "CRITICAL",
+          "recommended_action": "Review conversion_rate drivers for region_device_browser = APAC + Mobile + Safari; check recent releases, tracking changes, campaign mix, and operational issues."
+        },
+        {
+          "dimension_type": "full_segment",
+          "dimension_value": "APAC + Mobile + Safari + Paid Search + Enterprise",
+          "contribution_share": 0.139858,
+          "degradation_amount": 0.051753,
+          "severity": "CRITICAL",
+          "recommended_action": "Review conversion_rate drivers for full_segment = APAC + Mobile + Safari + Paid Search + Enterprise; check recent releases, tracking changes, campaign mix, and operational issues."
+        },
+        {
+          "dimension_type": "full_segment",
+          "dimension_value": "APAC + Mobile + Safari + Email + SMB",
+          "contribution_share": 0.13444,
+          "degradation_amount": 0.049748,
+          "severity": "CRITICAL",
+          "recommended_action": "Review conversion_rate drivers for full_segment = APAC + Mobile + Safari + Email + SMB; check recent releases, tracking changes, campaign mix, and operational issues."
+        }
+      ],
+      "recommended_actions": [
+        "Review mobile Safari checkout/session flow.",
+        "Check recent frontend releases affecting mobile Safari users.",
+        "Compare funnel steps for Mobile Safari against Chrome."
+      ],
+      "executive_summary": "On 2026-06-05, conversion_rate showed a critical issue. The residual_anomaly detector flagged abnormal movement, and RCA identified APAC + Mobile + Safari as the dominant contributor, explaining 100.0% of measured degradation. Recommended next step: Review mobile Safari checkout/session flow.",
+      "supporting_metrics": {
+        "max_abs_percent_variance": 0.621452,
+        "max_detector_severity": "CRITICAL",
+        "top_root_cause": "APAC + Mobile + Safari",
+        "monitoring_warning_count": 2866,
+        "monitoring_critical_count": 434
+      },
+      "data_quality_context": {
+        "status": "PASS",
+        "health_score": 100
+      },
+      "model_context": {
+        "best_detector": "ml_residual",
+        "best_detector_f1_score": 0.548516,
+        "residual_model_used": "numpy_ridge_regression_residual",
+        "method_metadata": {
+          "residual_model_used": "numpy_ridge_regression_residual",
+          "xgboost_used": false,
+          "sklearn_used": false,
+          "numpy_fallback_used": true,
+          "train_split_date": "2026-05-17",
+          "feature_policy": "Uses date, categorical dimensions, and prior moving_baseline. Excludes incident labels and current-day rolling averages.",
+          "fallback_note": "XGBoost and scikit-learn are attempted first when importable; the deterministic NumPy ridge fallback is used when local native dependencies are unavailable."
+        }
+      }
+    },
+    {
+      "incident_id": "INC-20260408-REVENUE-PER-SESSION-RESIDUAL-ANOMALY",
+      "incident_date": "2026-04-08",
+      "kpi_affected": "revenue_per_session",
+      "severity": "CRITICAL",
+      "confidence_score": 0.75,
+      "confidence_label": "Medium",
+      "detector_used": "residual_anomaly",
+      "actual_value_summary": 0.317433,
+      "expected_value_summary": 0.391253,
+      "percent_variance_summary": -0.190749,
+      "anomaly_count": 2,
+      "suspected_dimensions": [
+        "North America + Mobile + Chrome",
+        "North America + Mobile + Chrome + Organic + SMB",
+        "North America + Mobile + Chrome + Paid Search + SMB"
+      ],
+      "top_root_causes": [
+        {
+          "dimension_type": "region_device_browser",
+          "dimension_value": "North America + Mobile + Chrome",
+          "contribution_share": 1.0,
+          "degradation_amount": 0.147641,
+          "severity": "WARNING",
+          "recommended_action": "Review revenue_per_session drivers for region_device_browser = North America + Mobile + Chrome; check recent releases, tracking changes, campaign mix, and operational issues."
+        },
+        {
+          "dimension_type": "full_segment",
+          "dimension_value": "North America + Mobile + Chrome + Organic + SMB",
+          "contribution_share": 0.535979,
+          "degradation_amount": 0.079133,
+          "severity": "WARNING",
+          "recommended_action": "Review revenue_per_session drivers for full_segment = North America + Mobile + Chrome + Organic + SMB; check recent releases, tracking changes, campaign mix, and operational issues."
+        },
+        {
+          "dimension_type": "full_segment",
+          "dimension_value": "North America + Mobile + Chrome + Paid Search + SMB",
+          "contribution_share": 0.464021,
+          "degradation_amount": 0.068509,
+          "severity": "WARNING",
+          "recommended_action": "Review revenue_per_session drivers for full_segment = North America + Mobile + Chrome + Paid Search + SMB; check recent releases, tracking changes, campaign mix, and operational issues."
+        }
+      ],
+      "recommended_actions": [
+        "Review paid-search landing page quality for the affected segment.",
+        "Check campaign targeting, landing page routing, and paid-search tracking.",
+        "Compare paid-search revenue per session against Organic and Email traffic."
+      ],
+      "executive_summary": "On 2026-04-08, revenue_per_session showed a critical issue. The residual_anomaly detector flagged abnormal movement, and RCA identified North America + Mobile + Chrome as the dominant contributor, explaining 100.0% of measured degradation. Recommended next step: Review paid-search landing page quality for the affected segment.",
+      "supporting_metrics": {
+        "max_abs_percent_variance": 0.218542,
+        "max_detector_severity": "WARNING",
+        "top_root_cause": "North America + Mobile + Chrome",
+        "monitoring_warning_count": 2866,
+        "monitoring_critical_count": 434
+      },
+      "data_quality_context": {
+        "status": "PASS",
+        "health_score": 100
+      },
+      "model_context": {
+        "best_detector": "ml_residual",
+        "best_detector_f1_score": 0.548516,
+        "residual_model_used": "numpy_ridge_regression_residual",
+        "method_metadata": {
+          "residual_model_used": "numpy_ridge_regression_residual",
+          "xgboost_used": false,
+          "sklearn_used": false,
+          "numpy_fallback_used": true,
+          "train_split_date": "2026-05-17",
+          "feature_policy": "Uses date, categorical dimensions, and prior moving_baseline. Excludes incident labels and current-day rolling averages.",
+          "fallback_note": "XGBoost and scikit-learn are attempted first when importable; the deterministic NumPy ridge fallback is used when local native dependencies are unavailable."
+        }
+      }
+    },
+    {
+      "incident_id": "INC-20260519-LATENCY-MS-RESIDUAL-ANOMALY",
+      "incident_date": "2026-05-19",
+      "kpi_affected": "latency_ms",
+      "severity": "CRITICAL",
+      "confidence_score": 0.855,
+      "confidence_label": "High",
+      "detector_used": "residual_anomaly",
+      "actual_value_summary": 349.338696,
+      "expected_value_summary": 165.36779,
+      "percent_variance_summary": 1.11259,
+      "anomaly_count": 9,
+      "suspected_dimensions": [
+        "North America + Desktop + Chrome",
+        "North America + Desktop + Chrome + Email + Mid-Market",
+        "North America + Desktop + Chrome + Paid Search + SMB"
+      ],
+      "top_root_causes": [
+        {
+          "dimension_type": "region_device_browser",
+          "dimension_value": "North America + Desktop + Chrome",
+          "contribution_share": 1.0,
+          "degradation_amount": 1655.738161,
+          "severity": "CRITICAL",
+          "recommended_action": "Review latency_ms drivers for region_device_browser = North America + Desktop + Chrome; check recent releases, tracking changes, campaign mix, and operational issues."
+        },
+        {
+          "dimension_type": "full_segment",
+          "dimension_value": "North America + Desktop + Chrome + Email + Mid-Market",
+          "contribution_share": 0.117414,
+          "degradation_amount": 194.406443,
+          "severity": "CRITICAL",
+          "recommended_action": "Review latency_ms drivers for full_segment = North America + Desktop + Chrome + Email + Mid-Market; check recent releases, tracking changes, campaign mix, and operational issues."
+        },
+        {
+          "dimension_type": "full_segment",
+          "dimension_value": "North America + Desktop + Chrome + Paid Search + SMB",
+          "contribution_share": 0.113664,
+          "degradation_amount": 188.197136,
+          "severity": "CRITICAL",
+          "recommended_action": "Review latency_ms drivers for full_segment = North America + Desktop + Chrome + Paid Search + SMB; check recent releases, tracking changes, campaign mix, and operational issues."
+        }
+      ],
+      "recommended_actions": [
+        "Inspect regional latency, CDN routing, and browser-specific performance logs.",
+        "Check backend response times and recent deployment windows.",
+        "Compare Chrome performance against Safari and Firefox for the same region."
+      ],
+      "executive_summary": "On 2026-05-19, latency_ms showed a critical issue. The residual_anomaly detector flagged abnormal movement, and RCA identified North America + Desktop + Chrome as the dominant contributor, explaining 100.0% of excess latency. Recommended next step: Inspect regional latency, CDN routing, and browser-specific performance logs.",
+      "supporting_metrics": {
+        "max_abs_percent_variance": 1.160768,
+        "max_detector_severity": "CRITICAL",
+        "top_root_cause": "North America + Desktop + Chrome",
+        "monitoring_warning_count": 2866,
+        "monitoring_critical_count": 434
+      },
+      "data_quality_context": {
+        "status": "PASS",
+        "health_score": 100
+      },
+      "model_context": {
+        "best_detector": "ml_residual",
+        "best_detector_f1_score": 0.548516,
+        "residual_model_used": "numpy_ridge_regression_residual",
+        "method_metadata": {
+          "residual_model_used": "numpy_ridge_regression_residual",
+          "xgboost_used": false,
+          "sklearn_used": false,
+          "numpy_fallback_used": true,
+          "train_split_date": "2026-05-17",
+          "feature_policy": "Uses date, categorical dimensions, and prior moving_baseline. Excludes incident labels and current-day rolling averages.",
+          "fallback_note": "XGBoost and scikit-learn are attempted first when importable; the deterministic NumPy ridge fallback is used when local native dependencies are unavailable."
+        }
+      }
+    },
+    {
+      "incident_id": "INC-20260520-LATENCY-MS-RESIDUAL-ANOMALY",
+      "incident_date": "2026-05-20",
+      "kpi_affected": "latency_ms",
+      "severity": "CRITICAL",
+      "confidence_score": 0.855,
+      "confidence_label": "High",
+      "detector_used": "residual_anomaly",
+      "actual_value_summary": 345.77462,
+      "expected_value_summary": 172.139765,
+      "percent_variance_summary": 1.008824,
+      "anomaly_count": 9,
+      "suspected_dimensions": [
+        "North America + Desktop + Chrome",
+        "North America + Desktop + Chrome + Email + Mid-Market",
+        "North America + Desktop + Chrome + Organic + Mid-Market"
+      ],
+      "top_root_causes": [
+        {
+          "dimension_type": "region_device_browser",
+          "dimension_value": "North America + Desktop + Chrome",
+          "contribution_share": 1.0,
+          "degradation_amount": 1562.713697,
+          "severity": "CRITICAL",
+          "recommended_action": "Review latency_ms drivers for region_device_browser = North America + Desktop + Chrome; check recent releases, tracking changes, campaign mix, and operational issues."
+        },
+        {
+          "dimension_type": "full_segment",
+          "dimension_value": "North America + Desktop + Chrome + Email + Mid-Market",
+          "contribution_share": 0.116749,
+          "degradation_amount": 182.44475,
+          "severity": "CRITICAL",
+          "recommended_action": "Review latency_ms drivers for full_segment = North America + Desktop + Chrome + Email + Mid-Market; check recent releases, tracking changes, campaign mix, and operational issues."
+        },
+        {
+          "dimension_type": "full_segment",
+          "dimension_value": "North America + Desktop + Chrome + Organic + Mid-Market",
+          "contribution_share": 0.116054,
+          "degradation_amount": 181.358626,
+          "severity": "CRITICAL",
+          "recommended_action": "Review latency_ms drivers for full_segment = North America + Desktop + Chrome + Organic + Mid-Market; check recent releases, tracking changes, campaign mix, and operational issues."
+        }
+      ],
+      "recommended_actions": [
+        "Inspect regional latency, CDN routing, and browser-specific performance logs.",
+        "Check backend response times and recent deployment windows.",
+        "Compare Chrome performance against Safari and Firefox for the same region."
+      ],
+      "executive_summary": "On 2026-05-20, latency_ms showed a critical issue. The residual_anomaly detector flagged abnormal movement, and RCA identified North America + Desktop + Chrome as the dominant contributor, explaining 100.0% of excess latency. Recommended next step: Inspect regional latency, CDN routing, and browser-specific performance logs.",
+      "supporting_metrics": {
+        "max_abs_percent_variance": 1.063236,
+        "max_detector_severity": "CRITICAL",
+        "top_root_cause": "North America + Desktop + Chrome",
+        "monitoring_warning_count": 2866,
+        "monitoring_critical_count": 434
+      },
+      "data_quality_context": {
+        "status": "PASS",
+        "health_score": 100
+      },
+      "model_context": {
+        "best_detector": "ml_residual",
+        "best_detector_f1_score": 0.548516,
+        "residual_model_used": "numpy_ridge_regression_residual",
+        "method_metadata": {
+          "residual_model_used": "numpy_ridge_regression_residual",
+          "xgboost_used": false,
+          "sklearn_used": false,
+          "numpy_fallback_used": true,
+          "train_split_date": "2026-05-17",
+          "feature_policy": "Uses date, categorical dimensions, and prior moving_baseline. Excludes incident labels and current-day rolling averages.",
+          "fallback_note": "XGBoost and scikit-learn are attempted first when importable; the deterministic NumPy ridge fallback is used when local native dependencies are unavailable."
+        }
+      }
+    },
+    {
+      "incident_id": "INC-20260521-LATENCY-MS-RESIDUAL-ANOMALY",
+      "incident_date": "2026-05-21",
+      "kpi_affected": "latency_ms",
+      "severity": "CRITICAL",
+      "confidence_score": 0.855,
+      "confidence_label": "High",
+      "detector_used": "residual_anomaly",
+      "actual_value_summary": 350.398366,
+      "expected_value_summary": 178.782248,
+      "percent_variance_summary": 0.959984,
+      "anomaly_count": 9,
+      "suspected_dimensions": [
+        "North America + Desktop + Chrome",
+        "North America + Desktop + Chrome + Email + SMB",
+        "North America + Desktop + Chrome + Organic + SMB"
+      ],
+      "top_root_causes": [
+        {
+          "dimension_type": "region_device_browser",
+          "dimension_value": "North America + Desktop + Chrome",
+          "contribution_share": 1.0,
+          "degradation_amount": 1544.545061,
+          "severity": "CRITICAL",
+          "recommended_action": "Review latency_ms drivers for region_device_browser = North America + Desktop + Chrome; check recent releases, tracking changes, campaign mix, and operational issues."
+        },
+        {
+          "dimension_type": "full_segment",
+          "dimension_value": "North America + Desktop + Chrome + Email + SMB",
+          "contribution_share": 0.113555,
+          "degradation_amount": 175.39034,
+          "severity": "CRITICAL",
+          "recommended_action": "Review latency_ms drivers for full_segment = North America + Desktop + Chrome + Email + SMB; check recent releases, tracking changes, campaign mix, and operational issues."
+        },
+        {
+          "dimension_type": "full_segment",
+          "dimension_value": "North America + Desktop + Chrome + Organic + SMB",
+          "contribution_share": 0.113519,
+          "degradation_amount": 175.334851,
+          "severity": "CRITICAL",
+          "recommended_action": "Review latency_ms drivers for full_segment = North America + Desktop + Chrome + Organic + SMB; check recent releases, tracking changes, campaign mix, and operational issues."
+        }
+      ],
+      "recommended_actions": [
+        "Inspect regional latency, CDN routing, and browser-specific performance logs.",
+        "Check backend response times and recent deployment windows.",
+        "Compare Chrome performance against Safari and Firefox for the same region."
+      ],
+      "executive_summary": "On 2026-05-21, latency_ms showed a critical issue. The residual_anomaly detector flagged abnormal movement, and RCA identified North America + Desktop + Chrome as the dominant contributor, explaining 100.0% of excess latency. Recommended next step: Inspect regional latency, CDN routing, and browser-specific performance logs.",
+      "supporting_metrics": {
+        "max_abs_percent_variance": 0.995321,
+        "max_detector_severity": "CRITICAL",
+        "top_root_cause": "North America + Desktop + Chrome",
+        "monitoring_warning_count": 2866,
+        "monitoring_critical_count": 434
+      },
+      "data_quality_context": {
+        "status": "PASS",
+        "health_score": 100
+      },
+      "model_context": {
+        "best_detector": "ml_residual",
+        "best_detector_f1_score": 0.548516,
+        "residual_model_used": "numpy_ridge_regression_residual",
+        "method_metadata": {
+          "residual_model_used": "numpy_ridge_regression_residual",
+          "xgboost_used": false,
+          "sklearn_used": false,
+          "numpy_fallback_used": true,
+          "train_split_date": "2026-05-17",
+          "feature_policy": "Uses date, categorical dimensions, and prior moving_baseline. Excludes incident labels and current-day rolling averages.",
+          "fallback_note": "XGBoost and scikit-learn are attempted first when importable; the deterministic NumPy ridge fallback is used when local native dependencies are unavailable."
+        }
+      }
+    },
+    {
+      "incident_id": "INC-20260522-LATENCY-MS-RESIDUAL-ANOMALY",
+      "incident_date": "2026-05-22",
+      "kpi_affected": "latency_ms",
+      "severity": "CRITICAL",
+      "confidence_score": 0.855,
+      "confidence_label": "High",
+      "detector_used": "residual_anomaly",
+      "actual_value_summary": 343.57735,
+      "expected_value_summary": 185.76093,
+      "percent_variance_summary": 0.849607,
+      "anomaly_count": 9,
+      "suspected_dimensions": [
+        "North America + Desktop + Chrome",
+        "North America + Desktop + Chrome + Organic + SMB",
+        "North America + Desktop + Chrome + Organic + Enterprise"
+      ],
+      "top_root_causes": [
+        {
+          "dimension_type": "region_device_browser",
+          "dimension_value": "North America + Desktop + Chrome",
+          "contribution_share": 1.0,
+          "degradation_amount": 1420.347779,
+          "severity": "CRITICAL",
+          "recommended_action": "Review latency_ms drivers for region_device_browser = North America + Desktop + Chrome; check recent releases, tracking changes, campaign mix, and operational issues."
+        },
+        {
+          "dimension_type": "full_segment",
+          "dimension_value": "North America + Desktop + Chrome + Organic + SMB",
+          "contribution_share": 0.123821,
+          "degradation_amount": 175.868715,
+          "severity": "CRITICAL",
+          "recommended_action": "Review latency_ms drivers for full_segment = North America + Desktop + Chrome + Organic + SMB; check recent releases, tracking changes, campaign mix, and operational issues."
+        },
+        {
+          "dimension_type": "full_segment",
+          "dimension_value": "North America + Desktop + Chrome + Organic + Enterprise",
+          "contribution_share": 0.114675,
+          "degradation_amount": 162.877931,
+          "severity": "CRITICAL",
+          "recommended_action": "Review latency_ms drivers for full_segment = North America + Desktop + Chrome + Organic + Enterprise; check recent releases, tracking changes, campaign mix, and operational issues."
+        }
+      ],
+      "recommended_actions": [
+        "Inspect regional latency, CDN routing, and browser-specific performance logs.",
+        "Check backend response times and recent deployment windows.",
+        "Compare Chrome performance against Safari and Firefox for the same region."
+      ],
+      "executive_summary": "On 2026-05-22, latency_ms showed a critical issue. The residual_anomaly detector flagged abnormal movement, and RCA identified North America + Desktop + Chrome as the dominant contributor, explaining 100.0% of excess latency. Recommended next step: Inspect regional latency, CDN routing, and browser-specific performance logs.",
+      "supporting_metrics": {
+        "max_abs_percent_variance": 0.948583,
+        "max_detector_severity": "CRITICAL",
+        "top_root_cause": "North America + Desktop + Chrome",
+        "monitoring_warning_count": 2866,
+        "monitoring_critical_count": 434
+      },
+      "data_quality_context": {
+        "status": "PASS",
+        "health_score": 100
+      },
+      "model_context": {
+        "best_detector": "ml_residual",
+        "best_detector_f1_score": 0.548516,
+        "residual_model_used": "numpy_ridge_regression_residual",
+        "method_metadata": {
+          "residual_model_used": "numpy_ridge_regression_residual",
+          "xgboost_used": false,
+          "sklearn_used": false,
+          "numpy_fallback_used": true,
+          "train_split_date": "2026-05-17",
+          "feature_policy": "Uses date, categorical dimensions, and prior moving_baseline. Excludes incident labels and current-day rolling averages.",
+          "fallback_note": "XGBoost and scikit-learn are attempted first when importable; the deterministic NumPy ridge fallback is used when local native dependencies are unavailable."
+        }
+      }
+    },
+    {
+      "incident_id": "INC-20260523-LATENCY-MS-RESIDUAL-ANOMALY",
+      "incident_date": "2026-05-23",
+      "kpi_affected": "latency_ms",
+      "severity": "CRITICAL",
+      "confidence_score": 0.855,
+      "confidence_label": "High",
+      "detector_used": "residual_anomaly",
+      "actual_value_summary": 344.38263,
+      "expected_value_summary": 192.107109,
+      "percent_variance_summary": 0.792608,
+      "anomaly_count": 9,
+      "suspected_dimensions": [
+        "North America + Desktop + Chrome",
+        "North America + Desktop + Chrome + Email + SMB",
+        "North America + Desktop + Chrome + Email + Enterprise"
+      ],
+      "top_root_causes": [
+        {
+          "dimension_type": "region_device_browser",
+          "dimension_value": "North America + Desktop + Chrome",
+          "contribution_share": 1.0,
+          "degradation_amount": 1370.479692,
+          "severity": "CRITICAL",
+          "recommended_action": "Review latency_ms drivers for region_device_browser = North America + Desktop + Chrome; check recent releases, tracking changes, campaign mix, and operational issues."
+        },
+        {
+          "dimension_type": "full_segment",
+          "dimension_value": "North America + Desktop + Chrome + Email + SMB",
+          "contribution_share": 0.116713,
+          "degradation_amount": 159.952323,
+          "severity": "CRITICAL",
+          "recommended_action": "Review latency_ms drivers for full_segment = North America + Desktop + Chrome + Email + SMB; check recent releases, tracking changes, campaign mix, and operational issues."
+        },
+        {
+          "dimension_type": "full_segment",
+          "dimension_value": "North America + Desktop + Chrome + Email + Enterprise",
+          "contribution_share": 0.116357,
+          "degradation_amount": 159.465512,
+          "severity": "CRITICAL",
+          "recommended_action": "Review latency_ms drivers for full_segment = North America + Desktop + Chrome + Email + Enterprise; check recent releases, tracking changes, campaign mix, and operational issues."
+        }
+      ],
+      "recommended_actions": [
+        "Inspect regional latency, CDN routing, and browser-specific performance logs.",
+        "Check backend response times and recent deployment windows.",
+        "Compare Chrome performance against Safari and Firefox for the same region."
+      ],
+      "executive_summary": "On 2026-05-23, latency_ms showed a critical issue. The residual_anomaly detector flagged abnormal movement, and RCA identified North America + Desktop + Chrome as the dominant contributor, explaining 100.0% of excess latency. Recommended next step: Inspect regional latency, CDN routing, and browser-specific performance logs.",
+      "supporting_metrics": {
+        "max_abs_percent_variance": 0.845093,
+        "max_detector_severity": "CRITICAL",
+        "top_root_cause": "North America + Desktop + Chrome",
+        "monitoring_warning_count": 2866,
+        "monitoring_critical_count": 434
+      },
+      "data_quality_context": {
+        "status": "PASS",
+        "health_score": 100
+      },
+      "model_context": {
+        "best_detector": "ml_residual",
+        "best_detector_f1_score": 0.548516,
+        "residual_model_used": "numpy_ridge_regression_residual",
+        "method_metadata": {
+          "residual_model_used": "numpy_ridge_regression_residual",
+          "xgboost_used": false,
+          "sklearn_used": false,
+          "numpy_fallback_used": true,
+          "train_split_date": "2026-05-17",
+          "feature_policy": "Uses date, categorical dimensions, and prior moving_baseline. Excludes incident labels and current-day rolling averages.",
+          "fallback_note": "XGBoost and scikit-learn are attempted first when importable; the deterministic NumPy ridge fallback is used when local native dependencies are unavailable."
+        }
+      }
+    },
+    {
+      "incident_id": "INC-20260524-LATENCY-MS-RESIDUAL-ANOMALY",
+      "incident_date": "2026-05-24",
+      "kpi_affected": "latency_ms",
+      "severity": "CRITICAL",
+      "confidence_score": 0.855,
+      "confidence_label": "High",
+      "detector_used": "residual_anomaly",
+      "actual_value_summary": 347.057419,
+      "expected_value_summary": 198.829737,
+      "percent_variance_summary": 0.745535,
+      "anomaly_count": 9,
+      "suspected_dimensions": [
+        "North America + Desktop + Chrome",
+        "North America + Desktop + Chrome + Organic + Enterprise",
+        "North America + Desktop + Chrome + Organic + SMB"
+      ],
+      "top_root_causes": [
+        {
+          "dimension_type": "region_device_browser",
+          "dimension_value": "North America + Desktop + Chrome",
+          "contribution_share": 1.0,
+          "degradation_amount": 1334.049133,
+          "severity": "CRITICAL",
+          "recommended_action": "Review latency_ms drivers for region_device_browser = North America + Desktop + Chrome; check recent releases, tracking changes, campaign mix, and operational issues."
+        },
+        {
+          "dimension_type": "full_segment",
+          "dimension_value": "North America + Desktop + Chrome + Organic + Enterprise",
+          "contribution_share": 0.118837,
+          "degradation_amount": 158.534527,
+          "severity": "CRITICAL",
+          "recommended_action": "Review latency_ms drivers for full_segment = North America + Desktop + Chrome + Organic + Enterprise; check recent releases, tracking changes, campaign mix, and operational issues."
+        },
+        {
+          "dimension_type": "full_segment",
+          "dimension_value": "North America + Desktop + Chrome + Organic + SMB",
+          "contribution_share": 0.117918,
+          "degradation_amount": 157.308022,
+          "severity": "CRITICAL",
+          "recommended_action": "Review latency_ms drivers for full_segment = North America + Desktop + Chrome + Organic + SMB; check recent releases, tracking changes, campaign mix, and operational issues."
+        }
+      ],
+      "recommended_actions": [
+        "Inspect regional latency, CDN routing, and browser-specific performance logs.",
+        "Check backend response times and recent deployment windows.",
+        "Compare Chrome performance against Safari and Firefox for the same region."
+      ],
+      "executive_summary": "On 2026-05-24, latency_ms showed a critical issue. The residual_anomaly detector flagged abnormal movement, and RCA identified North America + Desktop + Chrome as the dominant contributor, explaining 100.0% of excess latency. Recommended next step: Inspect regional latency, CDN routing, and browser-specific performance logs.",
+      "supporting_metrics": {
+        "max_abs_percent_variance": 0.790665,
+        "max_detector_severity": "CRITICAL",
+        "top_root_cause": "North America + Desktop + Chrome",
+        "monitoring_warning_count": 2866,
+        "monitoring_critical_count": 434
+      },
+      "data_quality_context": {
+        "status": "PASS",
+        "health_score": 100
+      },
+      "model_context": {
+        "best_detector": "ml_residual",
+        "best_detector_f1_score": 0.548516,
+        "residual_model_used": "numpy_ridge_regression_residual",
+        "method_metadata": {
+          "residual_model_used": "numpy_ridge_regression_residual",
+          "xgboost_used": false,
+          "sklearn_used": false,
+          "numpy_fallback_used": true,
+          "train_split_date": "2026-05-17",
+          "feature_policy": "Uses date, categorical dimensions, and prior moving_baseline. Excludes incident labels and current-day rolling averages.",
+          "fallback_note": "XGBoost and scikit-learn are attempted first when importable; the deterministic NumPy ridge fallback is used when local native dependencies are unavailable."
+        }
+      }
+    },
+    {
+      "incident_id": "INC-20260525-LATENCY-MS-RESIDUAL-ANOMALY",
+      "incident_date": "2026-05-25",
+      "kpi_affected": "latency_ms",
+      "severity": "CRITICAL",
+      "confidence_score": 0.855,
+      "confidence_label": "High",
+      "detector_used": "residual_anomaly",
+      "actual_value_summary": 346.713938,
+      "expected_value_summary": 205.561873,
+      "percent_variance_summary": 0.686576,
+      "anomaly_count": 9,
+      "suspected_dimensions": [
+        "North America + Desktop + Chrome",
+        "North America + Desktop + Chrome + Email + Mid-Market",
+        "North America + Desktop + Chrome + Organic + SMB"
+      ],
+      "top_root_causes": [
+        {
+          "dimension_type": "region_device_browser",
+          "dimension_value": "North America + Desktop + Chrome",
+          "contribution_share": 1.0,
+          "degradation_amount": 1270.368582,
+          "severity": "CRITICAL",
+          "recommended_action": "Review latency_ms drivers for region_device_browser = North America + Desktop + Chrome; check recent releases, tracking changes, campaign mix, and operational issues."
+        },
+        {
+          "dimension_type": "full_segment",
+          "dimension_value": "North America + Desktop + Chrome + Email + Mid-Market",
+          "contribution_share": 0.117094,
+          "degradation_amount": 148.752862,
+          "severity": "CRITICAL",
+          "recommended_action": "Review latency_ms drivers for full_segment = North America + Desktop + Chrome + Email + Mid-Market; check recent releases, tracking changes, campaign mix, and operational issues."
+        },
+        {
+          "dimension_type": "full_segment",
+          "dimension_value": "North America + Desktop + Chrome + Organic + SMB",
+          "contribution_share": 0.115978,
+          "degradation_amount": 147.334537,
+          "severity": "CRITICAL",
+          "recommended_action": "Review latency_ms drivers for full_segment = North America + Desktop + Chrome + Organic + SMB; check recent releases, tracking changes, campaign mix, and operational issues."
+        }
+      ],
+      "recommended_actions": [
+        "Inspect regional latency, CDN routing, and browser-specific performance logs.",
+        "Check backend response times and recent deployment windows.",
+        "Compare Chrome performance against Safari and Firefox for the same region."
+      ],
+      "executive_summary": "On 2026-05-25, latency_ms showed a critical issue. The residual_anomaly detector flagged abnormal movement, and RCA identified North America + Desktop + Chrome as the dominant contributor, explaining 100.0% of excess latency. Recommended next step: Inspect regional latency, CDN routing, and browser-specific performance logs.",
+      "supporting_metrics": {
+        "max_abs_percent_variance": 0.717359,
+        "max_detector_severity": "CRITICAL",
+        "top_root_cause": "North America + Desktop + Chrome",
+        "monitoring_warning_count": 2866,
+        "monitoring_critical_count": 434
+      },
+      "data_quality_context": {
+        "status": "PASS",
+        "health_score": 100
+      },
+      "model_context": {
+        "best_detector": "ml_residual",
+        "best_detector_f1_score": 0.548516,
+        "residual_model_used": "numpy_ridge_regression_residual",
+        "method_metadata": {
+          "residual_model_used": "numpy_ridge_regression_residual",
+          "xgboost_used": false,
+          "sklearn_used": false,
+          "numpy_fallback_used": true,
+          "train_split_date": "2026-05-17",
+          "feature_policy": "Uses date, categorical dimensions, and prior moving_baseline. Excludes incident labels and current-day rolling averages.",
+          "fallback_note": "XGBoost and scikit-learn are attempted first when importable; the deterministic NumPy ridge fallback is used when local native dependencies are unavailable."
+        }
+      }
+    },
+    {
+      "incident_id": "INC-20260606-CONVERSION-RATE-RESIDUAL-ANOMALY",
+      "incident_date": "2026-06-06",
+      "kpi_affected": "conversion_rate",
+      "severity": "CRITICAL",
+      "confidence_score": 0.855,
+      "confidence_label": "High",
+      "detector_used": "residual_anomaly",
+      "actual_value_summary": 0.049332,
+      "expected_value_summary": 0.091006,
+      "percent_variance_summary": -0.459452,
+      "anomaly_count": 9,
+      "suspected_dimensions": [
+        "APAC + Mobile + Safari",
+        "APAC + Mobile + Safari + Email + Enterprise",
+        "APAC + Mobile + Safari + Organic + Enterprise"
+      ],
+      "top_root_causes": [
+        {
+          "dimension_type": "region_device_browser",
+          "dimension_value": "APAC + Mobile + Safari",
+          "contribution_share": 1.0,
+          "degradation_amount": 0.375071,
+          "severity": "CRITICAL",
+          "recommended_action": "Review conversion_rate drivers for region_device_browser = APAC + Mobile + Safari; check recent releases, tracking changes, campaign mix, and operational issues."
+        },
+        {
+          "dimension_type": "full_segment",
+          "dimension_value": "APAC + Mobile + Safari + Email + Enterprise",
+          "contribution_share": 0.135036,
+          "degradation_amount": 0.050648,
+          "severity": "CRITICAL",
+          "recommended_action": "Review conversion_rate drivers for full_segment = APAC + Mobile + Safari + Email + Enterprise; check recent releases, tracking changes, campaign mix, and operational issues."
+        },
+        {
+          "dimension_type": "full_segment",
+          "dimension_value": "APAC + Mobile + Safari + Organic + Enterprise",
+          "contribution_share": 0.128798,
+          "degradation_amount": 0.048308,
+          "severity": "CRITICAL",
+          "recommended_action": "Review conversion_rate drivers for full_segment = APAC + Mobile + Safari + Organic + Enterprise; check recent releases, tracking changes, campaign mix, and operational issues."
+        }
+      ],
+      "recommended_actions": [
+        "Review mobile Safari checkout/session flow.",
+        "Check recent frontend releases affecting mobile Safari users.",
+        "Compare funnel steps for Mobile Safari against Chrome."
+      ],
+      "executive_summary": "On 2026-06-06, conversion_rate showed a critical issue. The residual_anomaly detector flagged abnormal movement, and RCA identified APAC + Mobile + Safari as the dominant contributor, explaining 100.0% of measured degradation. Recommended next step: Review mobile Safari checkout/session flow.",
+      "supporting_metrics": {
+        "max_abs_percent_variance": 0.588471,
+        "max_detector_severity": "CRITICAL",
+        "top_root_cause": "APAC + Mobile + Safari",
+        "monitoring_warning_count": 2866,
+        "monitoring_critical_count": 434
+      },
+      "data_quality_context": {
+        "status": "PASS",
+        "health_score": 100
+      },
+      "model_context": {
+        "best_detector": "ml_residual",
+        "best_detector_f1_score": 0.548516,
+        "residual_model_used": "numpy_ridge_regression_residual",
+        "method_metadata": {
+          "residual_model_used": "numpy_ridge_regression_residual",
+          "xgboost_used": false,
+          "sklearn_used": false,
+          "numpy_fallback_used": true,
+          "train_split_date": "2026-05-17",
+          "feature_policy": "Uses date, categorical dimensions, and prior moving_baseline. Excludes incident labels and current-day rolling averages.",
+          "fallback_note": "XGBoost and scikit-learn are attempted first when importable; the deterministic NumPy ridge fallback is used when local native dependencies are unavailable."
+        }
+      }
+    },
+    {
+      "incident_id": "INC-20260607-CONVERSION-RATE-RESIDUAL-ANOMALY",
+      "incident_date": "2026-06-07",
+      "kpi_affected": "conversion_rate",
+      "severity": "CRITICAL",
+      "confidence_score": 0.855,
+      "confidence_label": "High",
+      "detector_used": "residual_anomaly",
+      "actual_value_summary": 0.049995,
+      "expected_value_summary": 0.089594,
+      "percent_variance_summary": -0.440091,
+      "anomaly_count": 9,
+      "suspected_dimensions": [
+        "APAC + Mobile + Safari",
+        "APAC + Mobile + Safari + Email + Enterprise",
+        "APAC + Mobile + Safari + Organic + Enterprise"
+      ],
+      "top_root_causes": [
+        {
+          "dimension_type": "region_device_browser",
+          "dimension_value": "APAC + Mobile + Safari",
+          "contribution_share": 1.0,
+          "degradation_amount": 0.356389,
+          "severity": "CRITICAL",
+          "recommended_action": "Review conversion_rate drivers for region_device_browser = APAC + Mobile + Safari; check recent releases, tracking changes, campaign mix, and operational issues."
+        },
+        {
+          "dimension_type": "full_segment",
+          "dimension_value": "APAC + Mobile + Safari + Email + Enterprise",
+          "contribution_share": 0.145164,
+          "degradation_amount": 0.051735,
+          "severity": "CRITICAL",
+          "recommended_action": "Review conversion_rate drivers for full_segment = APAC + Mobile + Safari + Email + Enterprise; check recent releases, tracking changes, campaign mix, and operational issues."
+        },
+        {
+          "dimension_type": "full_segment",
+          "dimension_value": "APAC + Mobile + Safari + Organic + Enterprise",
+          "contribution_share": 0.135201,
+          "degradation_amount": 0.048184,
+          "severity": "CRITICAL",
+          "recommended_action": "Review conversion_rate drivers for full_segment = APAC + Mobile + Safari + Organic + Enterprise; check recent releases, tracking changes, campaign mix, and operational issues."
+        }
+      ],
+      "recommended_actions": [
+        "Review mobile Safari checkout/session flow.",
+        "Check recent frontend releases affecting mobile Safari users.",
+        "Compare funnel steps for Mobile Safari against Chrome."
+      ],
+      "executive_summary": "On 2026-06-07, conversion_rate showed a critical issue. The residual_anomaly detector flagged abnormal movement, and RCA identified APAC + Mobile + Safari as the dominant contributor, explaining 100.0% of measured degradation. Recommended next step: Review mobile Safari checkout/session flow.",
+      "supporting_metrics": {
+        "max_abs_percent_variance": 0.503963,
+        "max_detector_severity": "CRITICAL",
+        "top_root_cause": "APAC + Mobile + Safari",
+        "monitoring_warning_count": 2866,
+        "monitoring_critical_count": 434
+      },
+      "data_quality_context": {
+        "status": "PASS",
+        "health_score": 100
+      },
+      "model_context": {
+        "best_detector": "ml_residual",
+        "best_detector_f1_score": 0.548516,
+        "residual_model_used": "numpy_ridge_regression_residual",
+        "method_metadata": {
+          "residual_model_used": "numpy_ridge_regression_residual",
+          "xgboost_used": false,
+          "sklearn_used": false,
+          "numpy_fallback_used": true,
+          "train_split_date": "2026-05-17",
+          "feature_policy": "Uses date, categorical dimensions, and prior moving_baseline. Excludes incident labels and current-day rolling averages.",
+          "fallback_note": "XGBoost and scikit-learn are attempted first when importable; the deterministic NumPy ridge fallback is used when local native dependencies are unavailable."
+        }
+      }
+    }
+  ],
+  "confidence_method_notes": "Practical triage score, not a statistical probability. It combines detector F1, RCA concentration, data quality score, anomaly support, and detector severity using configured weights.",
+  "limitations": [
+    "Incident reports are generated from deterministic synthetic data.",
+    "Recommended actions are rule based and should guide investigation, not prove causality."
+  ]
+}

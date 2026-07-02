@@ -8,6 +8,84 @@ simulation:
   days: 30
   inject_glitch: true
 
+# Phase 2 KPI monitoring thresholds use relative variance from the moving baseline.
+# Thresholds are calibrated for segment-level monitoring so normal daily noise does
+# not flood the output while material business movement still surfaces.
+kpi_monitoring:
+  thresholds:
+    conversion_rate:
+      warning_threshold_pct: 0.08
+      critical_threshold_pct: 0.16
+      direction: lower_is_bad
+    click_through_rate:
+      warning_threshold_pct: 0.06
+      critical_threshold_pct: 0.10
+      direction: lower_is_bad
+    average_order_value:
+      warning_threshold_pct: 0.08
+      critical_threshold_pct: 0.12
+      direction: lower_is_bad
+    latency_ms:
+      warning_threshold_pct: 0.15
+      critical_threshold_pct: 0.30
+      direction: higher_is_bad
+    revenue_per_session:
+      warning_threshold_pct: 0.18
+      critical_threshold_pct: 0.30
+      direction: lower_is_bad
+
+# Phase 3 anomaly detection runs after KPI monitoring. Incident labels are used
+# only for evaluation, never as detector features.
+anomaly_detection:
+  z_score_warning_threshold: 3.0
+  z_score_critical_threshold: 4.0
+  residual_warning_threshold_pct: 0.20
+  residual_critical_threshold_pct: 0.40
+  min_periods: 7
+  rolling_window: 28
+  model:
+    preferred_method: xgboost_xgbregressor
+    fallback_method: sklearn_hist_gradient_boosting_regressor
+    final_fallback_method: numpy_ridge_regression_residual
+    random_state: 42
+    train_fraction: 0.70
+    n_estimators: 80
+    max_depth: 3
+    learning_rate: 0.08
+    subsample: 0.9
+    colsample_bytree: 0.9
+    ridge_alpha: 1.0
+    feature_note: categorical dimensions are one-hot encoded; incident labels are excluded.
+
+# Phase 4 RCA defaults to the best Phase 3 detector by F1.
+root_cause_analysis:
+  default_detector: residual_anomaly
+  allowed_detectors:
+    - residual_anomaly
+    - zscore_anomaly
+    - combined_anomaly
+    - threshold_breached
+  max_top_contributors: 10
+  minimum_contribution_share: 0.05
+
+# Phase 5 incident reporting packages anomaly and RCA evidence for triage.
+incident_reporting:
+  default_detector: residual_anomaly
+  max_incidents: 12
+  max_root_causes_per_incident: 3
+  max_actions_per_incident: 3
+  support_saturation_count: 10
+  severity_thresholds:
+    warning_percent_variance: 0.15
+    critical_percent_variance: 0.30
+    critical_contribution_share: 0.60
+  confidence_weights:
+    model_f1: 0.30
+    rca_concentration: 0.30
+    data_quality: 0.20
+    anomaly_support: 0.10
+    severity: 0.10
+
 # Defining what we are watching
 kpis:
   - name: "conversion_rate"

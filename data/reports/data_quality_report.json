@@ -1,0 +1,91 @@
+{
+  "metadata": {
+    "validated_at": "2026-07-02T20:29:57.238039+00:00",
+    "dataset_name": "kpi_daily_metrics",
+    "row_count": 121500,
+    "column_count": 18
+  },
+  "status": "PASS",
+  "is_healthy": true,
+  "health_score": 100,
+  "issues": [],
+  "checks": {
+    "schema": {
+      "passed": true,
+      "score": 1.0,
+      "missing_columns": [],
+      "required_column_count": 18,
+      "summary": "Required schema present"
+    },
+    "data_types": {
+      "passed": true,
+      "score": 1.0,
+      "invalid_count": 0,
+      "failures": {},
+      "summary": "Data types are parseable"
+    },
+    "accepted_values": {
+      "passed": true,
+      "score": 1.0,
+      "failures": {},
+      "summary": "Accepted value checks passed"
+    },
+    "nulls": {
+      "passed": true,
+      "score": 1.0,
+      "null_count": 0,
+      "null_counts": {},
+      "summary": "No required-field nulls found"
+    },
+    "duplicates": {
+      "passed": true,
+      "score": 1.0,
+      "duplicate_count": 0,
+      "duplicate_rate": 0.0,
+      "duplicate_key": [
+        "date",
+        "kpi_name",
+        "region",
+        "device_type",
+        "browser",
+        "channel",
+        "business_segment"
+      ],
+      "sample_duplicate_keys": [],
+      "summary": "No duplicate business keys found"
+    },
+    "freshness": {
+      "passed": true,
+      "score": 1.0,
+      "latest_date": "2026-06-30",
+      "days_since_latest_date": 2,
+      "threshold_days": 14,
+      "summary": "Freshness check passed"
+    },
+    "completeness": {
+      "passed": true,
+      "score": 1.0,
+      "observed_days": 150,
+      "expected_min_days": 120,
+      "coverage_pct": 1.0,
+      "minimum_coverage_pct": 0.98,
+      "summary": "Date completeness check passed"
+    },
+    "volume": {
+      "passed": true,
+      "score": 1.0,
+      "row_count": 121500,
+      "minimum_rows": 90000,
+      "minimum_rows_per_day": 750,
+      "minimum_observed_rows_per_day": 810,
+      "summary": "Volume check passed"
+    },
+    "numeric_ranges": {
+      "passed": true,
+      "score": 1.0,
+      "invalid_count": 0,
+      "failures": {},
+      "summary": "Numeric range checks passed"
+    }
+  }
+}

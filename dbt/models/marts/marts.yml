@@ -1,0 +1,261 @@
+version: 2
+
+models:
+  - name: dim_date
+    columns:
+      - name: date_key
+        tests: [unique, not_null]
+      - name: date_value
+        tests: [unique, not_null]
+
+  - name: dim_kpi
+    columns:
+      - name: kpi_key
+        tests: [unique, not_null]
+      - name: kpi_name
+        tests: [unique, not_null]
+      - name: direction
+        tests:
+          - accepted_values:
+              values: ["lower_is_bad", "higher_is_bad"]
+
+  - name: dim_region
+    columns:
+      - name: region_key
+        tests: [unique, not_null]
+      - name: region_name
+        tests: [unique, not_null]
+
+  - name: dim_device
+    columns:
+      - name: device_key
+        tests: [unique, not_null]
+      - name: device_type
+        tests: [unique, not_null]
+
+  - name: dim_browser
+    columns:
+      - name: browser_key
+        tests: [unique, not_null]
+      - name: browser_name
+        tests: [unique, not_null]
+
+  - name: dim_channel
+    columns:
+      - name: channel_key
+        tests: [unique, not_null]
+      - name: channel_name
+        tests: [unique, not_null]
+
+  - name: dim_business_segment
+    columns:
+      - name: business_segment_key
+        tests: [unique, not_null]
+      - name: business_segment_name
+        tests: [unique, not_null]
+
+  - name: fact_kpi_daily
+    columns:
+      - name: date_key
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_date')
+              field: date_key
+      - name: kpi_key
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_kpi')
+              field: kpi_key
+      - name: region_key
+        tests:
+          - relationships:
+              to: ref('dim_region')
+              field: region_key
+      - name: device_key
+        tests:
+          - relationships:
+              to: ref('dim_device')
+              field: device_key
+      - name: browser_key
+        tests:
+          - relationships:
+              to: ref('dim_browser')
+              field: browser_key
+      - name: channel_key
+        tests:
+          - relationships:
+              to: ref('dim_channel')
+              field: channel_key
+      - name: business_segment_key
+        tests:
+          - relationships:
+              to: ref('dim_business_segment')
+              field: business_segment_key
+      - name: kpi_value
+        tests: [not_null]
+    tests:
+      - unique_combination_of_columns:
+          combination_of_columns:
+            - date_key
+            - kpi_key
+            - region_key
+            - device_key
+            - browser_key
+            - channel_key
+            - business_segment_key
+
+  - name: fact_kpi_monitoring
+    columns:
+      - name: date_key
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_date')
+              field: date_key
+      - name: kpi_key
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_kpi')
+              field: kpi_key
+      - name: monitoring_status
+        tests:
+          - accepted_values:
+              values: ["NORMAL", "WARNING", "CRITICAL"]
+      - name: threshold_direction
+        tests:
+          - accepted_values:
+              values: ["lower_is_bad", "higher_is_bad"]
+
+  - name: fact_kpi_anomalies
+    columns:
+      - name: date_key
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_date')
+              field: date_key
+      - name: kpi_key
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_kpi')
+              field: kpi_key
+      - name: residual_severity
+        tests:
+          - accepted_values:
+              values: ["NORMAL", "WARNING", "CRITICAL"]
+      - name: combined_severity
+        tests:
+          - accepted_values:
+              values: ["NORMAL", "WARNING", "CRITICAL"]
+
+  - name: fact_rca_contributions
+    columns:
+      - name: analysis_date_key
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_date')
+              field: date_key
+      - name: kpi_key
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_kpi')
+              field: kpi_key
+      - name: detector_used
+        tests:
+          - accepted_values:
+              values: ["residual_anomaly", "zscore_anomaly", "combined_anomaly", "threshold_breached"]
+      - name: contribution_share
+        tests:
+          - assert_contribution_share_bounds:
+              column_name: contribution_share
+    tests:
+      - unique_combination_of_columns:
+          combination_of_columns:
+            - analysis_date_key
+            - kpi_key
+            - detector_used
+            - dimension_type
+            - dimension_value
+
+  - name: fact_incidents
+    columns:
+      - name: incident_id
+        tests: [unique, not_null]
+      - name: incident_date_key
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_date')
+              field: date_key
+      - name: kpi_key
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_kpi')
+              field: kpi_key
+      - name: severity
+        tests:
+          - accepted_values:
+              values: ["NORMAL", "WARNING", "CRITICAL"]
+      - name: confidence_label
+        tests:
+          - accepted_values:
+              values: ["Low", "Medium", "High"]
+      - name: confidence_score
+        tests:
+          - assert_incident_confidence_bounds:
+              column_name: confidence_score
+
+  - name: mart_kpi_health
+    columns:
+      - name: date_key
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_date')
+              field: date_key
+      - name: kpi_key
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_kpi')
+              field: kpi_key
+
+  - name: mart_incident_summary
+    columns:
+      - name: incident_id
+        tests: [unique, not_null]
+      - name: incident_date_key
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_date')
+              field: date_key
+      - name: kpi_key
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_kpi')
+              field: kpi_key
+
+  - name: mart_root_cause_summary
+    columns:
+      - name: analysis_date_key
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_date')
+              field: date_key
+      - name: kpi_key
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_kpi')
+              field: kpi_key
+

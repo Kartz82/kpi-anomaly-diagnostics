@@ -1,0 +1,57 @@
+version: 2
+
+models:
+  - name: int_kpi_monitoring
+    columns:
+      - name: date
+        tests: [not_null]
+      - name: kpi_name
+        tests: [not_null]
+      - name: monitored_rows
+        tests: [not_null]
+
+  - name: int_anomaly_events
+    columns:
+      - name: date
+        tests: [not_null]
+      - name: kpi_name
+        tests: [not_null]
+      - name: analysis_severity
+        tests:
+          - accepted_values:
+              values: ["NORMAL", "WARNING", "CRITICAL"]
+      - name: analysis_detector
+        tests:
+          - accepted_values:
+              values: ["residual_anomaly", "combined_anomaly", "zscore_anomaly", "threshold_breached"]
+
+  - name: int_rca_contributions
+    columns:
+      - name: analysis_date
+        tests: [not_null]
+      - name: kpi_name
+        tests: [not_null]
+      - name: contribution_share
+        tests:
+          - assert_contribution_share_bounds:
+              column_name: contribution_share
+
+  - name: int_incident_enriched
+    columns:
+      - name: incident_id
+        tests: [not_null, unique]
+      - name: incident_date
+        tests: [not_null]
+      - name: severity
+        tests:
+          - accepted_values:
+              values: ["NORMAL", "WARNING", "CRITICAL"]
+      - name: confidence_label
+        tests:
+          - accepted_values:
+              values: ["Low", "Medium", "High"]
+      - name: confidence_score
+        tests:
+          - assert_incident_confidence_bounds:
+              column_name: confidence_score
+
