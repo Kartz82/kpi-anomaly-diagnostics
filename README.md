@@ -23,7 +23,6 @@ This project addresses:
 - False positives from simplistic thresholds.
 - Manual RCA across many dimensions.
 - Executive incident communication.
-- Reproducible evidence for interview and resume review.
 
 ## What This Project Does
 
@@ -96,15 +95,17 @@ flowchart LR
 
 ```text
 config/
-data/raw/
-data/processed/
-data/reports/
+data/
+  raw/
+  processed/
+  reports/
 dashboards/
 dbt/
 docs/
 scripts/
 sql/
-src/core/
+src/
+  core/
 tests/
 ```
 
@@ -113,6 +114,7 @@ tests/
 The raw KPI generator produces a deterministic synthetic dataset with:
 - 121,500 rows.
 - 150 days of history.
+- Date range: 2026-02-01 to 2026-06-30.
 - Dimensions:
   - region.
   - device_type.
@@ -337,7 +339,7 @@ Screenshots remain manual unless you capture them locally.
 
 ## Key Outputs
 
-| Output file | Purpose | Resume proof value |
+| Output file | Purpose | Why it matters |
 | --- | --- | --- |
 | `data/raw/kpi_daily_metrics.csv` | Deterministic synthetic KPI input data. | Shows raw data generation and reproducible inputs. |
 | `data/processed/kpi_validated.csv` | Validated KPI dataset after schema and quality checks. | Shows data quality validation. |
@@ -419,40 +421,21 @@ docker compose down
 - Dashboard code: compiled successfully with `py_compile`.
 - Streamlit launch: requires a local environment that permits binding a port.
 
-## Resume Claim Proof Matrix
-
-| Resume claim | Evidence in this repo |
-| --- | --- |
-| Automated KPI monitoring and diagnostic platform. | `scripts/run_pipeline.py`, `src/core/kpi_monitoring.py`, `src/core/anomaly_detection.py`, `src/core/root_cause.py`, `src/core/incident_reporting.py`, `data/processed/kpi_monitoring_table.csv`, `data/reports/latest_incident.json`. |
-| Data quality scoring, anomaly detection, and RCA. | `src/core/data_quality.py`, `src/core/anomaly_detection.py`, `src/core/root_cause.py`, `data/reports/data_quality_report.json`, `data/reports/root_cause_summary.json`. |
-| Statistical + ML residual anomaly evaluation. | `src/core/anomaly_detection.py`, `src/core/model_evaluation.py`, `data/reports/model_evaluation.csv`, `data/reports/model_comparison.json`, `data/processed/anomaly_results.csv`. |
-| PostgreSQL/dbt analytics engineering layer. | `scripts/load_postgres.py`, `scripts/verify_warehouse.py`, `sql/schema.sql`, `dbt/` project, 148 dbt tests. |
-| Executive dashboard and incident reporting. | `dashboards/streamlit_app.py`, `src/core/incident_reporting.py`, `data/reports/latest_incident.md`, `data/reports/latest_incident.html`, `data/reports/incident_history.csv`. |
-
-## Interview Talking Points
-
-- Why anomaly detection? To separate normal KPI variation from meaningful movement.
-- Why rolling Z-score? It is a simple statistical baseline that is easy to explain.
-- Why ML residual detector? It captures structure the statistical baseline misses.
-- Why not thresholds only? Static thresholds ignore seasonality and context.
-- How does RCA work? It measures contribution to degradation across dimensions.
-- Why dbt? It creates tested, documented marts for warehouse consumers.
-- How does this help executives? It converts noisy metric movement into an action list.
 
 ## Limitations
 
-- Synthetic data, not production data.
-- Synthetic incident labels are evaluation proof, not real-world ground truth.
-- Local residual detector used a deterministic NumPy fallback, not XGBoost.
-- Dashboard screenshots are manual unless you capture them locally.
-- Streamlit launch requires a local environment that permits binding a port.
+- The dataset is synthetic and designed for reproducible portfolio evaluation.
+- Synthetic incident labels are used as evaluation proof, not real-world ground truth.
+- The local residual detector uses a deterministic NumPy fallback instead of XGBoost due to local dependency constraints.
+- Dashboard screenshots are manual unless captured locally.
 - The project is not production deployed.
+
 
 ## Future Work
 
-- Add real production KPI sources.
-- Schedule the pipeline.
-- Deploy the dashboard.
-- Add alerting via Slack or email.
-- Improve the residual model when the environment supports XGBoost or scikit-learn reliably.
-- Add CI/CD and hosted dbt docs.
+- Connect to real production KPI sources.
+- Add scheduled pipeline orchestration.
+- Deploy the Streamlit dashboard.
+- Add Slack/email alerting.
+- Host dbt documentation.
+- Expand the residual modeling stack when XGBoost/scikit-learn are available reliably.
