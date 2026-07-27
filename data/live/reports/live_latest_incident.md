@@ -1,6 +1,6 @@
 # KPI Incident Report
 
-Generated at: `2026-07-27T14:55:50.899420+00:00`
+Generated at: `2026-07-27T15:28:54.849248+00:00`
 Detector used: `residual_anomaly`
 Incidents generated: **12**
 Highest severity: **CRITICAL**

@@ -1,5 +1,5 @@
 {
-  "run_timestamp": "2026-07-27T14:55:50.899420+00:00",
+  "run_timestamp": "2026-07-27T15:28:54.849248+00:00",
   "detector_used": "residual_anomaly",
   "incidents_generated": 12,
   "highest_severity": "CRITICAL",
