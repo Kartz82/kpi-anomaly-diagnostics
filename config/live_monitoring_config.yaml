@@ -1,0 +1,92 @@
+# Configuration for the LIVE OPERATIONS track.
+#
+# The synthetic evaluation track uses config/monitoring_config.yaml and is unaffected by
+# anything here. This file exists because the two tracks monitor different things: the
+# synthetic track measures detector quality against labelled incidents, this one runs the
+# tuned detector against real public traffic on a schedule.
+
+live_source:
+  # Wikimedia Pageviews API - public, no key, no auth.
+  projects:
+    - en.wikipedia
+    - de.wikipedia
+    - fr.wikipedia
+    - es.wikipedia
+    - ja.wikipedia
+    - ru.wikipedia
+  access_types:
+    - desktop
+    - mobile-web
+    - mobile-app
+  agent_types:
+    - user
+    - spider
+    - automated
+
+  # 90 days fetched, 30 days reported.
+  #
+  # The primary detector uses a 28-day rolling baseline with .shift(1), so a series needs
+  # 29 days of history before its first scoreable day. Fetching only the 30-day reporting
+  # window would leave nearly every point un-warmed and silently unscored.
+  lookback_days: 90
+  report_window_days: 30
+
+kpi_monitoring:
+  thresholds:
+    pageviews:
+      # Traffic is noisy day-to-day (weekday/weekend swing is large), so these are looser
+      # than the synthetic KPIs. Tightening them is the main tuning knob if the live
+      # report gets noisy.
+      warning_threshold_pct: 0.15
+      critical_threshold_pct: 0.30
+      direction: lower_is_bad
+
+anomaly_detection:
+  z_score_warning_threshold: 3.0
+  z_score_critical_threshold: 4.0
+  # Live traffic volatility differs by orders of magnitude across series, so a fixed
+  # relative-percent residual band is the wrong tool (it fired on 22.9% of the window).
+  # Switch to distribution-based thresholding: flag residuals that are statistical
+  # outliers within their own series. Cutoffs are standard robust-stats values
+  # (3.5 = Iglewicz-Hoaglin outlier threshold), not tuned to this dataset.
+  residual_threshold_mode: robust_mad
+  residual_mad_warning_z: 3.5
+  residual_mad_critical_z: 5.0
+  # Retained for reference / fallback if the mode is switched back.
+  residual_warning_threshold_pct: 0.20
+  residual_critical_threshold_pct: 0.40
+  rolling_window: 28
+  min_periods: 7
+  # One residual model per series. Pageview volumes differ by orders of magnitude across
+  # projects and agents, so a single regression spanning all of them produces enormous
+  # relative residuals on the small series and flags them permanently.
+  model_group_columns:
+    - kpi_name
+    - project
+    - access
+    - agent
+  model:
+    random_state: 42
+    train_fraction: 0.70
+    n_estimators: 80
+    max_depth: 3
+    learning_rate: 0.08
+    subsample: 0.9
+    colsample_bytree: 0.9
+
+root_cause_analysis:
+  default_detector: residual_anomaly
+  max_causes_reported: 10
+
+incident_reporting:
+  default_detector: residual_anomaly
+  max_incidents: 12
+  max_root_causes_per_incident: 3
+  max_actions_per_incident: 3
+  severity_thresholds:
+    critical: 0.30
+    warning: 0.15
+  limitations:
+    - "Live Wikimedia pageview data carries no ground-truth incident labels, so precision, recall and F1 cannot be computed for this track. Detector quality is measured on the labelled synthetic track instead."
+    - "Traffic anomalies here are real but their causes are external and unverifiable - a spike may be a news event, a bot wave, or a Wikimedia infrastructure change. Root causes name the affected segment, not the reason."
+    - "Recommended actions are rule based and should guide investigation, not prove causality."

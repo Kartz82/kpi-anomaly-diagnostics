@@ -14,6 +14,86 @@ The project is built as a portfolio-ready analytics case study for Analytics Eng
 
 The core value is clarity. Dashboards often show movement, but not explanation. This repository shows how to move from raw KPI signals to reproducible evidence, ranked dimensional contributions, and executive-ready incident summaries.
 
+## Headline Result — Before and After
+
+The original monitoring approach used static thresholds against a moving baseline. It caught every incident, but drowned them in false alarms. Replacing it with **residual-based detection** — comparing actual against a model's expected value rather than against a fixed band — cut false positives by **81%** while holding recall at **100%**.
+
+Measured on 121,500 observations with 342 labelled incident rows:
+
+| Metric | Static threshold (before) | Residual detection (after) | Change |
+| :--- | ---: | ---: | :--- |
+| True positives | 342 | 342 | unchanged |
+| **False positives** | **2,958** | **563** | **−80.97%** |
+| False negatives | 0 | 0 | unchanged |
+| Precision | 10.36% | 37.79% | **3.65x** |
+| Recall | 100.00% | 100.00% | held |
+| **F1 score** | **0.1878** | **0.5485** | **+192%** |
+| Alerts raised | 3,300 | 905 | −2,395 |
+
+**Why recall mattering more than precision drove the design.** Both detectors find every incident, so the difference is entirely in what they *don't* flag. An on-call analyst working the "before" queue sifts 3,300 alerts to find 342 real ones — roughly 9 false alarms per real incident. The "after" queue is 905 alerts for the same 342 incidents, under 2 false alarms each. Nothing was traded away to get it: false negatives stayed at zero.
+
+A rolling Z-score detector was also evaluated and **rejected**: it cut alert volume to 920 but missed 247 of 342 incidents (recall 27.78%, F1 0.1506). Lower alert volume achieved by going blind is not an improvement, and reporting only its alert-count reduction would have been a misleading result.
+
+Every figure above is reproducible from a clean checkout:
+
+```bash
+python3 scripts/run_pipeline.py --regenerate
+cat data/reports/model_evaluation.csv
+```
+
+Verified 2026-07-25: a full regeneration reproduced all prior outputs **byte-identically** (raw data, validated data, monitoring table, anomaly results, RCA contributions, and model evaluation).
+
+## Two Tracks: Evaluation and Operations
+
+This repository runs the same detector against two different datasets, because they answer
+two different questions.
+
+| | **Evaluation track** | **Operations track** |
+| :--- | :--- | :--- |
+| Data | Synthetic, deterministic, labelled | Wikimedia Pageviews API — real, public, live |
+| Question | Is the detector any good? | Does it run unattended on data nobody controls? |
+| Metrics | Precision, recall, **F1** | Coverage, anomaly counts, incidents |
+| Cadence | On demand | Daily, via GitHub Actions |
+| Entry point | `scripts/run_pipeline.py` | `scripts/run_live_pipeline.py` |
+| Config | `config/monitoring_config.yaml` | `config/live_monitoring_config.yaml` |
+
+**Why not just use real data?** Because real data has no ground truth. Without labels there
+is no precision, no recall, no F1 — the entire before/after result above would cease to
+exist. The synthetic track is what makes the accuracy claim measurable; the live track is
+what makes it operational. Detector F1 is carried into live incident confidence tagged
+`"f1_source": "synthetic_evaluation_track"`, so a number measured on labelled data can never
+be mistaken for one measured on live traffic.
+
+### Latest live run
+
+Real output from the Wikimedia Pageviews API — 6 Wikipedia projects × 3 access methods ×
+3 agent types:
+
+| Metric | Value |
+| :--- | ---: |
+| Series monitored | 54 |
+| Date range | 2026-04-28 → 2026-07-26 |
+| Rows fetched | 4,478 |
+| Rows scored | 4,112 |
+| Rows held back for baseline warm-up | 366 |
+| Fetch coverage | 92.14% |
+| Anomalies in 30-day window (Z-score) | 37 (2.5%) |
+| Anomalies in 30-day window (residual) | 341 (22.9%) |
+
+**90 days fetched, 30 days reported.** The 28-day rolling baseline uses `.shift(1)`, so a
+series needs 29 days of history before its first scoreable day. Fetching only the reporting
+window would leave almost every point un-warmed and silently unscored.
+
+**Two honest findings from that run, both unresolved:**
+- Fetch coverage is **92.14%**, not 100%. Real API responses have gaps. The run reports
+  partial coverage rather than treating missing days as zero.
+- The residual detector fires on **22.9%** of the window against **2.5%** for Z-score. Live
+  thresholds are inherited from the synthetic track and have not been calibrated for real
+  traffic volatility. See `docs/decisions.md` §9 for why they were not simply tuned down.
+
+**Cadence is daily; the window is 30 days.** These are separate concerns — a monitoring
+system that only ran monthly would detect an incident up to 30 days late.
+
 ## Business Problem
 
 KPI teams spend time checking whether data is trustworthy, investigating anomalies, and manually assembling root-cause evidence. That slows decision-making and makes it difficult to explain what actually happened.
@@ -154,7 +234,24 @@ The pipeline is deterministic, local-first, and designed to leave a clear audit 
 
 The data quality layer validates the input dataset before monitoring or anomaly detection begins. It checks schema validity, accepted values, nulls, duplicates, freshness, completeness, volume, and numeric ranges.
 
-The quality score is explainable and combines those checks into a single health signal. The verified latest run passed all validation checks and achieved a data quality score of 100/100.
+The quality score is explainable and combines those checks into a single health signal.
+
+**Current verified run: 9 of 10 checks pass, health score 90/100, overall status `FAIL`.**
+
+The single failure is the **freshness** check, and it is the system working correctly rather than a defect in the data. The committed sample dataset ends on 2026-06-30 and the freshness threshold is 14 days, so the shipped extract is stale by construction and the gate correctly refuses to certify it:
+
+| Check | Result |
+| :--- | :--- |
+| schema, data types, accepted values, nulls, duplicates, completeness, volume, numeric ranges | **pass** — score 1.0 each |
+| freshness | **fail** — latest date 2026-06-30, 14-day threshold |
+
+To generate a dataset anchored to today, so the freshness gate passes:
+
+```bash
+python3 scripts/run_pipeline.py --regenerate --end-date $(date +%F)
+```
+
+Injected incident windows are day offsets from the dataset's end date, so the labelled ground truth moves with the anchor and the detector evaluation stays valid. The committed extract is deliberately left pinned to 2026-06-30 so every published metric below stays exactly reproducible.
 
 Primary outputs:
 - `data/reports/data_quality_report.json`.
@@ -398,6 +495,14 @@ DBT_PROFILES_DIR=dbt dbt run --project-dir dbt
 DBT_PROFILES_DIR=dbt dbt test --project-dir dbt
 ```
 
+### Live operations track
+```bash
+python scripts/run_live_pipeline.py                      # fetch + score + report
+python scripts/run_live_pipeline.py --offline            # re-score last fetch, no network
+python scripts/run_live_pipeline.py --lookback-days 120  # longer history
+```
+Needs no credentials — the Wikimedia API requires no key. Outputs land in `data/live/`.
+
 ### Full local setup
 ```bash
 python -m pip install -r requirements.txt
@@ -424,9 +529,23 @@ docker compose down
 
 ## Limitations
 
+**Evaluation track**
 - The dataset is synthetic and designed for reproducible portfolio evaluation.
 - Synthetic incident labels are used as evaluation proof, not real-world ground truth.
 - The local residual detector uses a deterministic NumPy fallback instead of XGBoost due to local dependency constraints.
+
+**Operations track**
+- Live Wikimedia data has **no ground-truth labels**, so precision, recall and F1 are not
+  computed for it. Every accuracy figure in this README comes from the evaluation track.
+- Live anomalies are real but their causes are external and unverifiable — a spike may be a
+  news event, a bot wave, or a Wikimedia infrastructure change. RCA names the affected
+  segment, not the reason.
+- Live residual thresholds are uncalibrated (see `docs/decisions.md` §9).
+- Fetch coverage is not guaranteed; the last run reached 92.14%.
+- Scheduled GitHub Actions runs can be delayed or dropped under load, and are disabled
+  automatically after ~60 days of repository inactivity. Cadence is best effort.
+
+**Both**
 - Dashboard screenshots are manual unless captured locally.
 - The project is not production deployed.
 

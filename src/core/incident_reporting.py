@@ -153,10 +153,16 @@ class IncidentReporter:
                 "detector F1, RCA concentration, data quality score, anomaly support, "
                 "and detector severity using configured weights."
             ),
-            "limitations": [
-                "Incident reports are generated from deterministic synthetic data.",
-                "Recommended actions are rule based and should guide investigation, not prove causality.",
-            ],
+            # Configurable because the two tracks have genuinely different limitations:
+            # the synthetic track's caveat is that its data is generated, the live track's
+            # is that its data is unlabelled. Stating the wrong one would be misleading.
+            "limitations": self.incident_config.get(
+                "limitations",
+                [
+                    "Incident reports are generated from deterministic synthetic data.",
+                    "Recommended actions are rule based and should guide investigation, not prove causality.",
+                ],
+            ),
         }
 
         with open(json_path, "w") as f:
@@ -250,7 +256,10 @@ class IncidentReporter:
         weights = self.incident_config.get("confidence_weights", {})
         model_f1 = float(model_comparison.get("best_detector_f1_score", 0))
         top_share = max((cause["contribution_share"] for cause in top_root_causes), default=0)
-        dq_score = float(data_quality_report.get("health_score", 0)) / 100
+        # Treat a missing/None health score as 0 rather than crashing: a caller with no
+        # quality signal should lose the quality contribution to confidence, not the run.
+        raw_dq_score = data_quality_report.get("health_score")
+        dq_score = float(raw_dq_score) / 100 if raw_dq_score is not None else 0.0
         anomaly_support = min(len(group) / float(self.incident_config.get("support_saturation_count", 10)), 1.0)
         severity_score = 1.0 if self._max_severity(group[severity_column]) == "CRITICAL" else 0.65
 

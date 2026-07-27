@@ -22,8 +22,7 @@ LABEL_COLUMNS = [
     "incident_description",
 ]
 
-ANOMALY_OUTPUT_COLUMNS = [
-    *BUSINESS_KEY,
+ANOMALY_MEASURE_COLUMNS = [
     "actual_value",
     "expected_value",
     "moving_baseline",
@@ -40,8 +39,9 @@ ANOMALY_OUTPUT_COLUMNS = [
     "residual_severity",
     "combined_anomaly",
     "combined_severity",
-    *LABEL_COLUMNS,
 ]
+
+ANOMALY_OUTPUT_COLUMNS = [*BUSINESS_KEY, *ANOMALY_MEASURE_COLUMNS, *LABEL_COLUMNS]
 
 
 class AnomalyDetector:
@@ -50,10 +50,33 @@ class AnomalyDetector:
         threshold: float = 2.0,
         window: int = 7,
         config_path: str = "config/monitoring_config.yaml",
+        dimensions: list[str] | None = None,
     ):
         self.z_threshold = threshold
         self.window = window
         self.config_path = config_path
+        # See KPIMonitor.__init__ for why the dimension set is injectable. The default
+        # reproduces the synthetic evaluation schema exactly.
+        default_dimensions = BUSINESS_KEY[1:]
+        self.dimensions = list(dimensions) if dimensions else list(default_dimensions)
+        if not self.dimensions or self.dimensions[0] != "kpi_name":
+            raise ValueError("dimensions must start with 'kpi_name'")
+        self.business_key = ["date", *self.dimensions]
+        # Columns defining one residual-model fitting group. Default ["kpi_name"] matches
+        # the synthetic track, where each KPI has a homogeneous scale. A track whose series
+        # span orders of magnitude (live pageviews: 128M vs a few thousand) must fit at a
+        # finer grain, or one regression is forced across incomparable scales and the
+        # percent-residual test fires on almost every small series.
+        self.model_group_columns = list(
+            self._load_config(config_path)
+            .get("anomaly_detection", {})
+            .get("model_group_columns", ["kpi_name"])
+        )
+        self.output_columns = [
+            *self.business_key,
+            *ANOMALY_MEASURE_COLUMNS,
+            *LABEL_COLUMNS,
+        ]
         self.config = self._load_config(config_path)
         self.anomaly_config = self.config.get("anomaly_detection", {})
         self.residual_model_used = "unknown"
@@ -88,7 +111,7 @@ class AnomalyDetector:
         """Adds Z-score, ML residual, combined detector, and incident labels."""
         anomaly_df = monitoring_df.copy()
         anomaly_df["date"] = pd.to_datetime(anomaly_df["date"], errors="coerce")
-        anomaly_df = anomaly_df.sort_values(["date", *BUSINESS_KEY[1:]]).reset_index(drop=True)
+        anomaly_df = anomaly_df.sort_values(["date", *self.dimensions]).reset_index(drop=True)
 
         anomaly_df = self._add_zscore_detector(anomaly_df)
         anomaly_df = self._add_ml_residual_detector(anomaly_df)
@@ -96,7 +119,7 @@ class AnomalyDetector:
         anomaly_df = self._join_incident_labels(anomaly_df, validated_df)
 
         anomaly_df["date"] = anomaly_df["date"].dt.strftime("%Y-%m-%d")
-        return anomaly_df[ANOMALY_OUTPUT_COLUMNS]
+        return anomaly_df[self.output_columns]
 
     def _add_zscore_detector(self, df: pd.DataFrame) -> pd.DataFrame:
         warning_threshold = float(self.anomaly_config.get("z_score_warning_threshold", 2.0))
@@ -104,7 +127,7 @@ class AnomalyDetector:
         rolling_window = int(self.anomaly_config.get("rolling_window", 28))
         min_periods = int(self.anomaly_config.get("min_periods", 7))
 
-        grouped = df.groupby(BUSINESS_KEY[1:], sort=False)["actual_value"]
+        grouped = df.groupby(self.dimensions, sort=False)["actual_value"]
         rolling_std = grouped.transform(
             lambda values: values.shift(1).rolling(
                 window=rolling_window,
@@ -139,11 +162,23 @@ class AnomalyDetector:
         model_name, model_class = self._select_residual_model()
         predicted = pd.Series(index=df.index, dtype=float)
 
-        for kpi_name, group_index in df.groupby("kpi_name").groups.items():
+        min_train_rows = int(model_config.get("min_train_rows", 8))
+
+        for _group_key, group_index in df.groupby(self.model_group_columns).groups.items():
             group_index = pd.Index(group_index)
             group_train_mask = train_mask.loc[group_index]
             group_features = feature_df.loc[group_index]
             group_y = y.loc[group_index]
+
+            # A series that only starts after the global train/test split date has no
+            # training rows at all. Fitting anything there would be invention, so fall back
+            # to the rolling baseline - the residual then reduces to the variance the
+            # threshold detector already measures.
+            if int(group_train_mask.sum()) < min_train_rows:
+                predicted.loc[group_index] = (
+                    df.loc[group_index, "moving_baseline"].astype(float).to_numpy()
+                )
+                continue
 
             if model_name == "xgboost_xgbregressor":
                 model = model_class(
@@ -185,26 +220,80 @@ class AnomalyDetector:
         df["residual_percent"] = df["residual_percent"].replace([float("inf"), float("-inf")], pd.NA)
 
         direction = df["kpi_name"].map(self._kpi_directions())
-        residual_percent = df["residual_percent"]
         lower_bad = direction.eq("lower_is_bad")
         higher_bad = direction.eq("higher_is_bad")
 
-        warning_mask = (
-            (lower_bad & (residual_percent <= -warning_threshold))
-            | (higher_bad & (residual_percent >= warning_threshold))
-        )
-        critical_mask = (
-            (lower_bad & (residual_percent <= -critical_threshold))
-            | (higher_bad & (residual_percent >= critical_threshold))
-        )
+        # Two ways to decide "how far off is too far":
+        #
+        #   relative_pct (default): flag if the residual exceeds a fixed % of the expected
+        #     value. Correct when every series shares a scale, as on the synthetic track -
+        #     and it is what every published synthetic number was produced with, so it
+        #     stays the default and that track is untouched.
+        #
+        #   robust_mad: flag if the residual is a statistical outlier *within its own
+        #     series*, using the Iglewicz-Hoaglin modified z-score (median / MAD). Correct
+        #     when series have wildly different natural volatility, as on live pageview
+        #     data, where a fixed 20% relative band fires constantly on noisy series and
+        #     leaves quiet ones under-covered. This is distribution-based thresholding, not
+        #     tuning to hit a target alert count - the cutoffs are standard robust-stats
+        #     constants, not numbers reverse-engineered from this dataset.
+        mode = str(self.anomaly_config.get("residual_threshold_mode", "relative_pct"))
+
+        if mode == "robust_mad":
+            warning_z = float(self.anomaly_config.get("residual_mad_warning_z", 3.5))
+            critical_z = float(self.anomaly_config.get("residual_mad_critical_z", 5.0))
+            modified_z = self._residual_modified_zscore(df)
+            warning_mask = (
+                (lower_bad & (modified_z <= -warning_z))
+                | (higher_bad & (modified_z >= warning_z))
+            )
+            critical_mask = (
+                (lower_bad & (modified_z <= -critical_z))
+                | (higher_bad & (modified_z >= critical_z))
+            )
+            df["residual_modified_zscore"] = modified_z
+        else:
+            residual_percent = df["residual_percent"]
+            warning_mask = (
+                (lower_bad & (residual_percent <= -warning_threshold))
+                | (higher_bad & (residual_percent >= warning_threshold))
+            )
+            critical_mask = (
+                (lower_bad & (residual_percent <= -critical_threshold))
+                | (higher_bad & (residual_percent >= critical_threshold))
+            )
 
         df["residual_severity"] = "NORMAL"
-        df.loc[warning_mask, "residual_severity"] = "WARNING"
-        df.loc[critical_mask, "residual_severity"] = "CRITICAL"
+        df.loc[warning_mask.fillna(False), "residual_severity"] = "WARNING"
+        df.loc[critical_mask.fillna(False), "residual_severity"] = "CRITICAL"
         df["residual_anomaly"] = df["residual_severity"] != "NORMAL"
         self.residual_model_used = model_name
         self.residual_train_split_date = pd.Timestamp(split_date).strftime("%Y-%m-%d")
         return df
+
+    def _residual_modified_zscore(self, df: pd.DataFrame) -> pd.Series:
+        """Iglewicz-Hoaglin modified z-score of the residual, computed per series.
+
+        modified_z = 0.6745 * (residual - median) / MAD, where MAD is the median absolute
+        deviation of the residual within each fitting group. 0.6745 rescales MAD to be a
+        consistent estimator of the standard deviation for normally distributed data, so
+        the familiar z-score cutoffs apply. Robust: a few genuine outliers do not inflate
+        the scale the way a mean/std would, so the detector does not desensitise itself to
+        the very spikes it is meant to catch.
+        """
+        residual = df["residual"]
+        grouped = residual.groupby([df[column] for column in self.model_group_columns])
+        median = grouped.transform("median")
+        abs_dev = (residual - median).abs()
+        mad = abs_dev.groupby(
+            [df[column] for column in self.model_group_columns]
+        ).transform("median")
+        # MAD of 0 means an (almost) constant series - no dispersion to measure against, so
+        # nothing there is an outlier. Guard the divide rather than emit spurious infinities.
+        modified_z = 0.6745 * (residual - median) / mad
+        modified_z = modified_z.where(mad.ne(0))
+        modified_z = modified_z.replace([float("inf"), float("-inf")], pd.NA)
+        return modified_z
 
     @staticmethod
     def _select_residual_model():
@@ -258,10 +347,15 @@ class AnomalyDetector:
 
         penalty = np.eye(x_train_design.shape[1]) * alpha
         penalty[0, 0] = 0.0
-        coefficients = np.linalg.solve(
-            x_train_design.T @ x_train_design + penalty,
-            x_train_design.T @ y_train,
-        )
+        gram = x_train_design.T @ x_train_design + penalty
+        target = x_train_design.T @ y_train
+        try:
+            coefficients = np.linalg.solve(gram, target)
+        except np.linalg.LinAlgError:
+            # The intercept term is deliberately unpenalised, so a group with too few
+            # training rows leaves the Gram matrix singular. Least squares gives the
+            # minimum-norm solution instead of failing the whole run.
+            coefficients = np.linalg.lstsq(gram, target, rcond=None)[0]
         predicted = x_all_design @ coefficients
         return predicted
 
@@ -279,7 +373,18 @@ class AnomalyDetector:
     def _join_incident_labels(self, anomaly_df: pd.DataFrame, validated_df: pd.DataFrame) -> pd.DataFrame:
         labels = validated_df.copy()
         labels["date"] = pd.to_datetime(labels["date"], errors="coerce")
-        labels = labels[BUSINESS_KEY + LABEL_COLUMNS]
+
+        # Live operational data carries no ground-truth labels. Rather than fail, emit the
+        # label columns as empty so the output schema stays constant across both tracks -
+        # downstream evaluation must then skip precision/recall, which is exactly the point:
+        # unlabelled data cannot be scored.
+        missing_labels = [column for column in LABEL_COLUMNS if column not in labels.columns]
+        if missing_labels:
+            labels["is_incident"] = False
+            for column in ["incident_id", "incident_type", "incident_description"]:
+                labels[column] = ""
+
+        labels = labels[self.business_key + LABEL_COLUMNS]
         labels["is_incident"] = labels["is_incident"].map({
             True: True,
             False: False,
@@ -293,7 +398,7 @@ class AnomalyDetector:
             0: False,
         }).fillna(False).astype(bool)
 
-        merged = anomaly_df.merge(labels, on=BUSINESS_KEY, how="left")
+        merged = anomaly_df.merge(labels, on=self.business_key, how="left")
         merged["is_incident"] = merged["is_incident"].fillna(False).astype(bool)
         for column in ["incident_id", "incident_type", "incident_description"]:
             merged[column] = merged[column].fillna("")
@@ -302,12 +407,7 @@ class AnomalyDetector:
     def _build_model_features(self, df: pd.DataFrame) -> pd.DataFrame:
         feature_source = df[[
             "date",
-            "kpi_name",
-            "region",
-            "device_type",
-            "browser",
-            "channel",
-            "business_segment",
+            *self.dimensions,
             "moving_baseline",
         ]].copy()
         feature_source["date"] = pd.to_datetime(feature_source["date"], errors="coerce")
@@ -327,15 +427,7 @@ class AnomalyDetector:
             feature_source[column] = pd.to_numeric(feature_source[column], errors="coerce")
             feature_source[column] = feature_source[column].fillna(feature_source[column].median())
 
-        categorical_columns = [
-            "kpi_name",
-            "region",
-            "device_type",
-            "browser",
-            "channel",
-            "business_segment",
-        ]
-        return pd.get_dummies(feature_source, columns=categorical_columns, dtype=int)
+        return pd.get_dummies(feature_source, columns=self.dimensions, dtype=int)
 
     def _kpi_directions(self) -> dict:
         thresholds = self.config.get("kpi_monitoring", {}).get("thresholds", {})

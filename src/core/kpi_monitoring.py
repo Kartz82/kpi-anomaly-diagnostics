@@ -17,14 +17,9 @@ MONITORING_DIMENSIONS = [
     "business_segment",
 ]
 
-OUTPUT_COLUMNS = [
-    "date",
-    "kpi_name",
-    "region",
-    "device_type",
-    "browser",
-    "channel",
-    "business_segment",
+# Measure columns that follow the dimension columns in the output table. Held separately
+# so the output schema can be rebuilt for any dimension set without duplicating this list.
+MEASURE_COLUMNS = [
     "actual_value",
     "rolling_avg_7d",
     "rolling_avg_14d",
@@ -39,16 +34,30 @@ OUTPUT_COLUMNS = [
     "monitoring_status",
 ]
 
+OUTPUT_COLUMNS = ["date", *MONITORING_DIMENSIONS, *MEASURE_COLUMNS]
+
 
 class KPIMonitor:
-    def __init__(self, config_path: str = "config/monitoring_config.yaml"):
+    def __init__(
+        self,
+        config_path: str = "config/monitoring_config.yaml",
+        dimensions: list[str] | None = None,
+    ):
         with open(config_path, "r") as f:
             self.config = yaml.safe_load(f)
         self.thresholds = self._load_thresholds(self.config)
+        # dimensions=None keeps the synthetic evaluation schema. The live operations track
+        # passes its own dimension set (project/access/agent), which is why this is a
+        # parameter rather than a module constant: the detector logic is schema-agnostic,
+        # only the grouping key changes.
+        self.dimensions = list(dimensions) if dimensions else list(MONITORING_DIMENSIONS)
+        if not self.dimensions or self.dimensions[0] != "kpi_name":
+            raise ValueError("dimensions must start with 'kpi_name'")
+        self.output_columns = ["date", *self.dimensions, *MEASURE_COLUMNS]
 
     def build_monitoring_table(self, df: pd.DataFrame) -> pd.DataFrame:
         """Builds a same-grain KPI monitoring table from validated KPI observations."""
-        required_columns = ["date", "kpi_name", "kpi_value", *MONITORING_DIMENSIONS[1:]]
+        required_columns = ["date", "kpi_name", "kpi_value", *self.dimensions[1:]]
         missing = [column for column in required_columns if column not in df.columns]
         if missing:
             raise ValueError(f"Cannot build KPI monitoring table. Missing columns: {missing}")
@@ -56,9 +65,9 @@ class KPIMonitor:
         monitoring = df.copy()
         monitoring["date"] = pd.to_datetime(monitoring["date"], errors="coerce")
         monitoring["actual_value"] = pd.to_numeric(monitoring["kpi_value"], errors="coerce")
-        monitoring = monitoring.sort_values(["date", *MONITORING_DIMENSIONS]).reset_index(drop=True)
+        monitoring = monitoring.sort_values(["date", *self.dimensions]).reset_index(drop=True)
 
-        grouped = monitoring.groupby(MONITORING_DIMENSIONS, sort=False)["actual_value"]
+        grouped = monitoring.groupby(self.dimensions, sort=False)["actual_value"]
         monitoring["rolling_avg_7d"] = grouped.transform(
             lambda values: values.rolling(window=7, min_periods=1).mean()
         )
@@ -85,7 +94,7 @@ class KPIMonitor:
         monitoring["monitoring_status"] = statuses["monitoring_status"]
 
         monitoring["date"] = monitoring["date"].dt.strftime("%Y-%m-%d")
-        return monitoring[OUTPUT_COLUMNS]
+        return monitoring[self.output_columns]
 
     def write_monitoring_summary(
         self,

@@ -13,6 +13,12 @@ data/raw/*
 !data/raw/kpi_daily_metrics.csv
 data/warehouse/*
 !data/.gitkeep
+
+# Live operations track: commit the reports (the audit trail), never the regenerable
+# intermediates. The scheduled workflow commits data/live/reports back on each run;
+# committing the multi-MB processed/raw files as well would bloat history daily.
+data/live/processed/
+data/live/raw/
 config/*.env
 .env
 .DS_Store

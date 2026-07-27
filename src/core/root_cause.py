@@ -36,13 +36,37 @@ RCA_OUTPUT_COLUMNS = [
 
 
 class RootCauseAnalyzer:
+    # Dimension hierarchy analysed for contribution: each entry is
+    # (dimension_type label, columns to group by). Single-column entries isolate one
+    # dimension; multi-column entries find interaction effects (e.g. a fault that only
+    # appears for one region+device+browser combination).
+    DEFAULT_DIMENSION_SPECS = [
+        ("region", ["region"]),
+        ("device_type", ["device_type"]),
+        ("browser", ["browser"]),
+        ("channel", ["channel"]),
+        ("business_segment", ["business_segment"]),
+        ("region_device_browser", ["region", "device_type", "browser"]),
+        (
+            "full_segment",
+            ["region", "device_type", "browser", "channel", "business_segment"],
+        ),
+    ]
+
     def __init__(
         self,
         segments: list | None = None,
         config_path: str = "config/monitoring_config.yaml",
+        dimension_specs: list | None = None,
     ):
         self.segments = segments or []
         self.config_path = config_path
+        # Injectable so the live operations track can analyse its own dimensions
+        # (project/access/agent) with the same contribution maths.
+        self.dimension_specs = [
+            (name, list(columns))
+            for name, columns in (dimension_specs or self.DEFAULT_DIMENSION_SPECS)
+        ]
         self.config = self._load_config(config_path)
         self.rca_config = self.config.get("root_cause_analysis", {})
         self.kpi_directions = {
@@ -70,18 +94,7 @@ class RootCauseAnalyzer:
             return pd.DataFrame(columns=RCA_OUTPUT_COLUMNS)
 
         rows = []
-        dimensions = [
-            ("region", ["region"]),
-            ("device_type", ["device_type"]),
-            ("browser", ["browser"]),
-            ("channel", ["channel"]),
-            ("business_segment", ["business_segment"]),
-            ("region_device_browser", ["region", "device_type", "browser"]),
-            (
-                "full_segment",
-                ["region", "device_type", "browser", "channel", "business_segment"],
-            ),
-        ]
+        dimensions = self.dimension_specs
 
         for (analysis_date, kpi_name), group in candidates.groupby(["analysis_date", "kpi_name"]):
             total_degradation = float(group["degradation_amount"].sum())

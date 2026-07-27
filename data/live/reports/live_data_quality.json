@@ -1,0 +1,9 @@
+{
+  "health_score": 92.14,
+  "status": "FAIL",
+  "expected_series": 54,
+  "observed_series": 54,
+  "observed_days": 90,
+  "coverage_pct": 92.14,
+  "fetch_failures": []
+}
