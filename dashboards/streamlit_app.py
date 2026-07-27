@@ -186,7 +186,15 @@ def render_executive_overview(ctx: dict[str, Any]) -> None:
 
     st.markdown("### Latest / Top Incident")
     if incidents:
-        incident = latest_incident.get("highest_confidence_incident") or incidents[0]
+        # highest_confidence_incident in the report is an incident *id* string, not the
+        # incident object. incidents is already sorted highest-confidence-first (see
+        # IncidentReporter.write_outputs, which sets highest = incidents[0]), so resolve
+        # the id back to its record and fall back to the first incident.
+        highest_id = latest_incident.get("highest_confidence_incident")
+        incident = next(
+            (item for item in incidents if item.get("incident_id") == highest_id),
+            incidents[0],
+        )
         st.write(incident.get("executive_summary", "No executive summary available."))
         st.caption(f"Severity: {incident.get('severity', 'n/a')} | Confidence: {incident.get('confidence_label', 'n/a')}")
     else:
