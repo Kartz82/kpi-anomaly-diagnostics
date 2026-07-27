@@ -44,9 +44,16 @@ def _json_default(value):
     return str(value)
 
 
-def run_phase_1_pipeline(regenerate: bool = False) -> dict:
+def run_phase_1_pipeline(regenerate: bool = False, end_date: str | None = None) -> dict:
     if regenerate or not RAW_PATH.exists():
-        raw_df = generate_kpi_data(output_path=RAW_PATH)
+        # end_date=None keeps the generator's pinned default (2026-06-30), which is what
+        # every published metric was produced from. Passing an explicit end date
+        # re-anchors the dataset - incident windows are offsets from the end date, so the
+        # labelled ground truth moves with it and the evaluation stays valid.
+        generate_kwargs = {"output_path": RAW_PATH}
+        if end_date:
+            generate_kwargs["end_date"] = end_date
+        raw_df = generate_kpi_data(**generate_kwargs)
         raw_action = "generated"
     else:
         raw_df = None
@@ -187,9 +194,22 @@ def main() -> None:
         action="store_true",
         help="Regenerate deterministic raw KPI data before validation.",
     )
+    parser.add_argument(
+        "--end-date",
+        default=None,
+        help=(
+            "Anchor the generated dataset to this end date, e.g. $(date +%%F). "
+            "Requires --regenerate. Omit to keep the pinned default end date that the "
+            "published metrics were produced from. Use a current date to satisfy the "
+            "14-day freshness check in the data quality layer."
+        ),
+    )
     args = parser.parse_args()
 
-    summary = run_phase_1_pipeline(regenerate=args.regenerate)
+    if args.end_date and not args.regenerate:
+        parser.error("--end-date has no effect without --regenerate")
+
+    summary = run_phase_1_pipeline(regenerate=args.regenerate, end_date=args.end_date)
 
     print("KPI reliability pipeline complete")
     print(f"Raw rows {summary['raw_action']}: {summary['raw_rows']:,}")

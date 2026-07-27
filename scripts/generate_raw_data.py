@@ -26,6 +26,32 @@ KPI_NAMES = [
 ]
 
 
+# Injected incident windows, expressed as day offsets back from the dataset's end date
+# rather than as absolute dates.
+#
+# Offsets, not literals, because the end date is a parameter: generating with
+# --end-date today must move the incidents with the data. With absolute dates the
+# incidents would drift out of the generated window entirely and the labelled ground
+# truth would silently vanish.
+#
+# With the default end date of 2026-06-30 these resolve to exactly the original
+# windows (2026-06-05..06-14, 2026-05-18..05-25, 2026-06-18..06-27), so the default
+# output is unchanged.
+INCIDENT_WINDOWS_DAYS_BEFORE_END = {
+    "conversion_rate_degradation": (25, 16),
+    "latency_spike": (43, 36),
+    "revenue_per_session_degradation": (12, 3),
+}
+
+
+def _window(end_date: pd.Timestamp, key: str) -> tuple[pd.Timestamp, pd.Timestamp]:
+    start_offset, end_offset = INCIDENT_WINDOWS_DAYS_BEFORE_END[key]
+    return (
+        end_date - pd.Timedelta(days=start_offset),
+        end_date - pd.Timedelta(days=end_offset),
+    )
+
+
 def _incident_for_row(
     date: pd.Timestamp,
     kpi_name: str,
@@ -34,11 +60,13 @@ def _incident_for_row(
     browser: str,
     channel: str,
     business_segment: str,
+    end_date: pd.Timestamp,
 ) -> dict[str, object]:
     incidents = []
 
+    cr_start, cr_end = _window(end_date, "conversion_rate_degradation")
     if (
-        pd.Timestamp("2026-06-05") <= date <= pd.Timestamp("2026-06-14")
+        cr_start <= date <= cr_end
         and kpi_name == "conversion_rate"
         and device_type == "Mobile"
         and region == "APAC"
@@ -50,8 +78,9 @@ def _incident_for_row(
             "Conversion rate degradation affecting Mobile + APAC + Safari.",
         ))
 
+    lat_start, lat_end = _window(end_date, "latency_spike")
     if (
-        pd.Timestamp("2026-05-18") <= date <= pd.Timestamp("2026-05-25")
+        lat_start <= date <= lat_end
         and kpi_name == "latency_ms"
         and device_type == "Desktop"
         and region == "North America"
@@ -63,8 +92,9 @@ def _incident_for_row(
             "Latency spike affecting Desktop + North America + Chrome.",
         ))
 
+    rps_start, rps_end = _window(end_date, "revenue_per_session_degradation")
     if (
-        pd.Timestamp("2026-06-18") <= date <= pd.Timestamp("2026-06-27")
+        rps_start <= date <= rps_end
         and kpi_name == "revenue_per_session"
         and channel == "Paid Search"
         and business_segment == "Enterprise"
@@ -187,7 +217,8 @@ def generate_kpi_data(
     days: int = DEFAULT_DAYS,
 ) -> pd.DataFrame:
     rng = np.random.default_rng(seed)
-    dates = pd.date_range(end=pd.Timestamp(end_date), periods=days, freq="D")
+    end_timestamp = pd.Timestamp(end_date)
+    dates = pd.date_range(end=end_timestamp, periods=days, freq="D")
     rows = []
 
     for date_index, date in enumerate(dates):
@@ -216,6 +247,7 @@ def generate_kpi_data(
                                     browser,
                                     channel,
                                     business_segment,
+                                    end_timestamp,
                                 )
 
                                 if incident["is_incident"] and kpi_name == "conversion_rate":

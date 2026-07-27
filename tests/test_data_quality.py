@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import sys
+from datetime import date
 from pathlib import Path
 
 import pandas as pd
@@ -19,8 +20,17 @@ SCHEMA_CONTRACT_PATH = ROOT_DIR / "config/schema_contract.yaml"
 
 @pytest.fixture(scope="module")
 def valid_dataset(tmp_path_factory):
+    # Anchored to today, not to the generator's pinned default end date.
+    #
+    # The quality suite includes a freshness check (max 14 days since the latest date).
+    # Generating with the pinned default makes this test pass only for the two weeks
+    # after that date and fail forever afterwards - which is exactly what happened: the
+    # shipped dataset ends 2026-06-30, so this test started failing around 2026-07-14.
+    #
+    # A freshness check has to be exercised with fresh data. Incident windows are offsets
+    # from the end date, so the labelled ground truth moves with the anchor.
     output_path = tmp_path_factory.mktemp("raw") / "kpi_daily_metrics.csv"
-    return generate_kpi_data(output_path=output_path)
+    return generate_kpi_data(output_path=output_path, end_date=date.today().isoformat())
 
 
 @pytest.fixture

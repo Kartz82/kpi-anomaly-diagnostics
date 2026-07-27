@@ -1,14 +1,16 @@
 {
   "metadata": {
-    "validated_at": "2026-07-02T21:09:52.149767+00:00",
+    "validated_at": "2026-07-27T15:00:42.794451+00:00",
     "dataset_name": "kpi_daily_metrics",
     "row_count": 121500,
     "column_count": 18
   },
-  "status": "PASS",
-  "is_healthy": true,
-  "health_score": 100,
-  "issues": [],
+  "status": "FAIL",
+  "is_healthy": false,
+  "health_score": 90,
+  "issues": [
+    "Latest data is 27 days old"
+  ],
   "checks": {
     "schema": {
       "passed": true,
@@ -55,12 +57,12 @@
       "summary": "No duplicate business keys found"
     },
     "freshness": {
-      "passed": true,
-      "score": 1.0,
+      "passed": false,
+      "score": 0.0,
       "latest_date": "2026-06-30",
-      "days_since_latest_date": 2,
+      "days_since_latest_date": 27,
       "threshold_days": 14,
-      "summary": "Freshness check passed"
+      "summary": "Latest data is 27 days old"
     },
     "completeness": {
       "passed": true,
