@@ -1,5 +1,5 @@
 {
-  "run_timestamp": "2026-07-27T15:00:47.404763+00:00",
+  "run_timestamp": "2026-07-27T15:24:59.164827+00:00",
   "best_detector": "ml_residual",
   "best_detector_metric": "f1_score",
   "best_detector_f1_score": 0.548516,
