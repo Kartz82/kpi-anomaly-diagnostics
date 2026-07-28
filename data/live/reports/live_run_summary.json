@@ -1,32 +1,70 @@
 {
-  "run_timestamp": "2026-07-27T15:28:54.773974+00:00",
+  "run_timestamp": "2026-07-28T09:07:50.665342+00:00",
   "track": "live_operations",
   "source": "Wikimedia Pageviews API",
-  "date_min": "2026-04-28",
-  "date_max": "2026-07-26",
+  "date_min": "2026-04-29",
+  "date_max": "2026-07-27",
   "report_window_days": 30,
-  "report_window_start": "2026-06-27",
-  "total_rows_fetched": 4478,
-  "series_count": 54,
-  "rows_scored": 4112,
-  "rows_unscored_baseline_warmup": 366,
-  "rows_in_report_window": 1487,
+  "report_window_start": "2026-06-28",
+  "total_rows_fetched": 4209,
+  "series_count": 51,
+  "rows_scored": 3864,
+  "rows_unscored_baseline_warmup": 345,
+  "rows_in_report_window": 1397,
   "residual_model_used": "numpy_ridge_regression_residual",
-  "fetch_failures": [],
+  "fetch_failures": [
+    {
+      "project": "de.wikipedia",
+      "access": "desktop",
+      "agent": "automated",
+      "error": "404 for https://wikimedia.org/api/rest_v1/metrics/pageviews/aggregate/de.wikipedia/desktop/automated/daily/2026042900/2026072700"
+    },
+    {
+      "project": "fr.wikipedia",
+      "access": "mobile-app",
+      "agent": "automated",
+      "error": "404 for https://wikimedia.org/api/rest_v1/metrics/pageviews/aggregate/fr.wikipedia/mobile-app/automated/daily/2026042900/2026072700"
+    },
+    {
+      "project": "ja.wikipedia",
+      "access": "mobile-web",
+      "agent": "user",
+      "error": "404 for https://wikimedia.org/api/rest_v1/metrics/pageviews/aggregate/ja.wikipedia/mobile-web/user/daily/2026042900/2026072700"
+    }
+  ],
   "anomalies_in_window": {
-    "zscore": 37,
-    "residual": 26,
-    "combined": 61
+    "zscore": 33,
+    "residual": 10,
+    "combined": 41
   },
   "labels_available": false,
   "accuracy_note": "No ground-truth labels exist for live traffic, so precision/recall/F1 are not computed here. Detector accuracy is measured on the synthetic track.",
   "live_data_quality": {
-    "health_score": 92.14,
+    "health_score": 86.6,
     "status": "FAIL",
     "expected_series": 54,
-    "observed_series": 54,
+    "observed_series": 51,
     "observed_days": 90,
-    "coverage_pct": 92.14,
-    "fetch_failures": []
+    "coverage_pct": 86.6,
+    "fetch_failures": [
+      {
+        "project": "de.wikipedia",
+        "access": "desktop",
+        "agent": "automated",
+        "error": "404 for https://wikimedia.org/api/rest_v1/metrics/pageviews/aggregate/de.wikipedia/desktop/automated/daily/2026042900/2026072700"
+      },
+      {
+        "project": "fr.wikipedia",
+        "access": "mobile-app",
+        "agent": "automated",
+        "error": "404 for https://wikimedia.org/api/rest_v1/metrics/pageviews/aggregate/fr.wikipedia/mobile-app/automated/daily/2026042900/2026072700"
+      },
+      {
+        "project": "ja.wikipedia",
+        "access": "mobile-web",
+        "agent": "user",
+        "error": "404 for https://wikimedia.org/api/rest_v1/metrics/pageviews/aggregate/ja.wikipedia/mobile-web/user/daily/2026042900/2026072700"
+      }
+    ]
   }
 }

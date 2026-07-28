@@ -1,9 +1,28 @@
 {
-  "health_score": 92.14,
+  "health_score": 86.6,
   "status": "FAIL",
   "expected_series": 54,
-  "observed_series": 54,
+  "observed_series": 51,
   "observed_days": 90,
-  "coverage_pct": 92.14,
-  "fetch_failures": []
+  "coverage_pct": 86.6,
+  "fetch_failures": [
+    {
+      "project": "de.wikipedia",
+      "access": "desktop",
+      "agent": "automated",
+      "error": "404 for https://wikimedia.org/api/rest_v1/metrics/pageviews/aggregate/de.wikipedia/desktop/automated/daily/2026042900/2026072700"
+    },
+    {
+      "project": "fr.wikipedia",
+      "access": "mobile-app",
+      "agent": "automated",
+      "error": "404 for https://wikimedia.org/api/rest_v1/metrics/pageviews/aggregate/fr.wikipedia/mobile-app/automated/daily/2026042900/2026072700"
+    },
+    {
+      "project": "ja.wikipedia",
+      "access": "mobile-web",
+      "agent": "user",
+      "error": "404 for https://wikimedia.org/api/rest_v1/metrics/pageviews/aggregate/ja.wikipedia/mobile-web/user/daily/2026042900/2026072700"
+    }
+  ]
 }
