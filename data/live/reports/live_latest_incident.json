@@ -1,21 +1,69 @@
 {
-  "run_timestamp": "2026-07-29T09:12:34.347863+00:00",
+  "run_timestamp": "2026-07-30T09:05:30.404581+00:00",
   "detector_used": "residual_anomaly",
-  "incidents_generated": 6,
+  "incidents_generated": 8,
   "highest_severity": "CRITICAL",
-  "highest_confidence_incident": "INC-20260724-PAGEVIEWS-RESIDUAL-ANOMALY",
+  "highest_confidence_incident": "INC-20260711-PAGEVIEWS-RESIDUAL-ANOMALY",
   "incidents": [
     {
-      "incident_id": "INC-20260724-PAGEVIEWS-RESIDUAL-ANOMALY",
-      "incident_date": "2026-07-24",
+      "incident_id": "INC-20260711-PAGEVIEWS-RESIDUAL-ANOMALY",
+      "incident_date": "2026-07-11",
       "kpi_affected": "pageviews",
       "severity": "CRITICAL",
-      "confidence_score": 0.698,
+      "confidence_score": 0.724,
       "confidence_label": "Medium",
       "detector_used": "residual_anomaly",
-      "actual_value_summary": 5481351.0,
-      "expected_value_summary": 8498046.714286,
-      "percent_variance_summary": -0.354987,
+      "actual_value_summary": 2400321.0,
+      "expected_value_summary": 3707341.5,
+      "percent_variance_summary": -0.352549,
+      "anomaly_count": 1,
+      "suspected_dimensions": [
+        "de.wikipedia + desktop + spider"
+      ],
+      "top_root_causes": [
+        {
+          "dimension_type": "full_segment",
+          "dimension_value": "de.wikipedia + desktop + spider",
+          "contribution_share": 1.0,
+          "degradation_amount": 1307020.5,
+          "severity": "WARNING",
+          "recommended_action": "Review pageviews drivers for full_segment = de.wikipedia + desktop + spider; check recent releases, tracking changes, campaign mix, and operational issues."
+        }
+      ],
+      "recommended_actions": [
+        "Review recent product, tracking, and campaign changes affecting pageviews.",
+        "Review pageviews drivers for full_segment = de.wikipedia + desktop + spider; check recent releases, tracking changes, campaign mix, and operational issues."
+      ],
+      "executive_summary": "On 2026-07-11, pageviews showed a critical issue. The residual_anomaly detector flagged abnormal movement, and RCA identified de.wikipedia + desktop + spider as the dominant contributor, explaining 100.0% of measured degradation. Recommended next step: Review recent product, tracking, and campaign changes affecting pageviews.",
+      "supporting_metrics": {
+        "max_abs_percent_variance": 0.352549,
+        "max_detector_severity": "WARNING",
+        "top_root_cause": "de.wikipedia + desktop + spider",
+        "monitoring_warning_count": 0,
+        "monitoring_critical_count": 0
+      },
+      "data_quality_context": {
+        "status": "FAIL",
+        "health_score": 92.1
+      },
+      "model_context": {
+        "best_detector": "residual_anomaly",
+        "best_detector_f1_score": 0.548516,
+        "residual_model_used": null,
+        "method_metadata": {}
+      }
+    },
+    {
+      "incident_id": "INC-20260729-PAGEVIEWS-RESIDUAL-ANOMALY",
+      "incident_date": "2026-07-29",
+      "kpi_affected": "pageviews",
+      "severity": "CRITICAL",
+      "confidence_score": 0.724,
+      "confidence_label": "Medium",
+      "detector_used": "residual_anomaly",
+      "actual_value_summary": 5518171.0,
+      "expected_value_summary": 7819449.214286,
+      "percent_variance_summary": -0.294302,
       "anomaly_count": 1,
       "suspected_dimensions": [
         "en.wikipedia + mobile-web + automated"
@@ -25,7 +73,7 @@
           "dimension_type": "full_segment",
           "dimension_value": "en.wikipedia + mobile-web + automated",
           "contribution_share": 1.0,
-          "degradation_amount": 3016695.714286,
+          "degradation_amount": 2301278.214286,
           "severity": "WARNING",
           "recommended_action": "Review pageviews drivers for full_segment = en.wikipedia + mobile-web + automated; check recent releases, tracking changes, campaign mix, and operational issues."
         }
@@ -34,9 +82,9 @@
         "Review recent product, tracking, and campaign changes affecting pageviews.",
         "Review pageviews drivers for full_segment = en.wikipedia + mobile-web + automated; check recent releases, tracking changes, campaign mix, and operational issues."
       ],
-      "executive_summary": "On 2026-07-24, pageviews showed a critical issue. The residual_anomaly detector flagged abnormal movement, and RCA identified en.wikipedia + mobile-web + automated as the dominant contributor, explaining 100.0% of measured degradation. Recommended next step: Review recent product, tracking, and campaign changes affecting pageviews.",
+      "executive_summary": "On 2026-07-29, pageviews showed a critical issue. The residual_anomaly detector flagged abnormal movement, and RCA identified en.wikipedia + mobile-web + automated as the dominant contributor, explaining 100.0% of measured degradation. Recommended next step: Review recent product, tracking, and campaign changes affecting pageviews.",
       "supporting_metrics": {
-        "max_abs_percent_variance": 0.354987,
+        "max_abs_percent_variance": 0.294302,
         "max_detector_severity": "WARNING",
         "top_root_cause": "en.wikipedia + mobile-web + automated",
         "monitoring_warning_count": 0,
@@ -44,7 +92,7 @@
       },
       "data_quality_context": {
         "status": "FAIL",
-        "health_score": 79.18
+        "health_score": 92.1
       },
       "model_context": {
         "best_detector": "residual_anomaly",
@@ -54,74 +102,16 @@
       }
     },
     {
-      "incident_id": "INC-20260728-PAGEVIEWS-RESIDUAL-ANOMALY",
-      "incident_date": "2026-07-28",
-      "kpi_affected": "pageviews",
-      "severity": "CRITICAL",
-      "confidence_score": 0.688,
-      "confidence_label": "Medium",
-      "detector_used": "residual_anomaly",
-      "actual_value_summary": 3100456.5,
-      "expected_value_summary": 4787699.303571,
-      "percent_variance_summary": -0.364868,
-      "anomaly_count": 2,
-      "suspected_dimensions": [
-        "en.wikipedia + mobile-web + automated",
-        "ru.wikipedia + mobile-web + automated"
-      ],
-      "top_root_causes": [
-        {
-          "dimension_type": "full_segment",
-          "dimension_value": "en.wikipedia + mobile-web + automated",
-          "contribution_share": 0.817115,
-          "degradation_amount": 2757342.678571,
-          "severity": "CRITICAL",
-          "recommended_action": "Review pageviews drivers for full_segment = en.wikipedia + mobile-web + automated; check recent releases, tracking changes, campaign mix, and operational issues."
-        },
-        {
-          "dimension_type": "full_segment",
-          "dimension_value": "ru.wikipedia + mobile-web + automated",
-          "contribution_share": 0.182885,
-          "degradation_amount": 617142.928571,
-          "severity": "WARNING",
-          "recommended_action": "Review pageviews drivers for full_segment = ru.wikipedia + mobile-web + automated; check recent releases, tracking changes, campaign mix, and operational issues."
-        }
-      ],
-      "recommended_actions": [
-        "Review recent product, tracking, and campaign changes affecting pageviews.",
-        "Review pageviews drivers for full_segment = en.wikipedia + mobile-web + automated; check recent releases, tracking changes, campaign mix, and operational issues.",
-        "Review pageviews drivers for full_segment = ru.wikipedia + mobile-web + automated; check recent releases, tracking changes, campaign mix, and operational issues."
-      ],
-      "executive_summary": "On 2026-07-28, pageviews showed a critical issue. The residual_anomaly detector flagged abnormal movement, and RCA identified en.wikipedia + mobile-web + automated as the dominant contributor, explaining 81.7% of measured degradation. Recommended next step: Review recent product, tracking, and campaign changes affecting pageviews.",
-      "supporting_metrics": {
-        "max_abs_percent_variance": 0.383628,
-        "max_detector_severity": "CRITICAL",
-        "top_root_cause": "en.wikipedia + mobile-web + automated",
-        "monitoring_warning_count": 0,
-        "monitoring_critical_count": 0
-      },
-      "data_quality_context": {
-        "status": "FAIL",
-        "health_score": 79.18
-      },
-      "model_context": {
-        "best_detector": "residual_anomaly",
-        "best_detector_f1_score": 0.548516,
-        "residual_model_used": null,
-        "method_metadata": {}
-      }
-    },
-    {
-      "incident_id": "INC-20260727-PAGEVIEWS-RESIDUAL-ANOMALY",
-      "incident_date": "2026-07-27",
+      "incident_id": "INC-20260724-PAGEVIEWS-RESIDUAL-ANOMALY",
+      "incident_date": "2026-07-24",
       "kpi_affected": "pageviews",
       "severity": "CRITICAL",
       "confidence_score": 0.683,
       "confidence_label": "Medium",
       "detector_used": "residual_anomaly",
-      "actual_value_summary": 3053777.5,
-      "expected_value_summary": 4868360.785714,
-      "percent_variance_summary": -0.400339,
+      "actual_value_summary": 3285565.5,
+      "expected_value_summary": 5102045.839286,
+      "percent_variance_summary": -0.358106,
       "anomaly_count": 2,
       "suspected_dimensions": [
         "en.wikipedia + mobile-web + automated",
@@ -131,16 +121,16 @@
         {
           "dimension_type": "full_segment",
           "dimension_value": "en.wikipedia + mobile-web + automated",
-          "contribution_share": 0.801105,
-          "degradation_amount": 2907343.071429,
-          "severity": "CRITICAL",
+          "contribution_share": 0.830368,
+          "degradation_amount": 3016695.714286,
+          "severity": "WARNING",
           "recommended_action": "Review pageviews drivers for full_segment = en.wikipedia + mobile-web + automated; check recent releases, tracking changes, campaign mix, and operational issues."
         },
         {
           "dimension_type": "full_segment",
           "dimension_value": "ru.wikipedia + mobile-web + automated",
-          "contribution_share": 0.198895,
-          "degradation_amount": 721823.5,
+          "contribution_share": 0.169632,
+          "degradation_amount": 616264.964286,
           "severity": "WARNING",
           "recommended_action": "Review pageviews drivers for full_segment = ru.wikipedia + mobile-web + automated; check recent releases, tracking changes, campaign mix, and operational issues."
         }
@@ -150,17 +140,17 @@
         "Review pageviews drivers for full_segment = en.wikipedia + mobile-web + automated; check recent releases, tracking changes, campaign mix, and operational issues.",
         "Review pageviews drivers for full_segment = ru.wikipedia + mobile-web + automated; check recent releases, tracking changes, campaign mix, and operational issues."
       ],
-      "executive_summary": "On 2026-07-27, pageviews showed a critical issue. The residual_anomaly detector flagged abnormal movement, and RCA identified en.wikipedia + mobile-web + automated as the dominant contributor, explaining 80.1% of measured degradation. Recommended next step: Review recent product, tracking, and campaign changes affecting pageviews.",
+      "executive_summary": "On 2026-07-24, pageviews showed a critical issue. The residual_anomaly detector flagged abnormal movement, and RCA identified en.wikipedia + mobile-web + automated as the dominant contributor, explaining 83.0% of measured degradation. Recommended next step: Review recent product, tracking, and campaign changes affecting pageviews.",
       "supporting_metrics": {
-        "max_abs_percent_variance": 0.441891,
-        "max_detector_severity": "CRITICAL",
+        "max_abs_percent_variance": 0.361224,
+        "max_detector_severity": "WARNING",
         "top_root_cause": "en.wikipedia + mobile-web + automated",
         "monitoring_warning_count": 0,
         "monitoring_critical_count": 0
       },
       "data_quality_context": {
         "status": "FAIL",
-        "health_score": 79.18
+        "health_score": 92.1
       },
       "model_context": {
         "best_detector": "residual_anomaly",
@@ -174,7 +164,7 @@
       "incident_date": "2026-07-25",
       "kpi_affected": "pageviews",
       "severity": "CRITICAL",
-      "confidence_score": 0.656,
+      "confidence_score": 0.682,
       "confidence_label": "Medium",
       "detector_used": "residual_anomaly",
       "actual_value_summary": 3202053.0,
@@ -218,7 +208,123 @@
       },
       "data_quality_context": {
         "status": "FAIL",
-        "health_score": 79.18
+        "health_score": 92.1
+      },
+      "model_context": {
+        "best_detector": "residual_anomaly",
+        "best_detector_f1_score": 0.548516,
+        "residual_model_used": null,
+        "method_metadata": {}
+      }
+    },
+    {
+      "incident_id": "INC-20260728-PAGEVIEWS-RESIDUAL-ANOMALY",
+      "incident_date": "2026-07-28",
+      "kpi_affected": "pageviews",
+      "severity": "CRITICAL",
+      "confidence_score": 0.679,
+      "confidence_label": "Medium",
+      "detector_used": "residual_anomaly",
+      "actual_value_summary": 3100456.5,
+      "expected_value_summary": 4787699.303571,
+      "percent_variance_summary": -0.364868,
+      "anomaly_count": 2,
+      "suspected_dimensions": [
+        "en.wikipedia + mobile-web + automated",
+        "ru.wikipedia + mobile-web + automated"
+      ],
+      "top_root_causes": [
+        {
+          "dimension_type": "full_segment",
+          "dimension_value": "en.wikipedia + mobile-web + automated",
+          "contribution_share": 0.817115,
+          "degradation_amount": 2757342.678571,
+          "severity": "WARNING",
+          "recommended_action": "Review pageviews drivers for full_segment = en.wikipedia + mobile-web + automated; check recent releases, tracking changes, campaign mix, and operational issues."
+        },
+        {
+          "dimension_type": "full_segment",
+          "dimension_value": "ru.wikipedia + mobile-web + automated",
+          "contribution_share": 0.182885,
+          "degradation_amount": 617142.928571,
+          "severity": "WARNING",
+          "recommended_action": "Review pageviews drivers for full_segment = ru.wikipedia + mobile-web + automated; check recent releases, tracking changes, campaign mix, and operational issues."
+        }
+      ],
+      "recommended_actions": [
+        "Review recent product, tracking, and campaign changes affecting pageviews.",
+        "Review pageviews drivers for full_segment = en.wikipedia + mobile-web + automated; check recent releases, tracking changes, campaign mix, and operational issues.",
+        "Review pageviews drivers for full_segment = ru.wikipedia + mobile-web + automated; check recent releases, tracking changes, campaign mix, and operational issues."
+      ],
+      "executive_summary": "On 2026-07-28, pageviews showed a critical issue. The residual_anomaly detector flagged abnormal movement, and RCA identified en.wikipedia + mobile-web + automated as the dominant contributor, explaining 81.7% of measured degradation. Recommended next step: Review recent product, tracking, and campaign changes affecting pageviews.",
+      "supporting_metrics": {
+        "max_abs_percent_variance": 0.383628,
+        "max_detector_severity": "WARNING",
+        "top_root_cause": "en.wikipedia + mobile-web + automated",
+        "monitoring_warning_count": 0,
+        "monitoring_critical_count": 0
+      },
+      "data_quality_context": {
+        "status": "FAIL",
+        "health_score": 92.1
+      },
+      "model_context": {
+        "best_detector": "residual_anomaly",
+        "best_detector_f1_score": 0.548516,
+        "residual_model_used": null,
+        "method_metadata": {}
+      }
+    },
+    {
+      "incident_id": "INC-20260727-PAGEVIEWS-RESIDUAL-ANOMALY",
+      "incident_date": "2026-07-27",
+      "kpi_affected": "pageviews",
+      "severity": "CRITICAL",
+      "confidence_score": 0.674,
+      "confidence_label": "Medium",
+      "detector_used": "residual_anomaly",
+      "actual_value_summary": 3053777.5,
+      "expected_value_summary": 4868360.785714,
+      "percent_variance_summary": -0.400339,
+      "anomaly_count": 2,
+      "suspected_dimensions": [
+        "en.wikipedia + mobile-web + automated",
+        "ru.wikipedia + mobile-web + automated"
+      ],
+      "top_root_causes": [
+        {
+          "dimension_type": "full_segment",
+          "dimension_value": "en.wikipedia + mobile-web + automated",
+          "contribution_share": 0.801105,
+          "degradation_amount": 2907343.071429,
+          "severity": "WARNING",
+          "recommended_action": "Review pageviews drivers for full_segment = en.wikipedia + mobile-web + automated; check recent releases, tracking changes, campaign mix, and operational issues."
+        },
+        {
+          "dimension_type": "full_segment",
+          "dimension_value": "ru.wikipedia + mobile-web + automated",
+          "contribution_share": 0.198895,
+          "degradation_amount": 721823.5,
+          "severity": "WARNING",
+          "recommended_action": "Review pageviews drivers for full_segment = ru.wikipedia + mobile-web + automated; check recent releases, tracking changes, campaign mix, and operational issues."
+        }
+      ],
+      "recommended_actions": [
+        "Review recent product, tracking, and campaign changes affecting pageviews.",
+        "Review pageviews drivers for full_segment = en.wikipedia + mobile-web + automated; check recent releases, tracking changes, campaign mix, and operational issues.",
+        "Review pageviews drivers for full_segment = ru.wikipedia + mobile-web + automated; check recent releases, tracking changes, campaign mix, and operational issues."
+      ],
+      "executive_summary": "On 2026-07-27, pageviews showed a critical issue. The residual_anomaly detector flagged abnormal movement, and RCA identified en.wikipedia + mobile-web + automated as the dominant contributor, explaining 80.1% of measured degradation. Recommended next step: Review recent product, tracking, and campaign changes affecting pageviews.",
+      "supporting_metrics": {
+        "max_abs_percent_variance": 0.441891,
+        "max_detector_severity": "WARNING",
+        "top_root_cause": "en.wikipedia + mobile-web + automated",
+        "monitoring_warning_count": 0,
+        "monitoring_critical_count": 0
+      },
+      "data_quality_context": {
+        "status": "FAIL",
+        "health_score": 92.1
       },
       "model_context": {
         "best_detector": "residual_anomaly",
@@ -232,7 +338,7 @@
       "incident_date": "2026-07-26",
       "kpi_affected": "pageviews",
       "severity": "CRITICAL",
-      "confidence_score": 0.642,
+      "confidence_score": 0.668,
       "confidence_label": "Medium",
       "detector_used": "residual_anomaly",
       "actual_value_summary": 3251018.0,
@@ -276,7 +382,7 @@
       },
       "data_quality_context": {
         "status": "FAIL",
-        "health_score": 79.18
+        "health_score": 92.1
       },
       "model_context": {
         "best_detector": "residual_anomaly",
@@ -290,7 +396,7 @@
       "incident_date": "2026-07-20",
       "kpi_affected": "pageviews",
       "severity": "WARNING",
-      "confidence_score": 0.698,
+      "confidence_score": 0.724,
       "confidence_label": "Medium",
       "detector_used": "residual_anomaly",
       "actual_value_summary": 8454136.0,
@@ -324,7 +430,7 @@
       },
       "data_quality_context": {
         "status": "FAIL",
-        "health_score": 79.18
+        "health_score": 92.1
       },
       "model_context": {
         "best_detector": "residual_anomaly",

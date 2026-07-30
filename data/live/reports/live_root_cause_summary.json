@@ -1,11 +1,11 @@
 {
-  "run_timestamp": "2026-07-29T09:12:34.301427+00:00",
+  "run_timestamp": "2026-07-30T09:05:30.359757+00:00",
   "detector_used": "residual_anomaly",
-  "total_anomalies_analyzed": 10,
+  "total_anomalies_analyzed": 13,
   "candidate_summary": {
-    "detector_anomaly_count": 10,
-    "valid_expected_baseline_count": 10,
-    "degrading_anomaly_count": 10,
+    "detector_anomaly_count": 13,
+    "valid_expected_baseline_count": 13,
+    "degrading_anomaly_count": 13,
     "excluded_missing_expected_or_baseline": 0,
     "excluded_non_degrading": 0
   },
@@ -13,33 +13,49 @@
     "pageviews"
   ],
   "top_root_cause_statements": [
-    "For pageviews on 2026-07-24, en.wikipedia + mobile-web + automated contributed 100.0% of measured degradation.",
+    "For pageviews on 2026-07-24, en.wikipedia + mobile-web + automated contributed 83.0% of measured degradation.",
     "For pageviews on 2026-07-25, mobile-web contributed 100.0% of measured degradation.",
     "For pageviews on 2026-07-25, automated contributed 100.0% of measured degradation.",
-    "For pageviews on 2026-07-24, en.wikipedia contributed 100.0% of measured degradation.",
-    "For pageviews on 2026-07-24, en.wikipedia + mobile-web contributed 100.0% of measured degradation.",
+    "For pageviews on 2026-07-24, en.wikipedia contributed 83.0% of measured degradation.",
+    "For pageviews on 2026-07-24, en.wikipedia + mobile-web contributed 83.0% of measured degradation.",
+    "For pageviews on 2026-07-29, en.wikipedia + mobile-web + automated contributed 100.0% of measured degradation.",
+    "For pageviews on 2026-07-11, de.wikipedia + desktop + spider contributed 100.0% of measured degradation.",
     "For pageviews on 2026-07-20, ja.wikipedia + desktop + user contributed 100.0% of measured degradation.",
     "For pageviews on 2026-07-25, en.wikipedia + mobile-web + automated contributed 82.8% of measured degradation.",
-    "For pageviews on 2026-07-28, en.wikipedia + mobile-web + automated contributed 81.7% of measured degradation.",
-    "For pageviews on 2026-07-27, en.wikipedia + mobile-web + automated contributed 80.1% of measured degradation.",
-    "For pageviews on 2026-07-26, en.wikipedia + mobile-web + automated contributed 78.2% of measured degradation."
+    "For pageviews on 2026-07-28, en.wikipedia + mobile-web + automated contributed 81.7% of measured degradation."
   ],
   "top_overall_root_causes": [
     {
-      "analysis_date": "2026-07-24",
+      "analysis_date": "2026-07-29",
       "kpi_name": "pageviews",
       "detector_used": "residual_anomaly",
       "dimension_type": "full_segment",
       "dimension_value": "en.wikipedia + mobile-web + automated",
-      "actual_value_sum_or_avg": 5481351.0,
-      "expected_value_sum_or_avg": 8498046.714285715,
-      "degradation_amount": 3016695.7142857146,
+      "actual_value_sum_or_avg": 5518171.0,
+      "expected_value_sum_or_avg": 7819449.214285715,
+      "degradation_amount": 2301278.2142857146,
       "contribution_share": 1.0,
       "contribution_rank": 1,
       "anomaly_count": 1,
       "severity_max": "WARNING",
       "recommended_action": "Review pageviews drivers for full_segment = en.wikipedia + mobile-web + automated; check recent releases, tracking changes, campaign mix, and operational issues.",
-      "root_cause_statement": "For pageviews on 2026-07-24, en.wikipedia + mobile-web + automated contributed 100.0% of measured degradation."
+      "root_cause_statement": "For pageviews on 2026-07-29, en.wikipedia + mobile-web + automated contributed 100.0% of measured degradation."
+    },
+    {
+      "analysis_date": "2026-07-11",
+      "kpi_name": "pageviews",
+      "detector_used": "residual_anomaly",
+      "dimension_type": "full_segment",
+      "dimension_value": "de.wikipedia + desktop + spider",
+      "actual_value_sum_or_avg": 2400321.0,
+      "expected_value_sum_or_avg": 3707341.5,
+      "degradation_amount": 1307020.5,
+      "contribution_share": 1.0,
+      "contribution_rank": 1,
+      "anomaly_count": 1,
+      "severity_max": "WARNING",
+      "recommended_action": "Review pageviews drivers for full_segment = de.wikipedia + desktop + spider; check recent releases, tracking changes, campaign mix, and operational issues.",
+      "root_cause_statement": "For pageviews on 2026-07-11, de.wikipedia + desktop + spider contributed 100.0% of measured degradation."
     },
     {
       "analysis_date": "2026-07-20",
@@ -56,6 +72,22 @@
       "severity_max": "WARNING",
       "recommended_action": "Review pageviews drivers for full_segment = ja.wikipedia + desktop + user; check recent releases, tracking changes, campaign mix, and operational issues.",
       "root_cause_statement": "For pageviews on 2026-07-20, ja.wikipedia + desktop + user contributed 100.0% of measured degradation."
+    },
+    {
+      "analysis_date": "2026-07-24",
+      "kpi_name": "pageviews",
+      "detector_used": "residual_anomaly",
+      "dimension_type": "full_segment",
+      "dimension_value": "en.wikipedia + mobile-web + automated",
+      "actual_value_sum_or_avg": 5481351.0,
+      "expected_value_sum_or_avg": 8498046.714285715,
+      "degradation_amount": 3016695.7142857146,
+      "contribution_share": 0.830368391290146,
+      "contribution_rank": 1,
+      "anomaly_count": 1,
+      "severity_max": "WARNING",
+      "recommended_action": "Review pageviews drivers for full_segment = en.wikipedia + mobile-web + automated; check recent releases, tracking changes, campaign mix, and operational issues.",
+      "root_cause_statement": "For pageviews on 2026-07-24, en.wikipedia + mobile-web + automated contributed 83.0% of measured degradation."
     },
     {
       "analysis_date": "2026-07-25",
@@ -85,7 +117,7 @@
       "contribution_share": 0.8171149619766915,
       "contribution_rank": 1,
       "anomaly_count": 1,
-      "severity_max": "CRITICAL",
+      "severity_max": "WARNING",
       "recommended_action": "Review pageviews drivers for full_segment = en.wikipedia + mobile-web + automated; check recent releases, tracking changes, campaign mix, and operational issues.",
       "root_cause_statement": "For pageviews on 2026-07-28, en.wikipedia + mobile-web + automated contributed 81.7% of measured degradation."
     },
@@ -101,7 +133,7 @@
       "contribution_share": 0.8011048857104776,
       "contribution_rank": 1,
       "anomaly_count": 1,
-      "severity_max": "CRITICAL",
+      "severity_max": "WARNING",
       "recommended_action": "Review pageviews drivers for full_segment = en.wikipedia + mobile-web + automated; check recent releases, tracking changes, campaign mix, and operational issues.",
       "root_cause_statement": "For pageviews on 2026-07-27, en.wikipedia + mobile-web + automated contributed 80.1% of measured degradation."
     },
@@ -152,38 +184,6 @@
       "severity_max": "WARNING",
       "recommended_action": "Review pageviews drivers for full_segment = ru.wikipedia + mobile-web + automated; check recent releases, tracking changes, campaign mix, and operational issues.",
       "root_cause_statement": "For pageviews on 2026-07-27, ru.wikipedia + mobile-web + automated contributed 19.9% of measured degradation."
-    },
-    {
-      "analysis_date": "2026-07-28",
-      "kpi_name": "pageviews",
-      "detector_used": "residual_anomaly",
-      "dimension_type": "full_segment",
-      "dimension_value": "ru.wikipedia + mobile-web + automated",
-      "actual_value_sum_or_avg": 991559.0,
-      "expected_value_sum_or_avg": 1608701.9285714286,
-      "degradation_amount": 617142.9285714286,
-      "contribution_share": 0.1828850380233085,
-      "contribution_rank": 2,
-      "anomaly_count": 1,
-      "severity_max": "WARNING",
-      "recommended_action": "Review pageviews drivers for full_segment = ru.wikipedia + mobile-web + automated; check recent releases, tracking changes, campaign mix, and operational issues.",
-      "root_cause_statement": "For pageviews on 2026-07-28, ru.wikipedia + mobile-web + automated contributed 18.3% of measured degradation."
-    },
-    {
-      "analysis_date": "2026-07-25",
-      "kpi_name": "pageviews",
-      "detector_used": "residual_anomaly",
-      "dimension_type": "full_segment",
-      "dimension_value": "ru.wikipedia + mobile-web + automated",
-      "actual_value_sum_or_avg": 1064275.0,
-      "expected_value_sum_or_avg": 1690252.2857142857,
-      "degradation_amount": 625977.2857142857,
-      "contribution_share": 0.17199904141008532,
-      "contribution_rank": 2,
-      "anomaly_count": 1,
-      "severity_max": "WARNING",
-      "recommended_action": "Review pageviews drivers for full_segment = ru.wikipedia + mobile-web + automated; check recent releases, tracking changes, campaign mix, and operational issues.",
-      "root_cause_statement": "For pageviews on 2026-07-25, ru.wikipedia + mobile-web + automated contributed 17.2% of measured degradation."
     }
   ],
   "top_root_cause_by_kpi": [
@@ -196,12 +196,12 @@
       "actual_value_sum_or_avg": 5481351.0,
       "expected_value_sum_or_avg": 8498046.714285715,
       "degradation_amount": 3016695.7142857146,
-      "contribution_share": 1.0,
+      "contribution_share": 0.830368391290146,
       "contribution_rank": 1,
       "anomaly_count": 1,
       "severity_max": "WARNING",
       "recommended_action": "Review pageviews drivers for full_segment = en.wikipedia + mobile-web + automated; check recent releases, tracking changes, campaign mix, and operational issues.",
-      "root_cause_statement": "For pageviews on 2026-07-24, en.wikipedia + mobile-web + automated contributed 100.0% of measured degradation."
+      "root_cause_statement": "For pageviews on 2026-07-24, en.wikipedia + mobile-web + automated contributed 83.0% of measured degradation."
     }
   ],
   "top_root_cause_by_dimension": [
@@ -246,12 +246,12 @@
       "actual_value_sum_or_avg": 5481351.0,
       "expected_value_sum_or_avg": 8498046.714285715,
       "degradation_amount": 3016695.7142857146,
-      "contribution_share": 1.0,
+      "contribution_share": 0.830368391290146,
       "contribution_rank": 1,
       "anomaly_count": 1,
       "severity_max": "WARNING",
       "recommended_action": "Review pageviews drivers for full_segment = en.wikipedia + mobile-web + automated; check recent releases, tracking changes, campaign mix, and operational issues.",
-      "root_cause_statement": "For pageviews on 2026-07-24, en.wikipedia + mobile-web + automated contributed 100.0% of measured degradation."
+      "root_cause_statement": "For pageviews on 2026-07-24, en.wikipedia + mobile-web + automated contributed 83.0% of measured degradation."
     },
     {
       "analysis_date": "2026-07-24",
@@ -262,12 +262,12 @@
       "actual_value_sum_or_avg": 5481351.0,
       "expected_value_sum_or_avg": 8498046.714285715,
       "degradation_amount": 3016695.7142857146,
-      "contribution_share": 1.0,
+      "contribution_share": 0.830368391290146,
       "contribution_rank": 1,
       "anomaly_count": 1,
       "severity_max": "WARNING",
       "recommended_action": "Review pageviews drivers for project = en.wikipedia; check recent releases, tracking changes, campaign mix, and operational issues.",
-      "root_cause_statement": "For pageviews on 2026-07-24, en.wikipedia contributed 100.0% of measured degradation."
+      "root_cause_statement": "For pageviews on 2026-07-24, en.wikipedia contributed 83.0% of measured degradation."
     },
     {
       "analysis_date": "2026-07-24",
@@ -278,12 +278,12 @@
       "actual_value_sum_or_avg": 5481351.0,
       "expected_value_sum_or_avg": 8498046.714285715,
       "degradation_amount": 3016695.7142857146,
-      "contribution_share": 1.0,
+      "contribution_share": 0.830368391290146,
       "contribution_rank": 1,
       "anomaly_count": 1,
       "severity_max": "WARNING",
       "recommended_action": "Review pageviews drivers for project_access = en.wikipedia + mobile-web; check recent releases, tracking changes, campaign mix, and operational issues.",
-      "root_cause_statement": "For pageviews on 2026-07-24, en.wikipedia + mobile-web contributed 100.0% of measured degradation."
+      "root_cause_statement": "For pageviews on 2026-07-24, en.wikipedia + mobile-web contributed 83.0% of measured degradation."
     }
   ],
   "top_contributors_by_kpi": {
@@ -319,6 +319,36 @@
         "recommended_action": "Review pageviews drivers for agent = automated; check recent releases, tracking changes, campaign mix, and operational issues."
       },
       {
+        "analysis_date": "2026-07-24",
+        "kpi_name": "pageviews",
+        "detector_used": "residual_anomaly",
+        "dimension_type": "access",
+        "dimension_value": "mobile-web",
+        "actual_value_sum_or_avg": 3285565.5,
+        "expected_value_sum_or_avg": 5102045.839285715,
+        "degradation_amount": 3632960.678571429,
+        "contribution_share": 1.0,
+        "contribution_rank": 1,
+        "anomaly_count": 2,
+        "severity_max": "WARNING",
+        "recommended_action": "Review pageviews drivers for access = mobile-web; check recent releases, tracking changes, campaign mix, and operational issues."
+      },
+      {
+        "analysis_date": "2026-07-24",
+        "kpi_name": "pageviews",
+        "detector_used": "residual_anomaly",
+        "dimension_type": "agent",
+        "dimension_value": "automated",
+        "actual_value_sum_or_avg": 3285565.5,
+        "expected_value_sum_or_avg": 5102045.839285715,
+        "degradation_amount": 3632960.678571429,
+        "contribution_share": 1.0,
+        "contribution_rank": 1,
+        "anomaly_count": 2,
+        "severity_max": "WARNING",
+        "recommended_action": "Review pageviews drivers for agent = automated; check recent releases, tracking changes, campaign mix, and operational issues."
+      },
+      {
         "analysis_date": "2026-07-27",
         "kpi_name": "pageviews",
         "detector_used": "residual_anomaly",
@@ -330,7 +360,7 @@
         "contribution_share": 1.0,
         "contribution_rank": 1,
         "anomaly_count": 2,
-        "severity_max": "CRITICAL",
+        "severity_max": "WARNING",
         "recommended_action": "Review pageviews drivers for access = mobile-web; check recent releases, tracking changes, campaign mix, and operational issues."
       },
       {
@@ -345,7 +375,7 @@
         "contribution_share": 1.0,
         "contribution_rank": 1,
         "anomaly_count": 2,
-        "severity_max": "CRITICAL",
+        "severity_max": "WARNING",
         "recommended_action": "Review pageviews drivers for agent = automated; check recent releases, tracking changes, campaign mix, and operational issues."
       },
       {
@@ -390,7 +420,7 @@
         "contribution_share": 1.0,
         "contribution_rank": 1,
         "anomaly_count": 2,
-        "severity_max": "CRITICAL",
+        "severity_max": "WARNING",
         "recommended_action": "Review pageviews drivers for access = mobile-web; check recent releases, tracking changes, campaign mix, and operational issues."
       },
       {
@@ -405,36 +435,6 @@
         "contribution_share": 1.0,
         "contribution_rank": 1,
         "anomaly_count": 2,
-        "severity_max": "CRITICAL",
-        "recommended_action": "Review pageviews drivers for agent = automated; check recent releases, tracking changes, campaign mix, and operational issues."
-      },
-      {
-        "analysis_date": "2026-07-24",
-        "kpi_name": "pageviews",
-        "detector_used": "residual_anomaly",
-        "dimension_type": "access",
-        "dimension_value": "mobile-web",
-        "actual_value_sum_or_avg": 5481351.0,
-        "expected_value_sum_or_avg": 8498046.714285715,
-        "degradation_amount": 3016695.7142857146,
-        "contribution_share": 1.0,
-        "contribution_rank": 1,
-        "anomaly_count": 1,
-        "severity_max": "WARNING",
-        "recommended_action": "Review pageviews drivers for access = mobile-web; check recent releases, tracking changes, campaign mix, and operational issues."
-      },
-      {
-        "analysis_date": "2026-07-24",
-        "kpi_name": "pageviews",
-        "detector_used": "residual_anomaly",
-        "dimension_type": "agent",
-        "dimension_value": "automated",
-        "actual_value_sum_or_avg": 5481351.0,
-        "expected_value_sum_or_avg": 8498046.714285715,
-        "degradation_amount": 3016695.7142857146,
-        "contribution_share": 1.0,
-        "contribution_rank": 1,
-        "anomaly_count": 1,
         "severity_max": "WARNING",
         "recommended_action": "Review pageviews drivers for agent = automated; check recent releases, tracking changes, campaign mix, and operational issues."
       }
@@ -458,6 +458,21 @@
         "recommended_action": "Review pageviews drivers for access = mobile-web; check recent releases, tracking changes, campaign mix, and operational issues."
       },
       {
+        "analysis_date": "2026-07-24",
+        "kpi_name": "pageviews",
+        "detector_used": "residual_anomaly",
+        "dimension_type": "access",
+        "dimension_value": "mobile-web",
+        "actual_value_sum_or_avg": 3285565.5,
+        "expected_value_sum_or_avg": 5102045.839285715,
+        "degradation_amount": 3632960.678571429,
+        "contribution_share": 1.0,
+        "contribution_rank": 1,
+        "anomaly_count": 2,
+        "severity_max": "WARNING",
+        "recommended_action": "Review pageviews drivers for access = mobile-web; check recent releases, tracking changes, campaign mix, and operational issues."
+      },
+      {
         "analysis_date": "2026-07-27",
         "kpi_name": "pageviews",
         "detector_used": "residual_anomaly",
@@ -469,7 +484,7 @@
         "contribution_share": 1.0,
         "contribution_rank": 1,
         "anomaly_count": 2,
-        "severity_max": "CRITICAL",
+        "severity_max": "WARNING",
         "recommended_action": "Review pageviews drivers for access = mobile-web; check recent releases, tracking changes, campaign mix, and operational issues."
       },
       {
@@ -499,23 +514,38 @@
         "contribution_share": 1.0,
         "contribution_rank": 1,
         "anomaly_count": 2,
-        "severity_max": "CRITICAL",
+        "severity_max": "WARNING",
         "recommended_action": "Review pageviews drivers for access = mobile-web; check recent releases, tracking changes, campaign mix, and operational issues."
       },
       {
-        "analysis_date": "2026-07-24",
+        "analysis_date": "2026-07-29",
         "kpi_name": "pageviews",
         "detector_used": "residual_anomaly",
         "dimension_type": "access",
         "dimension_value": "mobile-web",
-        "actual_value_sum_or_avg": 5481351.0,
-        "expected_value_sum_or_avg": 8498046.714285715,
-        "degradation_amount": 3016695.7142857146,
+        "actual_value_sum_or_avg": 5518171.0,
+        "expected_value_sum_or_avg": 7819449.214285715,
+        "degradation_amount": 2301278.2142857146,
         "contribution_share": 1.0,
         "contribution_rank": 1,
         "anomaly_count": 1,
         "severity_max": "WARNING",
         "recommended_action": "Review pageviews drivers for access = mobile-web; check recent releases, tracking changes, campaign mix, and operational issues."
+      },
+      {
+        "analysis_date": "2026-07-11",
+        "kpi_name": "pageviews",
+        "detector_used": "residual_anomaly",
+        "dimension_type": "access",
+        "dimension_value": "desktop",
+        "actual_value_sum_or_avg": 2400321.0,
+        "expected_value_sum_or_avg": 3707341.5,
+        "degradation_amount": 1307020.5,
+        "contribution_share": 1.0,
+        "contribution_rank": 1,
+        "anomaly_count": 1,
+        "severity_max": "WARNING",
+        "recommended_action": "Review pageviews drivers for access = desktop; check recent releases, tracking changes, campaign mix, and operational issues."
       },
       {
         "analysis_date": "2026-07-20",
@@ -550,6 +580,21 @@
         "recommended_action": "Review pageviews drivers for agent = automated; check recent releases, tracking changes, campaign mix, and operational issues."
       },
       {
+        "analysis_date": "2026-07-24",
+        "kpi_name": "pageviews",
+        "detector_used": "residual_anomaly",
+        "dimension_type": "agent",
+        "dimension_value": "automated",
+        "actual_value_sum_or_avg": 3285565.5,
+        "expected_value_sum_or_avg": 5102045.839285715,
+        "degradation_amount": 3632960.678571429,
+        "contribution_share": 1.0,
+        "contribution_rank": 1,
+        "anomaly_count": 2,
+        "severity_max": "WARNING",
+        "recommended_action": "Review pageviews drivers for agent = automated; check recent releases, tracking changes, campaign mix, and operational issues."
+      },
+      {
         "analysis_date": "2026-07-27",
         "kpi_name": "pageviews",
         "detector_used": "residual_anomaly",
@@ -561,7 +606,7 @@
         "contribution_share": 1.0,
         "contribution_rank": 1,
         "anomaly_count": 2,
-        "severity_max": "CRITICAL",
+        "severity_max": "WARNING",
         "recommended_action": "Review pageviews drivers for agent = automated; check recent releases, tracking changes, campaign mix, and operational issues."
       },
       {
@@ -591,23 +636,38 @@
         "contribution_share": 1.0,
         "contribution_rank": 1,
         "anomaly_count": 2,
-        "severity_max": "CRITICAL",
+        "severity_max": "WARNING",
         "recommended_action": "Review pageviews drivers for agent = automated; check recent releases, tracking changes, campaign mix, and operational issues."
       },
       {
-        "analysis_date": "2026-07-24",
+        "analysis_date": "2026-07-29",
         "kpi_name": "pageviews",
         "detector_used": "residual_anomaly",
         "dimension_type": "agent",
         "dimension_value": "automated",
-        "actual_value_sum_or_avg": 5481351.0,
-        "expected_value_sum_or_avg": 8498046.714285715,
-        "degradation_amount": 3016695.7142857146,
+        "actual_value_sum_or_avg": 5518171.0,
+        "expected_value_sum_or_avg": 7819449.214285715,
+        "degradation_amount": 2301278.2142857146,
         "contribution_share": 1.0,
         "contribution_rank": 1,
         "anomaly_count": 1,
         "severity_max": "WARNING",
         "recommended_action": "Review pageviews drivers for agent = automated; check recent releases, tracking changes, campaign mix, and operational issues."
+      },
+      {
+        "analysis_date": "2026-07-11",
+        "kpi_name": "pageviews",
+        "detector_used": "residual_anomaly",
+        "dimension_type": "agent",
+        "dimension_value": "spider",
+        "actual_value_sum_or_avg": 2400321.0,
+        "expected_value_sum_or_avg": 3707341.5,
+        "degradation_amount": 1307020.5,
+        "contribution_share": 1.0,
+        "contribution_rank": 1,
+        "anomaly_count": 1,
+        "severity_max": "WARNING",
+        "recommended_action": "Review pageviews drivers for agent = spider; check recent releases, tracking changes, campaign mix, and operational issues."
       },
       {
         "analysis_date": "2026-07-20",
@@ -627,19 +687,34 @@
     ],
     "full_segment": [
       {
-        "analysis_date": "2026-07-24",
+        "analysis_date": "2026-07-29",
         "kpi_name": "pageviews",
         "detector_used": "residual_anomaly",
         "dimension_type": "full_segment",
         "dimension_value": "en.wikipedia + mobile-web + automated",
-        "actual_value_sum_or_avg": 5481351.0,
-        "expected_value_sum_or_avg": 8498046.714285715,
-        "degradation_amount": 3016695.7142857146,
+        "actual_value_sum_or_avg": 5518171.0,
+        "expected_value_sum_or_avg": 7819449.214285715,
+        "degradation_amount": 2301278.2142857146,
         "contribution_share": 1.0,
         "contribution_rank": 1,
         "anomaly_count": 1,
         "severity_max": "WARNING",
         "recommended_action": "Review pageviews drivers for full_segment = en.wikipedia + mobile-web + automated; check recent releases, tracking changes, campaign mix, and operational issues."
+      },
+      {
+        "analysis_date": "2026-07-11",
+        "kpi_name": "pageviews",
+        "detector_used": "residual_anomaly",
+        "dimension_type": "full_segment",
+        "dimension_value": "de.wikipedia + desktop + spider",
+        "actual_value_sum_or_avg": 2400321.0,
+        "expected_value_sum_or_avg": 3707341.5,
+        "degradation_amount": 1307020.5,
+        "contribution_share": 1.0,
+        "contribution_rank": 1,
+        "anomaly_count": 1,
+        "severity_max": "WARNING",
+        "recommended_action": "Review pageviews drivers for full_segment = de.wikipedia + desktop + spider; check recent releases, tracking changes, campaign mix, and operational issues."
       },
       {
         "analysis_date": "2026-07-20",
@@ -657,6 +732,21 @@
         "recommended_action": "Review pageviews drivers for full_segment = ja.wikipedia + desktop + user; check recent releases, tracking changes, campaign mix, and operational issues."
       },
       {
+        "analysis_date": "2026-07-24",
+        "kpi_name": "pageviews",
+        "detector_used": "residual_anomaly",
+        "dimension_type": "full_segment",
+        "dimension_value": "en.wikipedia + mobile-web + automated",
+        "actual_value_sum_or_avg": 5481351.0,
+        "expected_value_sum_or_avg": 8498046.714285715,
+        "degradation_amount": 3016695.7142857146,
+        "contribution_share": 0.830368391290146,
+        "contribution_rank": 1,
+        "anomaly_count": 1,
+        "severity_max": "WARNING",
+        "recommended_action": "Review pageviews drivers for full_segment = en.wikipedia + mobile-web + automated; check recent releases, tracking changes, campaign mix, and operational issues."
+      },
+      {
         "analysis_date": "2026-07-25",
         "kpi_name": "pageviews",
         "detector_used": "residual_anomaly",
@@ -683,7 +773,7 @@
         "contribution_share": 0.8171149619766915,
         "contribution_rank": 1,
         "anomaly_count": 1,
-        "severity_max": "CRITICAL",
+        "severity_max": "WARNING",
         "recommended_action": "Review pageviews drivers for full_segment = en.wikipedia + mobile-web + automated; check recent releases, tracking changes, campaign mix, and operational issues."
       },
       {
@@ -698,7 +788,7 @@
         "contribution_share": 0.8011048857104776,
         "contribution_rank": 1,
         "anomaly_count": 1,
-        "severity_max": "CRITICAL",
+        "severity_max": "WARNING",
         "recommended_action": "Review pageviews drivers for full_segment = en.wikipedia + mobile-web + automated; check recent releases, tracking changes, campaign mix, and operational issues."
       },
       {
@@ -745,53 +835,38 @@
         "anomaly_count": 1,
         "severity_max": "WARNING",
         "recommended_action": "Review pageviews drivers for full_segment = ru.wikipedia + mobile-web + automated; check recent releases, tracking changes, campaign mix, and operational issues."
-      },
-      {
-        "analysis_date": "2026-07-28",
-        "kpi_name": "pageviews",
-        "detector_used": "residual_anomaly",
-        "dimension_type": "full_segment",
-        "dimension_value": "ru.wikipedia + mobile-web + automated",
-        "actual_value_sum_or_avg": 991559.0,
-        "expected_value_sum_or_avg": 1608701.9285714286,
-        "degradation_amount": 617142.9285714286,
-        "contribution_share": 0.1828850380233085,
-        "contribution_rank": 2,
-        "anomaly_count": 1,
-        "severity_max": "WARNING",
-        "recommended_action": "Review pageviews drivers for full_segment = ru.wikipedia + mobile-web + automated; check recent releases, tracking changes, campaign mix, and operational issues."
-      },
-      {
-        "analysis_date": "2026-07-25",
-        "kpi_name": "pageviews",
-        "detector_used": "residual_anomaly",
-        "dimension_type": "full_segment",
-        "dimension_value": "ru.wikipedia + mobile-web + automated",
-        "actual_value_sum_or_avg": 1064275.0,
-        "expected_value_sum_or_avg": 1690252.2857142857,
-        "degradation_amount": 625977.2857142857,
-        "contribution_share": 0.17199904141008532,
-        "contribution_rank": 2,
-        "anomaly_count": 1,
-        "severity_max": "WARNING",
-        "recommended_action": "Review pageviews drivers for full_segment = ru.wikipedia + mobile-web + automated; check recent releases, tracking changes, campaign mix, and operational issues."
       }
     ],
     "project": [
       {
-        "analysis_date": "2026-07-24",
+        "analysis_date": "2026-07-29",
         "kpi_name": "pageviews",
         "detector_used": "residual_anomaly",
         "dimension_type": "project",
         "dimension_value": "en.wikipedia",
-        "actual_value_sum_or_avg": 5481351.0,
-        "expected_value_sum_or_avg": 8498046.714285715,
-        "degradation_amount": 3016695.7142857146,
+        "actual_value_sum_or_avg": 5518171.0,
+        "expected_value_sum_or_avg": 7819449.214285715,
+        "degradation_amount": 2301278.2142857146,
         "contribution_share": 1.0,
         "contribution_rank": 1,
         "anomaly_count": 1,
         "severity_max": "WARNING",
         "recommended_action": "Review pageviews drivers for project = en.wikipedia; check recent releases, tracking changes, campaign mix, and operational issues."
+      },
+      {
+        "analysis_date": "2026-07-11",
+        "kpi_name": "pageviews",
+        "detector_used": "residual_anomaly",
+        "dimension_type": "project",
+        "dimension_value": "de.wikipedia",
+        "actual_value_sum_or_avg": 2400321.0,
+        "expected_value_sum_or_avg": 3707341.5,
+        "degradation_amount": 1307020.5,
+        "contribution_share": 1.0,
+        "contribution_rank": 1,
+        "anomaly_count": 1,
+        "severity_max": "WARNING",
+        "recommended_action": "Review pageviews drivers for project = de.wikipedia; check recent releases, tracking changes, campaign mix, and operational issues."
       },
       {
         "analysis_date": "2026-07-20",
@@ -809,6 +884,21 @@
         "recommended_action": "Review pageviews drivers for project = ja.wikipedia; check recent releases, tracking changes, campaign mix, and operational issues."
       },
       {
+        "analysis_date": "2026-07-24",
+        "kpi_name": "pageviews",
+        "detector_used": "residual_anomaly",
+        "dimension_type": "project",
+        "dimension_value": "en.wikipedia",
+        "actual_value_sum_or_avg": 5481351.0,
+        "expected_value_sum_or_avg": 8498046.714285715,
+        "degradation_amount": 3016695.7142857146,
+        "contribution_share": 0.830368391290146,
+        "contribution_rank": 1,
+        "anomaly_count": 1,
+        "severity_max": "WARNING",
+        "recommended_action": "Review pageviews drivers for project = en.wikipedia; check recent releases, tracking changes, campaign mix, and operational issues."
+      },
+      {
         "analysis_date": "2026-07-25",
         "kpi_name": "pageviews",
         "detector_used": "residual_anomaly",
@@ -835,7 +925,7 @@
         "contribution_share": 0.8171149619766915,
         "contribution_rank": 1,
         "anomaly_count": 1,
-        "severity_max": "CRITICAL",
+        "severity_max": "WARNING",
         "recommended_action": "Review pageviews drivers for project = en.wikipedia; check recent releases, tracking changes, campaign mix, and operational issues."
       },
       {
@@ -850,7 +940,7 @@
         "contribution_share": 0.8011048857104776,
         "contribution_rank": 1,
         "anomaly_count": 1,
-        "severity_max": "CRITICAL",
+        "severity_max": "WARNING",
         "recommended_action": "Review pageviews drivers for project = en.wikipedia; check recent releases, tracking changes, campaign mix, and operational issues."
       },
       {
@@ -897,53 +987,38 @@
         "anomaly_count": 1,
         "severity_max": "WARNING",
         "recommended_action": "Review pageviews drivers for project = ru.wikipedia; check recent releases, tracking changes, campaign mix, and operational issues."
-      },
-      {
-        "analysis_date": "2026-07-28",
-        "kpi_name": "pageviews",
-        "detector_used": "residual_anomaly",
-        "dimension_type": "project",
-        "dimension_value": "ru.wikipedia",
-        "actual_value_sum_or_avg": 991559.0,
-        "expected_value_sum_or_avg": 1608701.9285714286,
-        "degradation_amount": 617142.9285714286,
-        "contribution_share": 0.1828850380233085,
-        "contribution_rank": 2,
-        "anomaly_count": 1,
-        "severity_max": "WARNING",
-        "recommended_action": "Review pageviews drivers for project = ru.wikipedia; check recent releases, tracking changes, campaign mix, and operational issues."
-      },
-      {
-        "analysis_date": "2026-07-25",
-        "kpi_name": "pageviews",
-        "detector_used": "residual_anomaly",
-        "dimension_type": "project",
-        "dimension_value": "ru.wikipedia",
-        "actual_value_sum_or_avg": 1064275.0,
-        "expected_value_sum_or_avg": 1690252.2857142857,
-        "degradation_amount": 625977.2857142857,
-        "contribution_share": 0.17199904141008532,
-        "contribution_rank": 2,
-        "anomaly_count": 1,
-        "severity_max": "WARNING",
-        "recommended_action": "Review pageviews drivers for project = ru.wikipedia; check recent releases, tracking changes, campaign mix, and operational issues."
       }
     ],
     "project_access": [
       {
-        "analysis_date": "2026-07-24",
+        "analysis_date": "2026-07-29",
         "kpi_name": "pageviews",
         "detector_used": "residual_anomaly",
         "dimension_type": "project_access",
         "dimension_value": "en.wikipedia + mobile-web",
-        "actual_value_sum_or_avg": 5481351.0,
-        "expected_value_sum_or_avg": 8498046.714285715,
-        "degradation_amount": 3016695.7142857146,
+        "actual_value_sum_or_avg": 5518171.0,
+        "expected_value_sum_or_avg": 7819449.214285715,
+        "degradation_amount": 2301278.2142857146,
         "contribution_share": 1.0,
         "contribution_rank": 1,
         "anomaly_count": 1,
         "severity_max": "WARNING",
         "recommended_action": "Review pageviews drivers for project_access = en.wikipedia + mobile-web; check recent releases, tracking changes, campaign mix, and operational issues."
+      },
+      {
+        "analysis_date": "2026-07-11",
+        "kpi_name": "pageviews",
+        "detector_used": "residual_anomaly",
+        "dimension_type": "project_access",
+        "dimension_value": "de.wikipedia + desktop",
+        "actual_value_sum_or_avg": 2400321.0,
+        "expected_value_sum_or_avg": 3707341.5,
+        "degradation_amount": 1307020.5,
+        "contribution_share": 1.0,
+        "contribution_rank": 1,
+        "anomaly_count": 1,
+        "severity_max": "WARNING",
+        "recommended_action": "Review pageviews drivers for project_access = de.wikipedia + desktop; check recent releases, tracking changes, campaign mix, and operational issues."
       },
       {
         "analysis_date": "2026-07-20",
@@ -961,6 +1036,21 @@
         "recommended_action": "Review pageviews drivers for project_access = ja.wikipedia + desktop; check recent releases, tracking changes, campaign mix, and operational issues."
       },
       {
+        "analysis_date": "2026-07-24",
+        "kpi_name": "pageviews",
+        "detector_used": "residual_anomaly",
+        "dimension_type": "project_access",
+        "dimension_value": "en.wikipedia + mobile-web",
+        "actual_value_sum_or_avg": 5481351.0,
+        "expected_value_sum_or_avg": 8498046.714285715,
+        "degradation_amount": 3016695.7142857146,
+        "contribution_share": 0.830368391290146,
+        "contribution_rank": 1,
+        "anomaly_count": 1,
+        "severity_max": "WARNING",
+        "recommended_action": "Review pageviews drivers for project_access = en.wikipedia + mobile-web; check recent releases, tracking changes, campaign mix, and operational issues."
+      },
+      {
         "analysis_date": "2026-07-25",
         "kpi_name": "pageviews",
         "detector_used": "residual_anomaly",
@@ -987,7 +1077,7 @@
         "contribution_share": 0.8171149619766915,
         "contribution_rank": 1,
         "anomaly_count": 1,
-        "severity_max": "CRITICAL",
+        "severity_max": "WARNING",
         "recommended_action": "Review pageviews drivers for project_access = en.wikipedia + mobile-web; check recent releases, tracking changes, campaign mix, and operational issues."
       },
       {
@@ -1002,7 +1092,7 @@
         "contribution_share": 0.8011048857104776,
         "contribution_rank": 1,
         "anomaly_count": 1,
-        "severity_max": "CRITICAL",
+        "severity_max": "WARNING",
         "recommended_action": "Review pageviews drivers for project_access = en.wikipedia + mobile-web; check recent releases, tracking changes, campaign mix, and operational issues."
       },
       {
@@ -1045,36 +1135,6 @@
         "expected_value_sum_or_avg": 1633489.5,
         "degradation_amount": 721823.5,
         "contribution_share": 0.19889511428952242,
-        "contribution_rank": 2,
-        "anomaly_count": 1,
-        "severity_max": "WARNING",
-        "recommended_action": "Review pageviews drivers for project_access = ru.wikipedia + mobile-web; check recent releases, tracking changes, campaign mix, and operational issues."
-      },
-      {
-        "analysis_date": "2026-07-28",
-        "kpi_name": "pageviews",
-        "detector_used": "residual_anomaly",
-        "dimension_type": "project_access",
-        "dimension_value": "ru.wikipedia + mobile-web",
-        "actual_value_sum_or_avg": 991559.0,
-        "expected_value_sum_or_avg": 1608701.9285714286,
-        "degradation_amount": 617142.9285714286,
-        "contribution_share": 0.1828850380233085,
-        "contribution_rank": 2,
-        "anomaly_count": 1,
-        "severity_max": "WARNING",
-        "recommended_action": "Review pageviews drivers for project_access = ru.wikipedia + mobile-web; check recent releases, tracking changes, campaign mix, and operational issues."
-      },
-      {
-        "analysis_date": "2026-07-25",
-        "kpi_name": "pageviews",
-        "detector_used": "residual_anomaly",
-        "dimension_type": "project_access",
-        "dimension_value": "ru.wikipedia + mobile-web",
-        "actual_value_sum_or_avg": 1064275.0,
-        "expected_value_sum_or_avg": 1690252.2857142857,
-        "degradation_amount": 625977.2857142857,
-        "contribution_share": 0.17199904141008532,
         "contribution_rank": 2,
         "anomaly_count": 1,
         "severity_max": "WARNING",
