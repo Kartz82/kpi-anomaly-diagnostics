@@ -1,52 +1,34 @@
 {
-  "health_score": 79.07,
+  "health_score": 84.61,
   "status": "FAIL",
   "expected_series": 54,
-  "observed_series": 47,
+  "observed_series": 50,
   "observed_days": 90,
-  "coverage_pct": 79.07,
+  "coverage_pct": 84.61,
   "fetch_failures": [
     {
-      "project": "de.wikipedia",
-      "access": "mobile-app",
-      "agent": "automated",
-      "error": "404 for https://wikimedia.org/api/rest_v1/metrics/pageviews/aggregate/de.wikipedia/mobile-app/automated/daily/2026050400/2026080100"
+      "project": "en.wikipedia",
+      "access": "mobile-web",
+      "agent": "user",
+      "error": "404 for https://wikimedia.org/api/rest_v1/metrics/pageviews/aggregate/en.wikipedia/mobile-web/user/daily/2026050500/2026080200"
     },
     {
-      "project": "fr.wikipedia",
-      "access": "desktop",
-      "agent": "spider",
-      "error": "404 for https://wikimedia.org/api/rest_v1/metrics/pageviews/aggregate/fr.wikipedia/desktop/spider/daily/2026050400/2026080100"
-    },
-    {
-      "project": "fr.wikipedia",
+      "project": "es.wikipedia",
       "access": "mobile-app",
       "agent": "user",
-      "error": "404 for https://wikimedia.org/api/rest_v1/metrics/pageviews/aggregate/fr.wikipedia/mobile-app/user/daily/2026050400/2026080100"
+      "error": "404 for https://wikimedia.org/api/rest_v1/metrics/pageviews/aggregate/es.wikipedia/mobile-app/user/daily/2026050500/2026080200"
     },
     {
-      "project": "fr.wikipedia",
-      "access": "mobile-app",
-      "agent": "automated",
-      "error": "404 for https://wikimedia.org/api/rest_v1/metrics/pageviews/aggregate/fr.wikipedia/mobile-app/automated/daily/2026050400/2026080100"
-    },
-    {
-      "project": "es.wikipedia",
-      "access": "desktop",
-      "agent": "automated",
-      "error": "404 for https://wikimedia.org/api/rest_v1/metrics/pageviews/aggregate/es.wikipedia/desktop/automated/daily/2026050400/2026080100"
-    },
-    {
-      "project": "es.wikipedia",
+      "project": "ru.wikipedia",
       "access": "mobile-web",
-      "agent": "spider",
-      "error": "404 for https://wikimedia.org/api/rest_v1/metrics/pageviews/aggregate/es.wikipedia/mobile-web/spider/daily/2026050400/2026080100"
+      "agent": "automated",
+      "error": "404 for https://wikimedia.org/api/rest_v1/metrics/pageviews/aggregate/ru.wikipedia/mobile-web/automated/daily/2026050500/2026080200"
     },
     {
-      "project": "ja.wikipedia",
-      "access": "desktop",
-      "agent": "spider",
-      "error": "404 for https://wikimedia.org/api/rest_v1/metrics/pageviews/aggregate/ja.wikipedia/desktop/spider/daily/2026050400/2026080100"
+      "project": "ru.wikipedia",
+      "access": "mobile-app",
+      "agent": "user",
+      "error": "404 for https://wikimedia.org/api/rest_v1/metrics/pageviews/aggregate/ru.wikipedia/mobile-app/user/daily/2026050500/2026080200"
     }
   ]
 }
