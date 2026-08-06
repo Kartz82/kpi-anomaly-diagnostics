@@ -1,9 +1,58 @@
 {
-  "health_score": 92.0,
+  "health_score": 78.95,
   "status": "FAIL",
   "expected_series": 54,
-  "observed_series": 54,
+  "observed_series": 46,
   "observed_days": 90,
-  "coverage_pct": 92.0,
-  "fetch_failures": []
+  "coverage_pct": 78.95,
+  "fetch_failures": [
+    {
+      "project": "en.wikipedia",
+      "access": "mobile-web",
+      "agent": "user",
+      "error": "404 for https://wikimedia.org/api/rest_v1/metrics/pageviews/aggregate/en.wikipedia/mobile-web/user/daily/2026050800/2026080500"
+    },
+    {
+      "project": "fr.wikipedia",
+      "access": "desktop",
+      "agent": "user",
+      "error": "404 for https://wikimedia.org/api/rest_v1/metrics/pageviews/aggregate/fr.wikipedia/desktop/user/daily/2026050800/2026080500"
+    },
+    {
+      "project": "es.wikipedia",
+      "access": "desktop",
+      "agent": "user",
+      "error": "404 for https://wikimedia.org/api/rest_v1/metrics/pageviews/aggregate/es.wikipedia/desktop/user/daily/2026050800/2026080500"
+    },
+    {
+      "project": "es.wikipedia",
+      "access": "desktop",
+      "agent": "automated",
+      "error": "404 for https://wikimedia.org/api/rest_v1/metrics/pageviews/aggregate/es.wikipedia/desktop/automated/daily/2026050800/2026080500"
+    },
+    {
+      "project": "es.wikipedia",
+      "access": "mobile-web",
+      "agent": "user",
+      "error": "404 for https://wikimedia.org/api/rest_v1/metrics/pageviews/aggregate/es.wikipedia/mobile-web/user/daily/2026050800/2026080500"
+    },
+    {
+      "project": "ja.wikipedia",
+      "access": "mobile-app",
+      "agent": "spider",
+      "error": "404 for https://wikimedia.org/api/rest_v1/metrics/pageviews/aggregate/ja.wikipedia/mobile-app/spider/daily/2026050800/2026080500"
+    },
+    {
+      "project": "ru.wikipedia",
+      "access": "mobile-web",
+      "agent": "spider",
+      "error": "404 for https://wikimedia.org/api/rest_v1/metrics/pageviews/aggregate/ru.wikipedia/mobile-web/spider/daily/2026050800/2026080500"
+    },
+    {
+      "project": "ru.wikipedia",
+      "access": "mobile-app",
+      "agent": "user",
+      "error": "404 for https://wikimedia.org/api/rest_v1/metrics/pageviews/aggregate/ru.wikipedia/mobile-app/user/daily/2026050800/2026080500"
+    }
+  ]
 }

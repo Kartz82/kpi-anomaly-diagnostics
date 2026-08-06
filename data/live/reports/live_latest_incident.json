@@ -1,5 +1,5 @@
 {
-  "run_timestamp": "2026-08-05T09:08:33.196620+00:00",
+  "run_timestamp": "2026-08-06T09:09:16.907235+00:00",
   "detector_used": "residual_anomaly",
   "incidents_generated": 11,
   "highest_severity": "CRITICAL",
@@ -10,7 +10,7 @@
       "incident_date": "2026-07-24",
       "kpi_affected": "pageviews",
       "severity": "CRITICAL",
-      "confidence_score": 0.724,
+      "confidence_score": 0.697,
       "confidence_label": "Medium",
       "detector_used": "residual_anomaly",
       "actual_value_summary": 1089780.0,
@@ -44,7 +44,7 @@
       },
       "data_quality_context": {
         "status": "FAIL",
-        "health_score": 92.0
+        "health_score": 78.95
       },
       "model_context": {
         "best_detector": "residual_anomaly",
@@ -58,7 +58,7 @@
       "incident_date": "2026-07-25",
       "kpi_affected": "pageviews",
       "severity": "CRITICAL",
-      "confidence_score": 0.724,
+      "confidence_score": 0.697,
       "confidence_label": "Medium",
       "detector_used": "residual_anomaly",
       "actual_value_summary": 1064275.0,
@@ -92,7 +92,7 @@
       },
       "data_quality_context": {
         "status": "FAIL",
-        "health_score": 92.0
+        "health_score": 78.95
       },
       "model_context": {
         "best_detector": "residual_anomaly",
@@ -106,7 +106,7 @@
       "incident_date": "2026-07-26",
       "kpi_affected": "pageviews",
       "severity": "CRITICAL",
-      "confidence_score": 0.724,
+      "confidence_score": 0.697,
       "confidence_label": "Medium",
       "detector_used": "residual_anomaly",
       "actual_value_summary": 917221.0,
@@ -140,7 +140,7 @@
       },
       "data_quality_context": {
         "status": "FAIL",
-        "health_score": 92.0
+        "health_score": 78.95
       },
       "model_context": {
         "best_detector": "residual_anomaly",
@@ -154,7 +154,7 @@
       "incident_date": "2026-07-30",
       "kpi_affected": "pageviews",
       "severity": "CRITICAL",
-      "confidence_score": 0.724,
+      "confidence_score": 0.697,
       "confidence_label": "Medium",
       "detector_used": "residual_anomaly",
       "actual_value_summary": 1205827.0,
@@ -188,7 +188,7 @@
       },
       "data_quality_context": {
         "status": "FAIL",
-        "health_score": 92.0
+        "health_score": 78.95
       },
       "model_context": {
         "best_detector": "residual_anomaly",
@@ -202,7 +202,7 @@
       "incident_date": "2026-07-31",
       "kpi_affected": "pageviews",
       "severity": "CRITICAL",
-      "confidence_score": 0.724,
+      "confidence_score": 0.697,
       "confidence_label": "Medium",
       "detector_used": "residual_anomaly",
       "actual_value_summary": 1268059.0,
@@ -236,7 +236,7 @@
       },
       "data_quality_context": {
         "status": "FAIL",
-        "health_score": 92.0
+        "health_score": 78.95
       },
       "model_context": {
         "best_detector": "residual_anomaly",
@@ -250,7 +250,7 @@
       "incident_date": "2026-08-03",
       "kpi_affected": "pageviews",
       "severity": "CRITICAL",
-      "confidence_score": 0.724,
+      "confidence_score": 0.697,
       "confidence_label": "Medium",
       "detector_used": "residual_anomaly",
       "actual_value_summary": 5254285.0,
@@ -284,7 +284,7 @@
       },
       "data_quality_context": {
         "status": "FAIL",
-        "health_score": 92.0
+        "health_score": 78.95
       },
       "model_context": {
         "best_detector": "residual_anomaly",
@@ -298,7 +298,7 @@
       "incident_date": "2026-07-29",
       "kpi_affected": "pageviews",
       "severity": "CRITICAL",
-      "confidence_score": 0.693,
+      "confidence_score": 0.667,
       "confidence_label": "Medium",
       "detector_used": "residual_anomaly",
       "actual_value_summary": 3378800.0,
@@ -342,7 +342,7 @@
       },
       "data_quality_context": {
         "status": "FAIL",
-        "health_score": 92.0
+        "health_score": 78.95
       },
       "model_context": {
         "best_detector": "residual_anomaly",
@@ -356,7 +356,7 @@
       "incident_date": "2026-08-04",
       "kpi_affected": "pageviews",
       "severity": "CRITICAL",
-      "confidence_score": 0.686,
+      "confidence_score": 0.66,
       "confidence_label": "Medium",
       "detector_used": "residual_anomaly",
       "actual_value_summary": 3113645.5,
@@ -400,7 +400,7 @@
       },
       "data_quality_context": {
         "status": "FAIL",
-        "health_score": 92.0
+        "health_score": 78.95
       },
       "model_context": {
         "best_detector": "residual_anomaly",
@@ -414,7 +414,7 @@
       "incident_date": "2026-07-28",
       "kpi_affected": "pageviews",
       "severity": "CRITICAL",
-      "confidence_score": 0.679,
+      "confidence_score": 0.653,
       "confidence_label": "Medium",
       "detector_used": "residual_anomaly",
       "actual_value_summary": 3100456.5,
@@ -458,7 +458,7 @@
       },
       "data_quality_context": {
         "status": "FAIL",
-        "health_score": 92.0
+        "health_score": 78.95
       },
       "model_context": {
         "best_detector": "residual_anomaly",
@@ -472,7 +472,7 @@
       "incident_date": "2026-07-27",
       "kpi_affected": "pageviews",
       "severity": "CRITICAL",
-      "confidence_score": 0.674,
+      "confidence_score": 0.648,
       "confidence_label": "Medium",
       "detector_used": "residual_anomaly",
       "actual_value_summary": 3053777.5,
@@ -516,7 +516,7 @@
       },
       "data_quality_context": {
         "status": "FAIL",
-        "health_score": 92.0
+        "health_score": 78.95
       },
       "model_context": {
         "best_detector": "residual_anomaly",
@@ -526,45 +526,55 @@
       }
     },
     {
-      "incident_id": "INC-20260720-PAGEVIEWS-RESIDUAL-ANOMALY",
-      "incident_date": "2026-07-20",
+      "incident_id": "INC-20260805-PAGEVIEWS-RESIDUAL-ANOMALY",
+      "incident_date": "2026-08-05",
       "kpi_affected": "pageviews",
-      "severity": "WARNING",
-      "confidence_score": 0.724,
+      "severity": "CRITICAL",
+      "confidence_score": 0.645,
       "confidence_label": "Medium",
       "detector_used": "residual_anomaly",
-      "actual_value_summary": 8454136.0,
-      "expected_value_summary": 9562616.214286,
-      "percent_variance_summary": -0.115918,
-      "anomaly_count": 1,
+      "actual_value_summary": 2971826.0,
+      "expected_value_summary": 4251983.25,
+      "percent_variance_summary": -0.318734,
+      "anomaly_count": 2,
       "suspected_dimensions": [
-        "ja.wikipedia + desktop + user"
+        "en.wikipedia + mobile-web + automated",
+        "ru.wikipedia + mobile-web + automated"
       ],
       "top_root_causes": [
         {
           "dimension_type": "full_segment",
-          "dimension_value": "ja.wikipedia + desktop + user",
-          "contribution_share": 1.0,
-          "degradation_amount": 1108480.214286,
+          "dimension_value": "en.wikipedia + mobile-web + automated",
+          "contribution_share": 0.791754,
+          "degradation_amount": 2027138.928571,
           "severity": "WARNING",
-          "recommended_action": "Review pageviews drivers for full_segment = ja.wikipedia + desktop + user; check recent releases, tracking changes, campaign mix, and operational issues."
+          "recommended_action": "Review pageviews drivers for full_segment = en.wikipedia + mobile-web + automated; check recent releases, tracking changes, campaign mix, and operational issues."
+        },
+        {
+          "dimension_type": "full_segment",
+          "dimension_value": "ru.wikipedia + mobile-web + automated",
+          "contribution_share": 0.208246,
+          "degradation_amount": 533175.571429,
+          "severity": "WARNING",
+          "recommended_action": "Review pageviews drivers for full_segment = ru.wikipedia + mobile-web + automated; check recent releases, tracking changes, campaign mix, and operational issues."
         }
       ],
       "recommended_actions": [
         "Review recent product, tracking, and campaign changes affecting pageviews.",
-        "Review pageviews drivers for full_segment = ja.wikipedia + desktop + user; check recent releases, tracking changes, campaign mix, and operational issues."
+        "Review pageviews drivers for full_segment = en.wikipedia + mobile-web + automated; check recent releases, tracking changes, campaign mix, and operational issues.",
+        "Review pageviews drivers for full_segment = ru.wikipedia + mobile-web + automated; check recent releases, tracking changes, campaign mix, and operational issues."
       ],
-      "executive_summary": "On 2026-07-20, pageviews showed a warning issue. The residual_anomaly detector flagged abnormal movement, and RCA identified ja.wikipedia + desktop + user as the dominant contributor, explaining 100.0% of measured degradation. Recommended next step: Review recent product, tracking, and campaign changes affecting pageviews.",
+      "executive_summary": "On 2026-08-05, pageviews showed a critical issue. The residual_anomaly detector flagged abnormal movement, and RCA identified en.wikipedia + mobile-web + automated as the dominant contributor, explaining 79.2% of measured degradation. Recommended next step: Review recent product, tracking, and campaign changes affecting pageviews.",
       "supporting_metrics": {
-        "max_abs_percent_variance": 0.115918,
+        "max_abs_percent_variance": 0.346415,
         "max_detector_severity": "WARNING",
-        "top_root_cause": "ja.wikipedia + desktop + user",
+        "top_root_cause": "en.wikipedia + mobile-web + automated",
         "monitoring_warning_count": 0,
         "monitoring_critical_count": 0
       },
       "data_quality_context": {
         "status": "FAIL",
-        "health_score": 92.0
+        "health_score": 78.95
       },
       "model_context": {
         "best_detector": "residual_anomaly",
