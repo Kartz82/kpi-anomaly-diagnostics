@@ -1,130 +1,32 @@
 {
-  "run_timestamp": "2026-08-06T09:09:16.860051+00:00",
+  "run_timestamp": "2026-08-07T07:44:24.555110+00:00",
   "track": "live_operations",
   "source": "Wikimedia Pageviews API",
-  "date_min": "2026-05-08",
-  "date_max": "2026-08-05",
+  "date_min": "2026-05-09",
+  "date_max": "2026-08-06",
   "report_window_days": 30,
-  "report_window_start": "2026-07-07",
-  "total_rows_fetched": 3837,
-  "series_count": 46,
-  "rows_scored": 3521,
-  "rows_unscored_baseline_warmup": 316,
-  "rows_in_report_window": 1270,
+  "report_window_start": "2026-07-08",
+  "total_rows_fetched": 4470,
+  "series_count": 54,
+  "rows_scored": 4104,
+  "rows_unscored_baseline_warmup": 366,
+  "rows_in_report_window": 1481,
   "residual_model_used": "numpy_ridge_regression_residual",
-  "fetch_failures": [
-    {
-      "project": "en.wikipedia",
-      "access": "mobile-web",
-      "agent": "user",
-      "error": "404 for https://wikimedia.org/api/rest_v1/metrics/pageviews/aggregate/en.wikipedia/mobile-web/user/daily/2026050800/2026080500"
-    },
-    {
-      "project": "fr.wikipedia",
-      "access": "desktop",
-      "agent": "user",
-      "error": "404 for https://wikimedia.org/api/rest_v1/metrics/pageviews/aggregate/fr.wikipedia/desktop/user/daily/2026050800/2026080500"
-    },
-    {
-      "project": "es.wikipedia",
-      "access": "desktop",
-      "agent": "user",
-      "error": "404 for https://wikimedia.org/api/rest_v1/metrics/pageviews/aggregate/es.wikipedia/desktop/user/daily/2026050800/2026080500"
-    },
-    {
-      "project": "es.wikipedia",
-      "access": "desktop",
-      "agent": "automated",
-      "error": "404 for https://wikimedia.org/api/rest_v1/metrics/pageviews/aggregate/es.wikipedia/desktop/automated/daily/2026050800/2026080500"
-    },
-    {
-      "project": "es.wikipedia",
-      "access": "mobile-web",
-      "agent": "user",
-      "error": "404 for https://wikimedia.org/api/rest_v1/metrics/pageviews/aggregate/es.wikipedia/mobile-web/user/daily/2026050800/2026080500"
-    },
-    {
-      "project": "ja.wikipedia",
-      "access": "mobile-app",
-      "agent": "spider",
-      "error": "404 for https://wikimedia.org/api/rest_v1/metrics/pageviews/aggregate/ja.wikipedia/mobile-app/spider/daily/2026050800/2026080500"
-    },
-    {
-      "project": "ru.wikipedia",
-      "access": "mobile-web",
-      "agent": "spider",
-      "error": "404 for https://wikimedia.org/api/rest_v1/metrics/pageviews/aggregate/ru.wikipedia/mobile-web/spider/daily/2026050800/2026080500"
-    },
-    {
-      "project": "ru.wikipedia",
-      "access": "mobile-app",
-      "agent": "user",
-      "error": "404 for https://wikimedia.org/api/rest_v1/metrics/pageviews/aggregate/ru.wikipedia/mobile-app/user/daily/2026050800/2026080500"
-    }
-  ],
+  "fetch_failures": [],
   "anomalies_in_window": {
-    "zscore": 36,
-    "residual": 16,
-    "combined": 52
+    "zscore": 42,
+    "residual": 17,
+    "combined": 59
   },
   "labels_available": false,
   "accuracy_note": "No ground-truth labels exist for live traffic, so precision/recall/F1 are not computed here. Detector accuracy is measured on the synthetic track.",
   "live_data_quality": {
-    "health_score": 78.95,
+    "health_score": 91.98,
     "status": "FAIL",
     "expected_series": 54,
-    "observed_series": 46,
+    "observed_series": 54,
     "observed_days": 90,
-    "coverage_pct": 78.95,
-    "fetch_failures": [
-      {
-        "project": "en.wikipedia",
-        "access": "mobile-web",
-        "agent": "user",
-        "error": "404 for https://wikimedia.org/api/rest_v1/metrics/pageviews/aggregate/en.wikipedia/mobile-web/user/daily/2026050800/2026080500"
-      },
-      {
-        "project": "fr.wikipedia",
-        "access": "desktop",
-        "agent": "user",
-        "error": "404 for https://wikimedia.org/api/rest_v1/metrics/pageviews/aggregate/fr.wikipedia/desktop/user/daily/2026050800/2026080500"
-      },
-      {
-        "project": "es.wikipedia",
-        "access": "desktop",
-        "agent": "user",
-        "error": "404 for https://wikimedia.org/api/rest_v1/metrics/pageviews/aggregate/es.wikipedia/desktop/user/daily/2026050800/2026080500"
-      },
-      {
-        "project": "es.wikipedia",
-        "access": "desktop",
-        "agent": "automated",
-        "error": "404 for https://wikimedia.org/api/rest_v1/metrics/pageviews/aggregate/es.wikipedia/desktop/automated/daily/2026050800/2026080500"
-      },
-      {
-        "project": "es.wikipedia",
-        "access": "mobile-web",
-        "agent": "user",
-        "error": "404 for https://wikimedia.org/api/rest_v1/metrics/pageviews/aggregate/es.wikipedia/mobile-web/user/daily/2026050800/2026080500"
-      },
-      {
-        "project": "ja.wikipedia",
-        "access": "mobile-app",
-        "agent": "spider",
-        "error": "404 for https://wikimedia.org/api/rest_v1/metrics/pageviews/aggregate/ja.wikipedia/mobile-app/spider/daily/2026050800/2026080500"
-      },
-      {
-        "project": "ru.wikipedia",
-        "access": "mobile-web",
-        "agent": "spider",
-        "error": "404 for https://wikimedia.org/api/rest_v1/metrics/pageviews/aggregate/ru.wikipedia/mobile-web/spider/daily/2026050800/2026080500"
-      },
-      {
-        "project": "ru.wikipedia",
-        "access": "mobile-app",
-        "agent": "user",
-        "error": "404 for https://wikimedia.org/api/rest_v1/metrics/pageviews/aggregate/ru.wikipedia/mobile-app/user/daily/2026050800/2026080500"
-      }
-    ]
+    "coverage_pct": 91.98,
+    "fetch_failures": []
   }
 }
