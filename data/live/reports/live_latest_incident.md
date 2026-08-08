@@ -1,6 +1,6 @@
 # KPI Incident Report
 
-Generated at: `2026-08-07T07:44:24.606500+00:00`
+Generated at: `2026-08-08T07:18:33.134762+00:00`
 Detector used: `residual_anomaly`
 Incidents generated: **12**
 Highest severity: **CRITICAL**
@@ -13,18 +13,18 @@ On 2026-07-24, pageviews showed a critical issue. The residual_anomaly detector 
 
 | Incident ID | Date | KPI | Severity | Confidence | Top Root Cause |
 |---|---:|---|---|---:|---|
-| INC-20260724-PAGEVIEWS-RESIDUAL-ANOMALY | 2026-07-24 | pageviews | CRITICAL | Medium (0.724) | ru.wikipedia + mobile-web + automated |
-| INC-20260725-PAGEVIEWS-RESIDUAL-ANOMALY | 2026-07-25 | pageviews | CRITICAL | Medium (0.724) | ru.wikipedia + mobile-web + automated |
-| INC-20260726-PAGEVIEWS-RESIDUAL-ANOMALY | 2026-07-26 | pageviews | CRITICAL | Medium (0.724) | ru.wikipedia + mobile-web + automated |
-| INC-20260730-PAGEVIEWS-RESIDUAL-ANOMALY | 2026-07-30 | pageviews | CRITICAL | Medium (0.724) | ru.wikipedia + mobile-web + automated |
-| INC-20260731-PAGEVIEWS-RESIDUAL-ANOMALY | 2026-07-31 | pageviews | CRITICAL | Medium (0.724) | ru.wikipedia + mobile-web + automated |
-| INC-20260803-PAGEVIEWS-RESIDUAL-ANOMALY | 2026-08-03 | pageviews | CRITICAL | Medium (0.724) | en.wikipedia + mobile-web + automated |
-| INC-20260806-PAGEVIEWS-RESIDUAL-ANOMALY | 2026-08-06 | pageviews | CRITICAL | Medium (0.724) | ru.wikipedia + mobile-web + automated |
+| INC-20260724-PAGEVIEWS-RESIDUAL-ANOMALY | 2026-07-24 | pageviews | CRITICAL | Medium (0.723) | ru.wikipedia + mobile-web + automated |
+| INC-20260725-PAGEVIEWS-RESIDUAL-ANOMALY | 2026-07-25 | pageviews | CRITICAL | Medium (0.723) | ru.wikipedia + mobile-web + automated |
+| INC-20260726-PAGEVIEWS-RESIDUAL-ANOMALY | 2026-07-26 | pageviews | CRITICAL | Medium (0.723) | ru.wikipedia + mobile-web + automated |
+| INC-20260730-PAGEVIEWS-RESIDUAL-ANOMALY | 2026-07-30 | pageviews | CRITICAL | Medium (0.723) | ru.wikipedia + mobile-web + automated |
+| INC-20260731-PAGEVIEWS-RESIDUAL-ANOMALY | 2026-07-31 | pageviews | CRITICAL | Medium (0.723) | ru.wikipedia + mobile-web + automated |
+| INC-20260803-PAGEVIEWS-RESIDUAL-ANOMALY | 2026-08-03 | pageviews | CRITICAL | Medium (0.723) | en.wikipedia + mobile-web + automated |
+| INC-20260806-PAGEVIEWS-RESIDUAL-ANOMALY | 2026-08-06 | pageviews | CRITICAL | Medium (0.723) | ru.wikipedia + mobile-web + automated |
+| INC-20260807-PAGEVIEWS-RESIDUAL-ANOMALY | 2026-08-07 | pageviews | CRITICAL | Medium (0.723) | ru.wikipedia + mobile-web + automated |
 | INC-20260729-PAGEVIEWS-RESIDUAL-ANOMALY | 2026-07-29 | pageviews | CRITICAL | Medium (0.693) | en.wikipedia + mobile-web + automated |
 | INC-20260804-PAGEVIEWS-RESIDUAL-ANOMALY | 2026-08-04 | pageviews | CRITICAL | Medium (0.686) | en.wikipedia + mobile-web + automated |
 | INC-20260728-PAGEVIEWS-RESIDUAL-ANOMALY | 2026-07-28 | pageviews | CRITICAL | Medium (0.679) | en.wikipedia + mobile-web + automated |
 | INC-20260727-PAGEVIEWS-RESIDUAL-ANOMALY | 2026-07-27 | pageviews | CRITICAL | Medium (0.674) | en.wikipedia + mobile-web + automated |
-| INC-20260805-PAGEVIEWS-RESIDUAL-ANOMALY | 2026-08-05 | pageviews | CRITICAL | Medium (0.671) | en.wikipedia + mobile-web + automated |
 
 ## INC-20260724-PAGEVIEWS-RESIDUAL-ANOMALY
 
