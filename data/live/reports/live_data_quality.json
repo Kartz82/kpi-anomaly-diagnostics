@@ -1,52 +1,9 @@
 {
-  "health_score": 80.66,
+  "health_score": 91.89,
   "status": "FAIL",
   "expected_series": 54,
-  "observed_series": 47,
+  "observed_series": 54,
   "observed_days": 90,
-  "coverage_pct": 80.66,
-  "fetch_failures": [
-    {
-      "project": "fr.wikipedia",
-      "access": "mobile-web",
-      "agent": "automated",
-      "error": "404 for https://wikimedia.org/api/rest_v1/metrics/pageviews/aggregate/fr.wikipedia/mobile-web/automated/daily/2026051100/2026080800"
-    },
-    {
-      "project": "fr.wikipedia",
-      "access": "mobile-app",
-      "agent": "user",
-      "error": "404 for https://wikimedia.org/api/rest_v1/metrics/pageviews/aggregate/fr.wikipedia/mobile-app/user/daily/2026051100/2026080800"
-    },
-    {
-      "project": "es.wikipedia",
-      "access": "mobile-app",
-      "agent": "user",
-      "error": "404 for https://wikimedia.org/api/rest_v1/metrics/pageviews/aggregate/es.wikipedia/mobile-app/user/daily/2026051100/2026080800"
-    },
-    {
-      "project": "es.wikipedia",
-      "access": "mobile-app",
-      "agent": "spider",
-      "error": "404 for https://wikimedia.org/api/rest_v1/metrics/pageviews/aggregate/es.wikipedia/mobile-app/spider/daily/2026051100/2026080800"
-    },
-    {
-      "project": "ja.wikipedia",
-      "access": "mobile-web",
-      "agent": "user",
-      "error": "404 for https://wikimedia.org/api/rest_v1/metrics/pageviews/aggregate/ja.wikipedia/mobile-web/user/daily/2026051100/2026080800"
-    },
-    {
-      "project": "ru.wikipedia",
-      "access": "mobile-app",
-      "agent": "user",
-      "error": "404 for https://wikimedia.org/api/rest_v1/metrics/pageviews/aggregate/ru.wikipedia/mobile-app/user/daily/2026051100/2026080800"
-    },
-    {
-      "project": "ru.wikipedia",
-      "access": "mobile-app",
-      "agent": "automated",
-      "error": "404 for https://wikimedia.org/api/rest_v1/metrics/pageviews/aggregate/ru.wikipedia/mobile-app/automated/daily/2026051100/2026080800"
-    }
-  ]
+  "coverage_pct": 91.89,
+  "fetch_failures": []
 }
