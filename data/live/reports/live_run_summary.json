@@ -1,32 +1,94 @@
 {
-  "run_timestamp": "2026-08-10T08:07:02.899111+00:00",
+  "run_timestamp": "2026-08-11T07:40:37.152411+00:00",
   "track": "live_operations",
   "source": "Wikimedia Pageviews API",
-  "date_min": "2026-05-12",
-  "date_max": "2026-08-09",
+  "date_min": "2026-05-13",
+  "date_max": "2026-08-10",
   "report_window_days": 30,
-  "report_window_start": "2026-07-11",
-  "total_rows_fetched": 4466,
-  "series_count": 54,
-  "rows_scored": 4100,
-  "rows_unscored_baseline_warmup": 366,
-  "rows_in_report_window": 1477,
+  "report_window_start": "2026-07-12",
+  "total_rows_fetched": 4099,
+  "series_count": 49,
+  "rows_scored": 3762,
+  "rows_unscored_baseline_warmup": 337,
+  "rows_in_report_window": 1350,
   "residual_model_used": "numpy_ridge_regression_residual",
-  "fetch_failures": [],
+  "fetch_failures": [
+    {
+      "project": "en.wikipedia",
+      "access": "mobile-app",
+      "agent": "user",
+      "error": "404 for https://wikimedia.org/api/rest_v1/metrics/pageviews/aggregate/en.wikipedia/mobile-app/user/daily/2026051300/2026081000"
+    },
+    {
+      "project": "fr.wikipedia",
+      "access": "mobile-app",
+      "agent": "user",
+      "error": "404 for https://wikimedia.org/api/rest_v1/metrics/pageviews/aggregate/fr.wikipedia/mobile-app/user/daily/2026051300/2026081000"
+    },
+    {
+      "project": "ja.wikipedia",
+      "access": "mobile-app",
+      "agent": "spider",
+      "error": "404 for https://wikimedia.org/api/rest_v1/metrics/pageviews/aggregate/ja.wikipedia/mobile-app/spider/daily/2026051300/2026081000"
+    },
+    {
+      "project": "ru.wikipedia",
+      "access": "mobile-web",
+      "agent": "spider",
+      "error": "404 for https://wikimedia.org/api/rest_v1/metrics/pageviews/aggregate/ru.wikipedia/mobile-web/spider/daily/2026051300/2026081000"
+    },
+    {
+      "project": "ru.wikipedia",
+      "access": "mobile-app",
+      "agent": "automated",
+      "error": "404 for https://wikimedia.org/api/rest_v1/metrics/pageviews/aggregate/ru.wikipedia/mobile-app/automated/daily/2026051300/2026081000"
+    }
+  ],
   "anomalies_in_window": {
-    "zscore": 42,
-    "residual": 19,
-    "combined": 61
+    "zscore": 39,
+    "residual": 15,
+    "combined": 54
   },
   "labels_available": false,
   "accuracy_note": "No ground-truth labels exist for live traffic, so precision/recall/F1 are not computed here. Detector accuracy is measured on the synthetic track.",
   "live_data_quality": {
-    "health_score": 91.89,
+    "health_score": 84.34,
     "status": "FAIL",
     "expected_series": 54,
-    "observed_series": 54,
+    "observed_series": 49,
     "observed_days": 90,
-    "coverage_pct": 91.89,
-    "fetch_failures": []
+    "coverage_pct": 84.34,
+    "fetch_failures": [
+      {
+        "project": "en.wikipedia",
+        "access": "mobile-app",
+        "agent": "user",
+        "error": "404 for https://wikimedia.org/api/rest_v1/metrics/pageviews/aggregate/en.wikipedia/mobile-app/user/daily/2026051300/2026081000"
+      },
+      {
+        "project": "fr.wikipedia",
+        "access": "mobile-app",
+        "agent": "user",
+        "error": "404 for https://wikimedia.org/api/rest_v1/metrics/pageviews/aggregate/fr.wikipedia/mobile-app/user/daily/2026051300/2026081000"
+      },
+      {
+        "project": "ja.wikipedia",
+        "access": "mobile-app",
+        "agent": "spider",
+        "error": "404 for https://wikimedia.org/api/rest_v1/metrics/pageviews/aggregate/ja.wikipedia/mobile-app/spider/daily/2026051300/2026081000"
+      },
+      {
+        "project": "ru.wikipedia",
+        "access": "mobile-web",
+        "agent": "spider",
+        "error": "404 for https://wikimedia.org/api/rest_v1/metrics/pageviews/aggregate/ru.wikipedia/mobile-web/spider/daily/2026051300/2026081000"
+      },
+      {
+        "project": "ru.wikipedia",
+        "access": "mobile-app",
+        "agent": "automated",
+        "error": "404 for https://wikimedia.org/api/rest_v1/metrics/pageviews/aggregate/ru.wikipedia/mobile-app/automated/daily/2026051300/2026081000"
+      }
+    ]
   }
 }

@@ -1,9 +1,40 @@
 {
-  "health_score": 91.89,
+  "health_score": 84.34,
   "status": "FAIL",
   "expected_series": 54,
-  "observed_series": 54,
+  "observed_series": 49,
   "observed_days": 90,
-  "coverage_pct": 91.89,
-  "fetch_failures": []
+  "coverage_pct": 84.34,
+  "fetch_failures": [
+    {
+      "project": "en.wikipedia",
+      "access": "mobile-app",
+      "agent": "user",
+      "error": "404 for https://wikimedia.org/api/rest_v1/metrics/pageviews/aggregate/en.wikipedia/mobile-app/user/daily/2026051300/2026081000"
+    },
+    {
+      "project": "fr.wikipedia",
+      "access": "mobile-app",
+      "agent": "user",
+      "error": "404 for https://wikimedia.org/api/rest_v1/metrics/pageviews/aggregate/fr.wikipedia/mobile-app/user/daily/2026051300/2026081000"
+    },
+    {
+      "project": "ja.wikipedia",
+      "access": "mobile-app",
+      "agent": "spider",
+      "error": "404 for https://wikimedia.org/api/rest_v1/metrics/pageviews/aggregate/ja.wikipedia/mobile-app/spider/daily/2026051300/2026081000"
+    },
+    {
+      "project": "ru.wikipedia",
+      "access": "mobile-web",
+      "agent": "spider",
+      "error": "404 for https://wikimedia.org/api/rest_v1/metrics/pageviews/aggregate/ru.wikipedia/mobile-web/spider/daily/2026051300/2026081000"
+    },
+    {
+      "project": "ru.wikipedia",
+      "access": "mobile-app",
+      "agent": "automated",
+      "error": "404 for https://wikimedia.org/api/rest_v1/metrics/pageviews/aggregate/ru.wikipedia/mobile-app/automated/daily/2026051300/2026081000"
+    }
+  ]
 }
