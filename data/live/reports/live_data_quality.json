@@ -1,9 +1,52 @@
 {
-  "health_score": 91.85,
+  "health_score": 80.49,
   "status": "FAIL",
   "expected_series": 54,
-  "observed_series": 54,
+  "observed_series": 47,
   "observed_days": 90,
-  "coverage_pct": 91.85,
-  "fetch_failures": []
+  "coverage_pct": 80.49,
+  "fetch_failures": [
+    {
+      "project": "en.wikipedia",
+      "access": "mobile-app",
+      "agent": "user",
+      "error": "404 for https://wikimedia.org/api/rest_v1/metrics/pageviews/aggregate/en.wikipedia/mobile-app/user/daily/2026051600/2026081300"
+    },
+    {
+      "project": "fr.wikipedia",
+      "access": "mobile-web",
+      "agent": "automated",
+      "error": "404 for https://wikimedia.org/api/rest_v1/metrics/pageviews/aggregate/fr.wikipedia/mobile-web/automated/daily/2026051600/2026081300"
+    },
+    {
+      "project": "fr.wikipedia",
+      "access": "mobile-app",
+      "agent": "automated",
+      "error": "404 for https://wikimedia.org/api/rest_v1/metrics/pageviews/aggregate/fr.wikipedia/mobile-app/automated/daily/2026051600/2026081300"
+    },
+    {
+      "project": "es.wikipedia",
+      "access": "mobile-app",
+      "agent": "user",
+      "error": "404 for https://wikimedia.org/api/rest_v1/metrics/pageviews/aggregate/es.wikipedia/mobile-app/user/daily/2026051600/2026081300"
+    },
+    {
+      "project": "es.wikipedia",
+      "access": "mobile-app",
+      "agent": "spider",
+      "error": "404 for https://wikimedia.org/api/rest_v1/metrics/pageviews/aggregate/es.wikipedia/mobile-app/spider/daily/2026051600/2026081300"
+    },
+    {
+      "project": "ja.wikipedia",
+      "access": "desktop",
+      "agent": "automated",
+      "error": "404 for https://wikimedia.org/api/rest_v1/metrics/pageviews/aggregate/ja.wikipedia/desktop/automated/daily/2026051600/2026081300"
+    },
+    {
+      "project": "ru.wikipedia",
+      "access": "mobile-web",
+      "agent": "automated",
+      "error": "404 for https://wikimedia.org/api/rest_v1/metrics/pageviews/aggregate/ru.wikipedia/mobile-web/automated/daily/2026051600/2026081300"
+    }
+  ]
 }
