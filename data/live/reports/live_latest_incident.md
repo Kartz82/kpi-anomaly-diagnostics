@@ -1,8 +1,8 @@
 # KPI Incident Report
 
-Generated at: `2026-08-17T07:19:24.112337+00:00`
+Generated at: `2026-08-18T07:07:27.005279+00:00`
 Detector used: `residual_anomaly`
-Incidents generated: **2**
+Incidents generated: **3**
 Highest severity: **CRITICAL**
 
 ## Executive Summary
@@ -13,8 +13,9 @@ On 2026-07-27, pageviews showed a critical issue. The residual_anomaly detector 
 
 | Incident ID | Date | KPI | Severity | Confidence | Top Root Cause |
 |---|---:|---|---|---:|---|
-| INC-20260727-PAGEVIEWS-RESIDUAL-ANOMALY | 2026-07-27 | pageviews | CRITICAL | Medium (0.682) | en.wikipedia + mobile-web + automated |
-| INC-20260728-PAGEVIEWS-RESIDUAL-ANOMALY | 2026-07-28 | pageviews | CRITICAL | Medium (0.682) | en.wikipedia + mobile-web + automated |
+| INC-20260727-PAGEVIEWS-RESIDUAL-ANOMALY | 2026-07-27 | pageviews | CRITICAL | Medium (0.723) | en.wikipedia + mobile-web + automated |
+| INC-20260728-PAGEVIEWS-RESIDUAL-ANOMALY | 2026-07-28 | pageviews | CRITICAL | Medium (0.723) | en.wikipedia + mobile-web + automated |
+| INC-20260812-PAGEVIEWS-RESIDUAL-ANOMALY | 2026-08-12 | pageviews | CRITICAL | Medium (0.723) | ru.wikipedia + mobile-web + automated |
 
 ## INC-20260727-PAGEVIEWS-RESIDUAL-ANOMALY
 
@@ -48,6 +49,23 @@ On 2026-07-28, pageviews showed a critical issue. The residual_anomaly detector 
 - Actual value summary: `5209354.0`
 - Expected value summary: `7966696.678571`
 - Percent variance summary: `-0.346109`
+- Anomaly rows: `1`
+
+## INC-20260812-PAGEVIEWS-RESIDUAL-ANOMALY
+
+On 2026-08-12, pageviews showed a critical issue. The residual_anomaly detector flagged abnormal movement, and RCA identified ru.wikipedia + mobile-web + automated as the dominant contributor, explaining 100.0% of measured degradation. Recommended next step: Review recent product, tracking, and campaign changes affecting pageviews.
+
+### Suspected Root Causes
+- full_segment: ru.wikipedia + mobile-web + automated (100.0% contribution)
+
+### Recommended Actions
+- Review recent product, tracking, and campaign changes affecting pageviews.
+- Review pageviews drivers for full_segment = ru.wikipedia + mobile-web + automated; check recent releases, tracking changes, campaign mix, and operational issues.
+
+### Supporting Metrics
+- Actual value summary: `992742.0`
+- Expected value summary: `1422326.428571`
+- Percent variance summary: `-0.302029`
 - Anomaly rows: `1`
 
 ## Limitations
