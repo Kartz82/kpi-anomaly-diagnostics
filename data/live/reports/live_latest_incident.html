@@ -1,8 +1,8 @@
-<!doctype html><html><head><meta charset='utf-8'><title>KPI Incident Report</title><style>body{font-family:Arial,sans-serif;max-width:1100px;margin:32px auto;line-height:1.5;}pre{white-space:pre-wrap;background:#f8fafc;padding:20px;border:1px solid #e5e7eb;}</style></head><body><h1>KPI Incident Report</h1><p>Incidents generated: 2</p><pre># KPI Incident Report
+<!doctype html><html><head><meta charset='utf-8'><title>KPI Incident Report</title><style>body{font-family:Arial,sans-serif;max-width:1100px;margin:32px auto;line-height:1.5;}pre{white-space:pre-wrap;background:#f8fafc;padding:20px;border:1px solid #e5e7eb;}</style></head><body><h1>KPI Incident Report</h1><p>Incidents generated: 3</p><pre># KPI Incident Report
 
-Generated at: `2026-08-19T07:08:17.634498+00:00`
+Generated at: `2026-08-20T07:08:55.422790+00:00`
 Detector used: `residual_anomaly`
-Incidents generated: **2**
+Incidents generated: **3**
 Highest severity: **CRITICAL**
 
 ## Executive Summary
@@ -15,6 +15,7 @@ On 2026-07-27, pageviews showed a critical issue. The residual_anomaly detector 
 |---|---:|---|---|---:|---|
 | INC-20260727-PAGEVIEWS-RESIDUAL-ANOMALY | 2026-07-27 | pageviews | CRITICAL | Medium (0.723) | en.wikipedia + mobile-web + automated |
 | INC-20260728-PAGEVIEWS-RESIDUAL-ANOMALY | 2026-07-28 | pageviews | CRITICAL | Medium (0.723) | en.wikipedia + mobile-web + automated |
+| INC-20260819-PAGEVIEWS-RESIDUAL-ANOMALY | 2026-08-19 | pageviews | CRITICAL | Medium (0.723) | ru.wikipedia + mobile-web + automated |
 
 ## INC-20260727-PAGEVIEWS-RESIDUAL-ANOMALY
 
@@ -48,6 +49,23 @@ On 2026-07-28, pageviews showed a critical issue. The residual_anomaly detector 
 - Actual value summary: `5209354.0`
 - Expected value summary: `7966696.678571`
 - Percent variance summary: `-0.346109`
+- Anomaly rows: `1`
+
+## INC-20260819-PAGEVIEWS-RESIDUAL-ANOMALY
+
+On 2026-08-19, pageviews showed a critical issue. The residual_anomaly detector flagged abnormal movement, and RCA identified ru.wikipedia + mobile-web + automated as the dominant contributor, explaining 100.0% of measured degradation. Recommended next step: Review recent product, tracking, and campaign changes affecting pageviews.
+
+### Suspected Root Causes
+- full_segment: ru.wikipedia + mobile-web + automated (100.0% contribution)
+
+### Recommended Actions
+- Review recent product, tracking, and campaign changes affecting pageviews.
+- Review pageviews drivers for full_segment = ru.wikipedia + mobile-web + automated; check recent releases, tracking changes, campaign mix, and operational issues.
+
+### Supporting Metrics
+- Actual value summary: `1026732.0`
+- Expected value summary: `1311449.0`
+- Percent variance summary: `-0.217101`
 - Anomaly rows: `1`
 
 ## Limitations
