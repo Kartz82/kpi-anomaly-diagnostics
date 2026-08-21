@@ -1,8 +1,8 @@
 # KPI Incident Report
 
-Generated at: `2026-08-20T07:08:55.422790+00:00`
+Generated at: `2026-08-21T07:10:39.905751+00:00`
 Detector used: `residual_anomaly`
-Incidents generated: **3**
+Incidents generated: **4**
 Highest severity: **CRITICAL**
 
 ## Executive Summary
@@ -16,6 +16,7 @@ On 2026-07-27, pageviews showed a critical issue. The residual_anomaly detector 
 | INC-20260727-PAGEVIEWS-RESIDUAL-ANOMALY | 2026-07-27 | pageviews | CRITICAL | Medium (0.723) | en.wikipedia + mobile-web + automated |
 | INC-20260728-PAGEVIEWS-RESIDUAL-ANOMALY | 2026-07-28 | pageviews | CRITICAL | Medium (0.723) | en.wikipedia + mobile-web + automated |
 | INC-20260819-PAGEVIEWS-RESIDUAL-ANOMALY | 2026-08-19 | pageviews | CRITICAL | Medium (0.723) | ru.wikipedia + mobile-web + automated |
+| INC-20260820-PAGEVIEWS-RESIDUAL-ANOMALY | 2026-08-20 | pageviews | CRITICAL | Medium (0.723) | ru.wikipedia + mobile-web + automated |
 
 ## INC-20260727-PAGEVIEWS-RESIDUAL-ANOMALY
 
