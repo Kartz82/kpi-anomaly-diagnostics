@@ -1,8 +1,8 @@
 # KPI Incident Report
 
-Generated at: `2026-08-21T07:10:39.905751+00:00`
+Generated at: `2026-08-22T07:02:23.780158+00:00`
 Detector used: `residual_anomaly`
-Incidents generated: **4**
+Incidents generated: **1**
 Highest severity: **CRITICAL**
 
 ## Executive Summary
@@ -14,9 +14,6 @@ On 2026-07-27, pageviews showed a critical issue. The residual_anomaly detector 
 | Incident ID | Date | KPI | Severity | Confidence | Top Root Cause |
 |---|---:|---|---|---:|---|
 | INC-20260727-PAGEVIEWS-RESIDUAL-ANOMALY | 2026-07-27 | pageviews | CRITICAL | Medium (0.723) | en.wikipedia + mobile-web + automated |
-| INC-20260728-PAGEVIEWS-RESIDUAL-ANOMALY | 2026-07-28 | pageviews | CRITICAL | Medium (0.723) | en.wikipedia + mobile-web + automated |
-| INC-20260819-PAGEVIEWS-RESIDUAL-ANOMALY | 2026-08-19 | pageviews | CRITICAL | Medium (0.723) | ru.wikipedia + mobile-web + automated |
-| INC-20260820-PAGEVIEWS-RESIDUAL-ANOMALY | 2026-08-20 | pageviews | CRITICAL | Medium (0.723) | ru.wikipedia + mobile-web + automated |
 
 ## INC-20260727-PAGEVIEWS-RESIDUAL-ANOMALY
 
@@ -33,40 +30,6 @@ On 2026-07-27, pageviews showed a critical issue. The residual_anomaly detector 
 - Actual value summary: `5195889.0`
 - Expected value summary: `8103232.071429`
 - Percent variance summary: `-0.358788`
-- Anomaly rows: `1`
-
-## INC-20260728-PAGEVIEWS-RESIDUAL-ANOMALY
-
-On 2026-07-28, pageviews showed a critical issue. The residual_anomaly detector flagged abnormal movement, and RCA identified en.wikipedia + mobile-web + automated as the dominant contributor, explaining 100.0% of measured degradation. Recommended next step: Review recent product, tracking, and campaign changes affecting pageviews.
-
-### Suspected Root Causes
-- full_segment: en.wikipedia + mobile-web + automated (100.0% contribution)
-
-### Recommended Actions
-- Review recent product, tracking, and campaign changes affecting pageviews.
-- Review pageviews drivers for full_segment = en.wikipedia + mobile-web + automated; check recent releases, tracking changes, campaign mix, and operational issues.
-
-### Supporting Metrics
-- Actual value summary: `5209354.0`
-- Expected value summary: `7966696.678571`
-- Percent variance summary: `-0.346109`
-- Anomaly rows: `1`
-
-## INC-20260819-PAGEVIEWS-RESIDUAL-ANOMALY
-
-On 2026-08-19, pageviews showed a critical issue. The residual_anomaly detector flagged abnormal movement, and RCA identified ru.wikipedia + mobile-web + automated as the dominant contributor, explaining 100.0% of measured degradation. Recommended next step: Review recent product, tracking, and campaign changes affecting pageviews.
-
-### Suspected Root Causes
-- full_segment: ru.wikipedia + mobile-web + automated (100.0% contribution)
-
-### Recommended Actions
-- Review recent product, tracking, and campaign changes affecting pageviews.
-- Review pageviews drivers for full_segment = ru.wikipedia + mobile-web + automated; check recent releases, tracking changes, campaign mix, and operational issues.
-
-### Supporting Metrics
-- Actual value summary: `1026732.0`
-- Expected value summary: `1311449.0`
-- Percent variance summary: `-0.217101`
 - Anomaly rows: `1`
 
 ## Limitations
