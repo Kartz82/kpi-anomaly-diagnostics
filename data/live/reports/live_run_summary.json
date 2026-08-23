@@ -1,32 +1,32 @@
 {
-  "run_timestamp": "2026-08-22T07:02:23.761096+00:00",
+  "run_timestamp": "2026-08-23T07:03:33.499745+00:00",
   "track": "live_operations",
   "source": "Wikimedia Pageviews API",
-  "date_min": "2026-05-24",
-  "date_max": "2026-08-21",
+  "date_min": "2026-05-25",
+  "date_max": "2026-08-22",
   "report_window_days": 30,
-  "report_window_start": "2026-07-23",
-  "total_rows_fetched": 4407,
+  "report_window_start": "2026-07-24",
+  "total_rows_fetched": 4403,
   "series_count": 54,
-  "rows_scored": 4043,
-  "rows_unscored_baseline_warmup": 364,
-  "rows_in_report_window": 1427,
+  "rows_scored": 4040,
+  "rows_unscored_baseline_warmup": 363,
+  "rows_in_report_window": 1425,
   "residual_model_used": "numpy_ridge_regression_residual",
   "fetch_failures": [],
   "anomalies_in_window": {
-    "zscore": 44,
+    "zscore": 46,
     "residual": 1,
-    "combined": 45
+    "combined": 46
   },
   "labels_available": false,
   "accuracy_note": "No ground-truth labels exist for live traffic, so precision/recall/F1 are not computed here. Detector accuracy is measured on the synthetic track.",
   "live_data_quality": {
-    "health_score": 91.7,
+    "health_score": 91.61,
     "status": "FAIL",
     "expected_series": 54,
     "observed_series": 54,
     "observed_days": 89,
-    "coverage_pct": 91.7,
+    "coverage_pct": 91.61,
     "fetch_failures": []
   }
 }
