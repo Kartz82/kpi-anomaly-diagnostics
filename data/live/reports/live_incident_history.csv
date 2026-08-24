@@ -1,2 +1,3 @@
 incident_id,date,kpi_affected,severity,confidence_label,confidence_score,top_root_cause,recommended_action,detector_used
-INC-20260819-PAGEVIEWS-RESIDUAL-ANOMALY,2026-08-19,pageviews,CRITICAL,Medium,0.723,ru.wikipedia + mobile-web + spider,"Review recent product, tracking, and campaign changes affecting pageviews.",residual_anomaly
+INC-20260727-PAGEVIEWS-RESIDUAL-ANOMALY,2026-07-27,pageviews,CRITICAL,Medium,0.723,en.wikipedia + mobile-web + automated,"Review recent product, tracking, and campaign changes affecting pageviews.",residual_anomaly
+INC-20260819-PAGEVIEWS-RESIDUAL-ANOMALY,2026-08-19,pageviews,WARNING,Medium,0.612,de.wikipedia + mobile-web + spider,"Review recent product, tracking, and campaign changes affecting pageviews.",residual_anomaly
