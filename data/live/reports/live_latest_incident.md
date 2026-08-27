@@ -1,8 +1,8 @@
 # KPI Incident Report
 
-Generated at: `2026-08-26T07:11:17.078547+00:00`
+Generated at: `2026-08-27T17:41:03.395785+00:00`
 Detector used: `residual_anomaly`
-Incidents generated: **3**
+Incidents generated: **6**
 Highest severity: **CRITICAL**
 
 ## Executive Summary
@@ -15,6 +15,9 @@ On 2026-08-24, pageviews showed a critical issue. The residual_anomaly detector 
 |---|---:|---|---|---:|---|
 | INC-20260824-PAGEVIEWS-RESIDUAL-ANOMALY | 2026-08-24 | pageviews | CRITICAL | Medium (0.758) | ja.wikipedia + desktop + spider |
 | INC-20260825-PAGEVIEWS-RESIDUAL-ANOMALY | 2026-08-25 | pageviews | CRITICAL | Medium (0.732) | ja.wikipedia + desktop + spider |
+| INC-20260826-PAGEVIEWS-RESIDUAL-ANOMALY | 2026-08-26 | pageviews | CRITICAL | Medium (0.732) | ja.wikipedia + desktop + spider |
+| INC-20260820-PAGEVIEWS-RESIDUAL-ANOMALY | 2026-08-20 | pageviews | CRITICAL | Medium (0.723) | de.wikipedia + mobile-app + automated |
+| INC-20260823-PAGEVIEWS-RESIDUAL-ANOMALY | 2026-08-23 | pageviews | CRITICAL | Medium (0.723) | de.wikipedia + mobile-app + automated |
 | INC-20260819-PAGEVIEWS-RESIDUAL-ANOMALY | 2026-08-19 | pageviews | WARNING | Medium (0.555) | de.wikipedia + mobile-web + spider |
 
 ## INC-20260824-PAGEVIEWS-RESIDUAL-ANOMALY
@@ -53,25 +56,24 @@ On 2026-08-25, pageviews showed a critical issue. The residual_anomaly detector 
 - Percent variance summary: `-0.365047`
 - Anomaly rows: `2`
 
-## INC-20260819-PAGEVIEWS-RESIDUAL-ANOMALY
+## INC-20260826-PAGEVIEWS-RESIDUAL-ANOMALY
 
-On 2026-08-19, pageviews showed a warning issue. The residual_anomaly detector flagged abnormal movement, and RCA identified de.wikipedia + mobile-web + spider as the dominant contributor, explaining 37.6% of measured degradation. Recommended next step: Review recent product, tracking, and campaign changes affecting pageviews.
+On 2026-08-26, pageviews showed a critical issue. The residual_anomaly detector flagged abnormal movement, and RCA identified ja.wikipedia + desktop + spider as the dominant contributor, explaining 99.9% of measured degradation. Recommended next step: Review recent product, tracking, and campaign changes affecting pageviews.
 
 ### Suspected Root Causes
-- full_segment: de.wikipedia + mobile-web + spider (37.6% contribution)
-- full_segment: es.wikipedia + mobile-web + spider (37.1% contribution)
-- full_segment: ru.wikipedia + mobile-web + spider (25.3% contribution)
+- full_segment: ja.wikipedia + desktop + spider (99.9% contribution)
+- full_segment: de.wikipedia + mobile-app + automated (0.1% contribution)
 
 ### Recommended Actions
 - Review recent product, tracking, and campaign changes affecting pageviews.
-- Review pageviews drivers for full_segment = de.wikipedia + mobile-web + spider; check recent releases, tracking changes, campaign mix, and operational issues.
-- Review pageviews drivers for full_segment = es.wikipedia + mobile-web + spider; check recent releases, tracking changes, campaign mix, and operational issues.
+- Review pageviews drivers for full_segment = ja.wikipedia + desktop + spider; check recent releases, tracking changes, campaign mix, and operational issues.
+- Review pageviews drivers for full_segment = de.wikipedia + mobile-app + automated; check recent releases, tracking changes, campaign mix, and operational issues.
 
 ### Supporting Metrics
-- Actual value summary: `1281754.333333`
-- Expected value summary: `1697798.142857`
-- Percent variance summary: `-0.244997`
-- Anomaly rows: `3`
+- Actual value summary: `1954036.0`
+- Expected value summary: `2808535.928571`
+- Percent variance summary: `-0.333475`
+- Anomaly rows: `2`
 
 ## Limitations
 

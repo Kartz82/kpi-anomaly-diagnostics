@@ -1,11 +1,11 @@
 {
-  "run_timestamp": "2026-08-26T07:11:17.061936+00:00",
+  "run_timestamp": "2026-08-27T17:41:03.363768+00:00",
   "track": "live_operations",
   "source": "Wikimedia Pageviews API",
-  "date_min": "2026-05-28",
-  "date_max": "2026-08-25",
+  "date_min": "2026-05-29",
+  "date_max": "2026-08-26",
   "report_window_days": 30,
-  "report_window_start": "2026-07-27",
+  "report_window_start": "2026-07-28",
   "total_rows_fetched": 4450,
   "series_count": 54,
   "rows_scored": 4088,
@@ -15,8 +15,8 @@
   "fetch_failures": [],
   "anomalies_in_window": {
     "zscore": 33,
-    "residual": 6,
-    "combined": 36
+    "residual": 10,
+    "combined": 40
   },
   "labels_available": false,
   "accuracy_note": "No ground-truth labels exist for live traffic, so precision/recall/F1 are not computed here. Detector accuracy is measured on the synthetic track.",
