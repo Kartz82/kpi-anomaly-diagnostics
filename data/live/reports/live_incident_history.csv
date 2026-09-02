@@ -1,13 +1,13 @@
 incident_id,date,kpi_affected,severity,confidence_label,confidence_score,top_root_cause,recommended_action,detector_used
-INC-20260823-PAGEVIEWS-RESIDUAL-ANOMALY,2026-08-23,pageviews,CRITICAL,Medium,0.732,ru.wikipedia + desktop + automated,"Review recent product, tracking, and campaign changes affecting pageviews.",residual_anomaly
+INC-20260823-PAGEVIEWS-RESIDUAL-ANOMALY,2026-08-23,pageviews,CRITICAL,Medium,0.767,ru.wikipedia + desktop + automated,"Review recent product, tracking, and campaign changes affecting pageviews.",residual_anomaly
+INC-20260901-PAGEVIEWS-RESIDUAL-ANOMALY,2026-09-01,pageviews,CRITICAL,Medium,0.746,ja.wikipedia + desktop + spider,"Review recent product, tracking, and campaign changes affecting pageviews.",residual_anomaly
 INC-20260821-PAGEVIEWS-RESIDUAL-ANOMALY,2026-08-21,pageviews,CRITICAL,Medium,0.731,ru.wikipedia + desktop + automated,"Review recent product, tracking, and campaign changes affecting pageviews.",residual_anomaly
-INC-20260816-PAGEVIEWS-RESIDUAL-ANOMALY,2026-08-16,pageviews,CRITICAL,Medium,0.722,ja.wikipedia + desktop + automated,"Review recent product, tracking, and campaign changes affecting pageviews.",residual_anomaly
-INC-20260820-PAGEVIEWS-RESIDUAL-ANOMALY,2026-08-20,pageviews,CRITICAL,Medium,0.722,de.wikipedia + mobile-app + automated,"Review recent product, tracking, and campaign changes affecting pageviews.",residual_anomaly
+INC-20260820-PAGEVIEWS-RESIDUAL-ANOMALY,2026-08-20,pageviews,CRITICAL,Medium,0.729,ru.wikipedia + desktop + automated,"Review recent product, tracking, and campaign changes affecting pageviews.",residual_anomaly
 INC-20260822-PAGEVIEWS-RESIDUAL-ANOMALY,2026-08-22,pageviews,CRITICAL,Medium,0.722,de.wikipedia + mobile-app + automated,"Review recent product, tracking, and campaign changes affecting pageviews.",residual_anomaly
+INC-20260825-PAGEVIEWS-RESIDUAL-ANOMALY,2026-08-25,pageviews,CRITICAL,Medium,0.691,ja.wikipedia + desktop + spider,"Review recent product, tracking, and campaign changes affecting pageviews.",residual_anomaly
 INC-20260824-PAGEVIEWS-RESIDUAL-ANOMALY,2026-08-24,pageviews,CRITICAL,Medium,0.666,ja.wikipedia + desktop + spider,"Review recent product, tracking, and campaign changes affecting pageviews.",residual_anomaly
-INC-20260825-PAGEVIEWS-RESIDUAL-ANOMALY,2026-08-25,pageviews,CRITICAL,Medium,0.656,ja.wikipedia + desktop + spider,"Review recent product, tracking, and campaign changes affecting pageviews.",residual_anomaly
+INC-20260828-PAGEVIEWS-RESIDUAL-ANOMALY,2026-08-28,pageviews,CRITICAL,Medium,0.663,ja.wikipedia + desktop + spider,"Review recent product, tracking, and campaign changes affecting pageviews.",residual_anomaly
+INC-20260827-PAGEVIEWS-RESIDUAL-ANOMALY,2026-08-27,pageviews,CRITICAL,Medium,0.657,ja.wikipedia + desktop + spider,"Review recent product, tracking, and campaign changes affecting pageviews.",residual_anomaly
+INC-20260829-PAGEVIEWS-RESIDUAL-ANOMALY,2026-08-29,pageviews,CRITICAL,Medium,0.653,ja.wikipedia + desktop + spider,"Review recent product, tracking, and campaign changes affecting pageviews.",residual_anomaly
+INC-20260831-PAGEVIEWS-RESIDUAL-ANOMALY,2026-08-31,pageviews,CRITICAL,Medium,0.644,ja.wikipedia + desktop + spider,"Review recent product, tracking, and campaign changes affecting pageviews.",residual_anomaly
 INC-20260826-PAGEVIEWS-RESIDUAL-ANOMALY,2026-08-26,pageviews,CRITICAL,Medium,0.639,ja.wikipedia + desktop + spider,"Review recent product, tracking, and campaign changes affecting pageviews.",residual_anomaly
-INC-20260828-PAGEVIEWS-RESIDUAL-ANOMALY,2026-08-28,pageviews,CRITICAL,Medium,0.628,ja.wikipedia + desktop + spider,"Review recent product, tracking, and campaign changes affecting pageviews.",residual_anomaly
-INC-20260827-PAGEVIEWS-RESIDUAL-ANOMALY,2026-08-27,pageviews,CRITICAL,Medium,0.622,ja.wikipedia + desktop + spider,"Review recent product, tracking, and campaign changes affecting pageviews.",residual_anomaly
-INC-20260829-PAGEVIEWS-RESIDUAL-ANOMALY,2026-08-29,pageviews,CRITICAL,Medium,0.618,ja.wikipedia + desktop + spider,"Review recent product, tracking, and campaign changes affecting pageviews.",residual_anomaly
-INC-20260831-PAGEVIEWS-RESIDUAL-ANOMALY,2026-08-31,pageviews,CRITICAL,Medium,0.609,ja.wikipedia + desktop + spider,"Review recent product, tracking, and campaign changes affecting pageviews.",residual_anomaly
